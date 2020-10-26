@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <title>
-        A Deep Learning-based Radar and Camera Sensor Fusion Architecture for Object Detection |
+        A Deep Learning based Radar and Camera Sensor Fusion Architecture for Object Detection |
         
         Wang&#39;s Space
     </title>
@@ -138,7 +138,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">A Deep Learning-based Radar and Camera Sensor Fusion Architecture for Object Detection</a></h3>
+            <h3><a class="title-hover-animation">A Deep Learning based Radar and Camera Sensor Fusion Architecture for Object Detection</a></h3>
         </div>
 
         <div class="meta-info">
@@ -194,13 +194,73 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>利用深度学习的方法进行图像数据的目标检测在近些年来已经表现的非常成功了。不断提高的识别率和更高效的网络结构把这些技术推向了在量产车型上的应用。然而，图像传感器的质量受到恶劣天气条件的限制，并且传感器噪声会随着弱光环境和夜间环境而增大。我们的方法<strong>通过将相机数据和投影的稀疏雷达数据在网络层相互融合，强化了现有的2D目标检测网络</strong>。该<strong>CameraRadarFusionNet (CRF-Net)</strong>  能够在最有利于提升融合结构的融合层次进行自主学习。除此之外，我们采用了**<em>BlackIn**</em>,一种由Dropout提出的训练策略，它可以使得将学习过程聚焦到某一个具体的传感器类别上。我们的结果显示<strong>该融合网络可以在两种不同的数据集上面比目前性能上超越目前最先进的只基于图像的网络</strong>。该研究的代码可以向公众开放，位于：<a target="_blank" rel="noopener" href="https://github.com/TUMFTM/CameraRadarFusionNet">https://github.com/TUMFTM/CameraRadarFusionNet</a>  </p>
+            <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>利用深度学习的方法进行图像数据的目标检测在近些年来已经表现的非常成功了。不断提高的识别率和更高效的网络结构把这些技术推向了在量产车型上的应用。然而，图像传感器的质量受到恶劣天气条件的限制，并且传感器噪声会随着弱光环境和夜间环境而增大。我们的方法<strong>通过将相机数据和投影的稀疏雷达数据在网络层相互融合，强化了现有的2D目标检测网络</strong>。该<strong>CameraRadarFusionNet (CRF-Net)</strong>  能够在最有利于提升融合结构的融合层次进行自主学习。除此之外，我们采用了<strong><em>BlackIn</em></strong>,一种由Dropout提出的训练策略，它可以使得将学习过程聚焦到某一个具体的传感器类别上。我们的结果显示<strong>该融合网络可以在两种不同的数据集上性能超越目前最先进的只基于图像的网络</strong>。该研究的代码可以向公众开放，位于：<a target="_blank" rel="noopener" href="https://github.com/TUMFTM/CameraRadarFusionNet">https://github.com/TUMFTM/CameraRadarFusionNet</a>  </p>
 <ul>
 <li><strong>why？</strong>：image-only的融合方法受到天气，环境光的影响大</li>
 <li><strong>how？</strong>:   神经网络 ：1. 融合雷达和相机数据 2. 自动学习融合层深度 3.BlackIn</li>
 <li><strong>result？</strong>：两种不同数据集上面成功超越现有image-only的网络</li>
 </ul>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="P1：问题引出"><a href="#P1：问题引出" class="headerlink" title="P1：问题引出"></a>P1：问题引出</h2><p>雨天相机遮挡、弱光、夜间环境会影响相机感知效果，从而影响自动驾驶的安全性。</p>
+<div style="align: right">
+<img src = "https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026210621070.png">
+</div>
+
+
+<h2 id="P2：本文解决问题的方法"><a href="#P2：本文解决问题的方法" class="headerlink" title="P2：本文解决问题的方法"></a>P2：本文解决问题的方法</h2><p>为了解决这个问题，本文研究了<strong>用神经网络融合雷达和摄像机传感器数据的方法</strong>。该方法能够更可靠地检测nuScenes数据集和为本研究创建的TUM数据集中的目标。此外，我们还展示了我们的融合网络的局限性和未来的发展方向。</p>
+<blockquote>
+<p>雷达：直接获取目标的距离和径向速度信息。它能够在与地面平行的二维平面上定位物体。与相机相比，雷达传感器无法获得高度信息。</p>
+</blockquote>
+<h2 id="P3：文章的内容结构"><a href="#P3：文章的内容结构" class="headerlink" title="P3：文章的内容结构"></a>P3：文章的内容结构</h2><ul>
+<li>第二节：讨论了目标检测和传感器融合的相关方法。</li>
+<li>第三节：描述了我们在将雷达数据融合到网络之前对其进行预处理的方法。</li>
+<li>第四节：继续描述网络架构。</li>
+<li>第五节：对该方法进行评估和讨论。</li>
+<li>第六节：结论</li>
+</ul>
+<h1 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h1><h2 id="P1-：卷积神经网络的发展"><a href="#P1-：卷积神经网络的发展" class="headerlink" title="P1 ：卷积神经网络的发展"></a>P1 ：卷积神经网络的发展</h2><ul>
+<li><p>[4]: 第一个成功将卷积神经网络应用于图像分类的公司</p>
+</li>
+<li><p>[5][6]: 用于分类的神经网络结构被增强以执行额外的任务，如目标检测和语义分割</p>
+</li>
+<li><p>[7]: 实际应用中，单镜头结构（single shot architectures）已经被证明在保持合理低计算时间的情况下执行准确</p>
+</li>
+<li><p>[8]-[11]: 近年来，人们又提出了新的特征提取体系结构，将其应用于特定的元体系结构中，可以提高目标检测的性能。</p>
+</li>
+<li><p>[12][13]: 最近的研究又出现了了自动调参（auto-tune）和初始神经网络结构设计，以增加检测性能或者减少运行时间，（在不明显影响检测性能表现的情况下） </p>
+<h2 id="P2：激光雷达融合的发展"><a href="#P2：激光雷达融合的发展" class="headerlink" title="P2：激光雷达融合的发展"></a>P2：激光雷达融合的发展</h2></li>
+<li><p>[14]: 将激光雷达数据进行<a href="%E5%B0%86%E5%9B%BE%E5%83%8F%E6%8A%95%E5%BD%B1%E5%88%B02d%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95!%5Bimage-20201026214942009%5D(https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026214942009.png)">^<strong>鸟类视觉投影</strong></a>到2d地面，并且将相机数据与之结合以进行3d目标检测。</p>
+</li>
+<li><p>[15]: 将激光雷达分别投影到地面和垂直图像平面，然后将两者和相机数据结合在一个神经网络中进行融合。</p>
+</li>
+<li><p>[16]: 将激光雷达和相机数据在一个神经网络中进行融合来进行可行驶路段的分割。这些分支之间的互连是可训练的，这样在训练过程中，网络就可以在网络中学习到一个优化的深度级别，以便进行数据融合。</p>
+</li>
+<li><p>[17]: 利用了和[16]相似的融合方式但是对于激光雷达和相机同时应用了<a href="%E5%B0%86%E5%9B%BE%E5%83%8F%E6%8A%95%E5%BD%B1%E5%88%B02d%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95!%5Bimage-20201026214942009%5D(https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026214942009.png)">^<strong>鸟类视觉投影</strong></a></p>
+</li>
+</ul>
+<h2 id="P3-5：雷达融合的发展"><a href="#P3-5：雷达融合的发展" class="headerlink" title="P3-5：雷达融合的发展"></a>P3-5：雷达融合的发展</h2><ul>
+<li>[18]: 使用雷达探测在相机图像中创建感兴趣的区域，以便用一个简单的神经网络在这些区域分类对象。</li>
+<li>[19]-[22]: 一系列利用雷达来得到目标检测的感兴趣区域的相似方法</li>
+<li>[24]: 融合每个传感器的独立跟踪检测，以产生一个包含两个传感器读数的最终位置估计。</li>
+<li>[25]: 提出了一种深度学习方法与生成对抗网络(GANs)融合相机数据和雷达数据，合并到一个2D鸟瞰图网格图，以执行自由空间检测(free space detection)。</li>
+<li>[26]:给出了传感器融合的<strong>深度学习方法的概览</strong>。他们指出<strong>原始数据层</strong>的相机数据和雷达数据很少被考虑，这方面的研究应该需要进一步进行。</li>
+<li>[27]:将低空雷达数据投影到垂直于道路的摄像机图像平面上，提出一种与摄像机图像融合的神经网络。他们使用距离和距离率的雷达作为额外的图像通道。 该论文提出了<strong>两种传感器的融合策略</strong>:<ul>
+<li>一种是在初始分离层之后在固定层上进行合并(concatenation).</li>
+<li>一种是在初始分离层之后在固定层上进行元素方式的添加(element-wise addition).</li>
+</ul>
+</li>
+</ul>
+<h2 id="P6-本文的工作及方法"><a href="#P6-本文的工作及方法" class="headerlink" title="P6: 本文的工作及方法"></a>P6: 本文的工作及方法</h2><ul>
+<li><p>用了一个类似于[27]中的投影方法将雷达数据投影到相机图像的垂直面上当进行融合</p>
+</li>
+<li><p>提出了一个融合网络，它可以使得融合结果最有利于减少网络损失的情况下进行学习。</p>
+</li>
+<li><p>在图像空间中操作2D地面真实数据，与3D标签相比，这大大方便了训练数据的生成。</p>
+</li>
+</ul>
+<h2 id="P7：对运动目标滤波的说明"><a href="#P7：对运动目标滤波的说明" class="headerlink" title="P7：对运动目标滤波的说明"></a>P7：对运动目标滤波的说明</h2><ul>
+<li>由于有范围测量，通过雷达数据可以将运动的物体和环境区分开。对于某些实际应用，例如自适应巡航驾驶(Adaptive Cruise Control, AAC)，其对运动的物体进行了滤波以减少错误的雷达回波。同时，重要的静止物体，例如，停在红绿灯前面的车辆也被过滤了出来。在这篇文章中没有对运动目标进行滤波，所以我们可以同时检测到运动和静止的交通目标。</li>
+</ul>
+<h1 id="RADAR-DATA-PREPROCESSING"><a href="#RADAR-DATA-PREPROCESSING" class="headerlink" title="RADAR DATA PREPROCESSING"></a>RADAR DATA PREPROCESSING</h1><h1 id="P1："><a href="#P1：" class="headerlink" title="P1："></a>P1：</h1>
         </div>
 
         
@@ -210,9 +270,9 @@
                     <div class="article-next">
                         <a class="next btn"
                            rel="next"
-                           href="/2020/10/25/%E5%9E%82%E7%9B%B4%E8%B5%B7%E9%99%8D%E5%80%BE%E8%BD%AC%E6%97%A0%E4%BA%BA%E6%9C%BA-%E6%88%91%E7%9A%84cadc%E8%AE%B0%E5%BD%95/"
+                           href="/2020/10/26/3d%E6%89%93%E5%8D%B0%E9%A3%9E%E6%9C%BA%E2%80%94%E2%80%94%E6%88%91%E7%9A%84%E7%9C%8B%E6%B3%95/"
                         >
-                            <span class="post-nav-title-item">垂直起降倾转无人机-我的cadc记录</span>
+                            <span class="post-nav-title-item">3d打印飞机——我的看法</span>
                             <span class="post-nav-item">下一篇</span>
                             <i class="fa fa-chevron-right"></i>
                         </a>
@@ -317,7 +377,7 @@
         
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="nav-number">2.1.</span> <span class="nav-text">P1：问题引出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%9C%AC%E6%96%87%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">P2：本文解决问题的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%96%87%E7%AB%A0%E7%9A%84%E5%86%85%E5%AE%B9%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：文章的内容结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-%EF%BC%9A%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.1.</span> <span class="nav-text">P1 ：卷积神经网络的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E8%9E%8D%E5%90%88%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.2.</span> <span class="nav-text">P2：激光雷达融合的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-5%EF%BC%9A%E9%9B%B7%E8%BE%BE%E8%9E%8D%E5%90%88%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.3.</span> <span class="nav-text">P3-5：雷达融合的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P6-%E6%9C%AC%E6%96%87%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8F%8A%E6%96%B9%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">P6: 本文的工作及方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7%EF%BC%9A%E5%AF%B9%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%BB%A4%E6%B3%A2%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-number">3.5.</span> <span class="nav-text">P7：对运动目标滤波的说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RADAR-DATA-PREPROCESSING"><span class="nav-number">4.</span> <span class="nav-text">RADAR DATA PREPROCESSING</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#P1%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">P1：</span></a></li></ol>
     </div>
 </div>
         
