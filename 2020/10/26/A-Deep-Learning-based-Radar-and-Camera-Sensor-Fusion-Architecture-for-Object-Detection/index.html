@@ -194,7 +194,10 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>利用深度学习的方法进行图像数据的目标检测在近些年来已经表现的非常成功了。不断提高的识别率和更高效的网络结构把这些技术推向了在量产车型上的应用。然而，图像传感器的质量受到恶劣天气条件的限制，并且传感器噪声会随着弱光环境和夜间环境而增大。我们的方法<strong>通过将相机数据和投影的稀疏雷达数据在网络层相互融合，强化了现有的2D目标检测网络</strong>。该<strong>CameraRadarFusionNet (CRF-Net)</strong>  能够在最有利于提升融合结构的融合层次进行自主学习。除此之外，我们采用了<strong><em>BlackIn</em></strong>,一种由Dropout提出的训练策略，它可以使得将学习过程聚焦到某一个具体的传感器类别上。我们的结果显示<strong>该融合网络可以在两种不同的数据集上性能超越目前最先进的只基于图像的网络</strong>。该研究的代码可以向公众开放，位于：<a target="_blank" rel="noopener" href="https://github.com/TUMFTM/CameraRadarFusionNet">https://github.com/TUMFTM/CameraRadarFusionNet</a>  </p>
+            <blockquote>
+<p>论文笔记，原创内容；未经许可，请勿转载</p>
+</blockquote>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>利用深度学习的方法进行图像数据的目标检测在近些年来已经表现的非常成功了。不断提高的识别率和更高效的网络结构把这些技术推向了在量产车型上的应用。然而，图像传感器的质量受到恶劣天气条件的限制，并且传感器噪声会随着弱光环境和夜间环境而增大。我们的方法<strong>通过将相机数据和投影的稀疏雷达数据在网络层相互融合，强化了现有的2D目标检测网络</strong>。该<strong>CameraRadarFusionNet (CRF-Net)</strong>  能够在最有利于提升融合结构的融合层次进行自主学习。除此之外，我们采用了<strong><em>BlackIn</em></strong>,一种由Dropout提出的训练策略，它可以使得将学习过程聚焦到某一个具体的传感器类别上。我们的结果显示<strong>该融合网络可以在两种不同的数据集上性能超越目前最先进的只基于图像的网络</strong>。该研究的代码可以向公众开放，位于：<a target="_blank" rel="noopener" href="https://github.com/TUMFTM/CameraRadarFusionNet">https://github.com/TUMFTM/CameraRadarFusionNet</a>  </p>
 <ul>
 <li><strong>why？</strong>：image-only的融合方法受到天气，环境光的影响大</li>
 <li><strong>how？</strong>:   神经网络 ：1. 融合雷达和相机数据 2. 自动学习融合层深度 3.BlackIn</li>
