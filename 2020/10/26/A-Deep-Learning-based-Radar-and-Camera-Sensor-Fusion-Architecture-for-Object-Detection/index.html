@@ -313,7 +313,7 @@
 </ul>
 <h2 id="P1-训练网络"><a href="#P1-训练网络" class="headerlink" title="P1: 训练网络"></a>P1: 训练网络</h2><p>我们的神经网络架构建立在 <strong>RetinaNet</strong>[30]上 ，其中实现了一个[^VGG]的<strong>backbone</strong>[31][11]。这个网络被扩展以处理扩维图像的额外的雷达通道。网络的输出是<strong>边界盒(bounding box)的坐标系和分类分数</strong>的2D回归。该网络利用**焦损失(focal loss)**[30]进行训练。我们的基本方法是在第一个卷积层利用[^VGG]特征提取器</p>
 <h2 id="P2-雷达数据的特征提取和融合网络"><a href="#P2-雷达数据的特征提取和融合网络" class="headerlink" title="P2: 雷达数据的特征提取和融合网络"></a>P2: 雷达数据的特征提取和融合网络</h2><ul>
-<li><strong>为什么不能直接融合（在第一层就开始融合）？</strong>：</li>
+<li><strong>为什么不能直接融合（在第一层就开始融合）？</strong></li>
 </ul>
 <blockquote>
 <p>雷达投影数据中的像素与图像数据中的<strong>像素意义是不同的</strong>，前者代表了目标的距离，对于驾驶任务更为相关。如果要直接融合这两种数据，我们需要<strong>假设他们是语义近似的</strong>；然而，由于上一点的原因，我们显然难以做出这种假设！</p>
@@ -379,7 +379,7 @@
 <li><p>在硬件方面，<strong>高分辨率或成像雷达</strong>[38]有望增加雷达数据的信息密度，减少杂波。硬件方面的进步有望提高我们方法的检测结果</p>
 </li>
 </ul>
-<h1 id="附录-某些基础概念："><a href="#附录-某些基础概念：" class="headerlink" title="附录-某些基础概念："></a>附录-某些基础概念：</h1><p>由于本文初接触神经网络相关知识，一些基本概念理解也附录上。</p>
+<h1 id="附录-某些基础概念："><a href="#附录-某些基础概念：" class="headerlink" title="附录-某些基础概念："></a>附录-某些基础概念：</h1><p>由于我初接触神经网络相关知识，一些基本概念理解也附录上。</p>
 <h2 id="mAP"><a href="#mAP" class="headerlink" title="mAP:"></a>mAP:</h2><ul>
 <li><p>mAP: mean Average Precision, 即各类别AP的平均值</p>
 </li>
@@ -415,7 +415,8 @@
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8e501a159b28">RetinaNet: Focal loss在目标检测网络中的应用</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59910080">RetinaNet(Focal Loss)</a></p>
 <p>[^VGG]:VGG16相比AlexNet的一个改进是<strong>采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核（11x11，7x7，5x5）</strong>。对于给定的感受野（与输出有关的输入图片的局部大小），采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）。下图是一个用3层3x3代替5x5的例子<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027082637014.png" alt="image-20201027082637014" style="zoom:50%;" /></p>
-<p>[^max-pooling]:max pooling 的操作如下图所示：整个图片被不重叠的分割成若干个同样大小的小块（pooling size）。每个小块内只取最大的数字，再舍弃其他节点后，保持原有的平面结构得出 output。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027083205749.png" alt="image-20201027083205749"><br>[^IoU]:IoU 的全称为交并比（Intersection over Union），通过这个名称我们大概可以猜到 IoU 的计算方法。IoU 计算的是 “预测的边框” 和 “真实的边框” 的交集和并集的比值。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027084858913.png" alt="image-20201027084858913" style="zoom:50%;" /></p>
+<p>[^max-pooling]:max pooling 的操作如下图所示：整个图片被不重叠的分割成若干个同样大小的小块（pooling size）。每个小块内只取最大的数字，再舍弃其他节点后，保持原有的平面结构得出 output。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027083205749.png" alt="image-20201027083205749"></p>
+<p>[^IoU]:IoU 的全称为交并比（Intersection over Union），通过这个名称我们大概可以猜到 IoU 的计算方法。IoU 计算的是 “预测的边框” 和 “真实的边框” 的交集和并集的比值。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027084858913.png" alt="image-20201027084858913" style="zoom:50%;" /></p>
 
         </div>
 
