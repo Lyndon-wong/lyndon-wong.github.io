@@ -257,7 +257,7 @@
 </li>
 <li><p>提出了一个融合网络，它可以使得融合结果最有利于减少网络损失的情况下进行学习。</p>
 </li>
-<li><p>在图像空间中操作2D地面真实数据，与3D标签相比，这大大方便了训练数据的生成。</p>
+<li><p>在图像空间中操作2D真实标注(ground truth)数据，与3D标签相比，这大大方便了训练数据的生成。</p>
 </li>
 </ul>
 <h2 id="P7：对运动目标滤波的说明"><a href="#P7：对运动目标滤波的说明" class="headerlink" title="P7：对运动目标滤波的说明"></a>P7：对运动目标滤波的说明</h2><ul>
@@ -268,7 +268,7 @@
 <li>雷达和相机数据的<strong>空间校准</strong></li>
 <li>如何应对雷达回波<strong>丢失的高度信息</strong></li>
 <li>如何应对<strong>雷达数据的稀疏性</strong></li>
-<li>用<strong>地面真实信息滤波</strong>(ground-truth filtering, GF)方法来消除雷达数据的噪声和杂波</li>
+<li>用<strong>真实标注信息滤波</strong>(ground-truth filtering, GF)方法来消除雷达数据的噪声和杂波</li>
 </ul>
 <h2 id="P2-雷达和相机数据空间校准"><a href="#P2-雷达和相机数据空间校准" class="headerlink" title="P2: 雷达和相机数据空间校准"></a>P2: 雷达和相机数据空间校准</h2><p>雷达输出的是具有雷达性质的<strong>2D-稀疏-点云信息</strong>，本工作中应用的雷达信息主要有<strong>方位角</strong>，<strong>距离</strong>，<strong>雷达散射截面</strong>(radar cross section, RCS)。我们将雷达信息从2D地面平面转换到了图像面的垂直面上。雷达回波信息被在扩维图像(augmented image)上面被保存为像素。无雷达回波的位置上，投影的雷达通道值的像素被标记为0。输入的相机图片信息包含三通道(红，绿，蓝)；我们将先前提到的雷达通道作为神经网络的输入。在我们的数据集中，三个雷达的the field of view(FOV)和前视鱼眼相机的FOV重合。我们将三个雷达点云信息合并到一个中去，然后利用这个作为投影雷达输入信息源。投影的算法不尽相同，例如nuScenes利用70°FOV相机，但是TUM利用180°FOV鱼眼相机。在nuScenes中，提供了摄像机内外映射矩阵，用于将点从世界坐标转换为图像坐标。而鱼眼透镜的非线性不能用线性矩阵运算来映射。我们使用[28]提供的校准方法将世界坐标映射到我们自己的图像坐标。</p>
 <p>总结重点：</p>
@@ -294,24 +294,24 @@
 <li>这种方法也增加了噪声,因为前一时刻对移动目标的检测与当前目标物体的位置不一致.但是为了增加额外信息,这个缺点是可以忍受的.</li>
 <li>下图展示了神经网络的输入数据的形式,雷达数据(距离和RCS)被标记在相同位置所以这里有均匀的颜色<br><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027020717937.png" alt="image-20201027020717937"></li>
 </ul>
-<h2 id="P5-雷达数据的滤波"><a href="#P5-雷达数据的滤波" class="headerlink" title="P5: 雷达数据的滤波"></a>P5: 雷达数据的滤波</h2><p>雷达回波会返回需要与目标无关的检测信息,例如幽灵目标,无关目标和地面检测. 这些检测信息就是所说的噪声或杂波。在评价中，我们比较了融合原始雷达数据和利用两种额外滤波方法的雷达数据融合的效果。首先在nuScene中，只有一些标记目标被雷达检测到。在训练和估计中，我们因此实施了一种<strong>注释滤波器</strong>（<strong>annotation  filter，AF</strong>），这样经过滤波后的地面真实信息只包含至少同时被雷达点检测到的目标。这种方法对于可能被两种模式检测到的目标能发挥它的潜力。第二，我们采用了地面真实信息滤波器ground-truth filter来移除3D地面真实信息边界外的雷达探测点。当然，这个步骤如果实际场景是无法进行的。本文的目的是在输入信号杂波较少的情况下，证明融合概念的普遍可行性。经过雷达滤波后的图像在图像2b中被展示。注意，<strong>GRF（ground-truth radar filter）</strong>并没有输出完美的雷达数据，其中滤掉了部分数据的相关检测，原因有四：…（总结中有）</p>
+<h2 id="P5-雷达数据的滤波"><a href="#P5-雷达数据的滤波" class="headerlink" title="P5: 雷达数据的滤波"></a>P5: 雷达数据的滤波</h2><p>雷达回波会返回需要与目标无关的检测信息,例如幽灵目标,无关目标和地面检测. 这些检测信息就是所说的噪声或杂波。在评价中，我们比较了融合原始雷达数据和利用两种额外滤波方法的雷达数据融合的效果。首先在nuScene中，只有一些标记目标被雷达检测到。在训练和估计中，我们因此实施了一种<strong>注释滤波器</strong>（<strong>annotation  filter，AF</strong>），这样经过滤波后的真实标注信息只包含至少同时被雷达点检测到的目标。这种方法对于可能被两种模式检测到的目标能发挥它的潜力。第二，我们采用了真实标注信息滤波器ground-truth filter来移除3D真实标注信息边界外的雷达探测点。当然，这个步骤如果实际场景是无法进行的。本文的目的是在输入信号杂波较少的情况下，证明融合概念的普遍可行性。经过雷达滤波后的图像在图像2b中被展示。注意，<strong>GRF（ground-truth radar filter）</strong>并没有输出完美的雷达数据，其中滤掉了部分数据的相关检测，原因有四：…（总结中有）</p>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027022608947.png" alt="image-20201027022608947"></p>
 <p>总结：</p>
 <ul>
 <li>两种滤波器：<ul>
 <li><strong>AF</strong>:过滤没有同时被雷达数据检测到的目标</li>
-<li><strong>GRF</strong>:过滤真实地面信息边界外的雷达点</li>
+<li><strong>GRF</strong>:过滤超出真实标注边界的目标</li>
 </ul>
 </li>
 <li>滤波无法输出完美雷达数据的四点原因：<ul>
 <li>没有对运动目标的补偿。雷达探测频率2Hz，探测周期中间的目标可能就消失了</li>
 <li>雷达数据和相机数据具有轻微的空间错校准</li>
 <li>雷达数据和相机数据不是刚好都是同一时间产生的</li>
-<li>虽然雷达距离测量非常可靠，但其测量并不完美，轻微的误差就会导致探测落在地面真值边界之外。在图2b中可以看到对部分相关数据进行了无意的过滤<h1 id="NETWORK-FUSION-ARCHITECTURE"><a href="#NETWORK-FUSION-ARCHITECTURE" class="headerlink" title="NETWORK FUSION ARCHITECTURE"></a>NETWORK FUSION ARCHITECTURE</h1></li>
+<li>虽然雷达距离测量非常可靠，但其测量并不完美，轻微的误差就会导致探测落在真实标注边界之外。在图2b中可以看到对部分相关数据进行了无意的过滤<h1 id="NETWORK-FUSION-ARCHITECTURE"><a href="#NETWORK-FUSION-ARCHITECTURE" class="headerlink" title="NETWORK FUSION ARCHITECTURE"></a>NETWORK FUSION ARCHITECTURE</h1></li>
 </ul>
 </li>
 </ul>
-<h2 id="P1-训练网络"><a href="#P1-训练网络" class="headerlink" title="P1: 训练网络"></a>P1: 训练网络</h2><p>我们的神经网络架构建立在 <strong>RetinaNet</strong>[30]上 ，其中实现了一个<strong>VGG</strong>的<strong>backbone</strong>[31][11]。这个网络被扩展以处理扩维图像的额外的雷达通道。网络的输出是<strong>边界盒(bounding box)的坐标系和分类分数</strong>的2D回归。该网络利用**焦损失(focal loss)**[30]进行训练。我们的基本方法是在第一个卷积层利用VGG特征提取器</p>
+<h2 id="P1-训练网络"><a href="#P1-训练网络" class="headerlink" title="P1: 训练网络"></a>P1: 训练网络</h2><p>我们的神经网络架构建立在 <strong>RetinaNet</strong>[30]上 ，其中实现了一个[^VGG]的<strong>backbone</strong>[31][11]。这个网络被扩展以处理扩维图像的额外的雷达通道。网络的输出是<strong>边界盒(bounding box)的坐标系和分类分数</strong>的2D回归。该网络利用**焦损失(focal loss)**[30]进行训练。我们的基本方法是在第一个卷积层利用[^VGG]特征提取器</p>
 <h2 id="P2-雷达数据的特征提取和融合网络"><a href="#P2-雷达数据的特征提取和融合网络" class="headerlink" title="P2: 雷达数据的特征提取和融合网络"></a>P2: 雷达数据的特征提取和融合网络</h2><ul>
 <li><strong>为什么不能直接融合（在第一层就开始融合）？</strong>：</li>
 </ul>
@@ -329,7 +329,7 @@
 <li><p><strong>网络介绍</strong></p>
 <ul>
 <li>相机和雷达数据在顶排被输送给该网络。</li>
-<li>在左侧，原始雷达数据通过<strong>max-pooling</strong>来改变尺寸以送进更深的网络层。</li>
+<li>在左侧，原始雷达数据通过[^max-pooling]来改变尺寸以送进更深的网络层。</li>
 <li>雷达数据被合并到前一级融合网络层的主要分支上</li>
 <li>**特征金字塔网络(Feature Pyramid Network, FPN)**[33],其中雷达数据被分级融合进去，通过将雷达通道合并到额外的通道上去</li>
 <li>最后FPN的输出通过回归和分类块进行处理[30]</li>
@@ -379,6 +379,8 @@
 <li><p>在硬件方面，<strong>高分辨率或成像雷达</strong>[38]有望增加雷达数据的信息密度，减少杂波。硬件方面的进步有望提高我们方法的检测结果</p>
 </li>
 </ul>
+<p>[^VGG]:VGG16相比AlexNet的一个改进是<strong>采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核（11x11，7x7，5x5）</strong>。对于给定的感受野（与输出有关的输入图片的局部大小），采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）。下图是一个用3层3x3代替5x5的例子<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027082637014.png" alt="image-20201027082637014" style="zoom:50%;" /></p>
+<p>[^max-pooling]:max pooling 的操作如下图所示：整个图片被不重叠的分割成若干个同样大小的小块（pooling size）。每个小块内只取最大的数字，再舍弃其他节点后，保持原有的平面结构得出 output。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027083205749.png" alt="image-20201027083205749"></p>
 
         </div>
 
