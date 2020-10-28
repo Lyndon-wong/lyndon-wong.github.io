@@ -263,7 +263,7 @@
 <h2 id="P7：对运动目标滤波的说明"><a href="#P7：对运动目标滤波的说明" class="headerlink" title="P7：对运动目标滤波的说明"></a>P7：对运动目标滤波的说明</h2><ul>
 <li>由于有范围测量，通过雷达数据可以将运动的物体和环境区分开。对于某些实际应用，例如自适应巡航驾驶(Adaptive Cruise Control, AAC)，其对运动的物体进行了滤波以减少错误的雷达回波。同时，重要的静止物体，例如，停在红绿灯前面的车辆也被过滤了出来。在这篇文章中没有对运动目标进行滤波，所以我们可以同时检测到运动和静止的交通目标。</li>
 </ul>
-<h1 id="RADAR-DATA-PREPROCESSING"><a href="#RADAR-DATA-PREPROCESSING" class="headerlink" title="RADAR DATA PREPROCESSING"></a>RADAR DATA PREPROCESSING</h1><h2 id="P1：雷达数据处理总述"><a href="#P1：雷达数据处理总述" class="headerlink" title="P1：雷达数据处理总述"></a>P1：雷达数据处理总述</h2><p>本节主要介绍在我们的方法中的，将雷达数据投影到相机平面</p>
+<h1 id="RADAR-DATA-PREPROCESSING"><a href="#RADAR-DATA-PREPROCESSING" class="headerlink" title="RADAR DATA PREPROCESSING"></a>RADAR DATA PREPROCESSING</h1><h2 id="P1：雷达数据处理总述"><a href="#P1：雷达数据处理总述" class="headerlink" title="P1：雷达数据处理总述"></a>P1：雷达数据处理总述</h2><p>雷达数据的处理主要有<strong>四点问题</strong>：</p>
 <ul>
 <li>雷达和相机数据的<strong>空间校准</strong></li>
 <li>如何应对雷达回波<strong>丢失的高度信息</strong></li>
