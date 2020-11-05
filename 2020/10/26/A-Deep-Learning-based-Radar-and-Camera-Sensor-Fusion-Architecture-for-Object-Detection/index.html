@@ -197,80 +197,97 @@
             <blockquote>
 <p>论文笔记，原创内容；未经许可，请勿转载</p>
 </blockquote>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>利用深度学习的方法进行图像数据的目标检测在近些年来已经表现的非常成功了。不断提高的识别率和更高效的网络结构把这些技术推向了在量产车型上的应用。然而，图像传感器的质量受到恶劣天气条件的限制，并且传感器噪声会随着弱光环境和夜间环境而增大。我们的方法<strong>通过将相机数据和投影的稀疏雷达数据在网络层相互融合，强化了现有的2D目标检测网络</strong>。该<strong>CameraRadarFusionNet (CRF-Net)</strong>  能够在最有利于提升融合结构的融合层次进行自主学习。除此之外，我们采用了<strong><em>BlackIn</em></strong>,一种由Dropout提出的训练策略，它可以使得将学习过程聚焦到某一个具体的传感器类别上。我们的结果显示<strong>该融合网络可以在两种不同的数据集上性能超越目前最先进的只基于图像的网络</strong>。该研究的代码可以向公众开放，位于：<a target="_blank" rel="noopener" href="https://github.com/TUMFTM/CameraRadarFusionNet">https://github.com/TUMFTM/CameraRadarFusionNet</a>  </p>
+<h1>Abstract</h1>
+<p>利用深度学习的方法进行图像数据的目标检测在近些年来已经表现的非常成功了。不断提高的识别率和更高效的网络结构把这些技术推向了在量产车型上的应用。然而，图像传感器的质量受到恶劣天气条件的限制，并且传感器噪声会随着弱光环境和夜间环境而增大。我们的方法<strong>通过将相机数据和投影的稀疏雷达数据在网络层相互融合，强化了现有的2D目标检测网络</strong>。该<strong>CameraRadarFusionNet (CRF-Net)</strong>  能够在最有利于提升融合结构的融合层次进行自主学习。除此之外，我们采用了___BlackIn___,一种由Dropout提出的训练策略，它可以使得将学习过程聚焦到某一个具体的传感器类别上。我们的结果显示<strong>该融合网络可以在两种不同的数据集上性能超越目前最先进的只基于图像的网络</strong>。该研究的代码可以向公众开放，位于：<a target="_blank" rel="noopener" href="https://github.com/TUMFTM/CameraRadarFusionNet">https://github.com/TUMFTM/CameraRadarFusionNet</a></p>
 <ul>
 <li><strong>why？</strong>：image-only的融合方法受到天气，环境光的影响大</li>
 <li><strong>how？</strong>:   神经网络 ：1. 融合雷达和相机数据 2. 自动学习融合层深度 3.BlackIn</li>
 <li><strong>result？</strong>：两种不同数据集上面成功超越现有image-only的网络</li>
 </ul>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="P1：问题引出"><a href="#P1：问题引出" class="headerlink" title="P1：问题引出"></a>P1：问题引出</h2><p>雨天相机遮挡、弱光、夜间环境会影响相机感知效果，从而影响自动驾驶的安全性。</p>
+<h1>Introduction</h1>
+<h2 id="P1：问题引出">P1：问题引出</h2>
+<p>雨天相机遮挡、弱光、夜间环境会影响相机感知效果，从而影响自动驾驶的安全性。</p>
 <div style="align: right">
 <img src = "https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026210621070.png">
 </div>
-
-
-<h2 id="P2：本文解决问题的方法"><a href="#P2：本文解决问题的方法" class="headerlink" title="P2：本文解决问题的方法"></a>P2：本文解决问题的方法</h2><p>为了解决这个问题，本文研究了<strong>用神经网络融合雷达和摄像机传感器数据的方法</strong>。该方法能够更可靠地检测nuScenes数据集和为本研究创建的TUM数据集中的目标。此外，我们还展示了我们的融合网络的局限性和未来的发展方向。</p>
+<h2 id="P2：本文解决问题的方法">P2：本文解决问题的方法</h2>
+<p>为了解决这个问题，本文研究了<strong>用神经网络融合雷达和摄像机传感器数据的方法</strong>。该方法能够更可靠地检测nuScenes数据集和为本研究创建的TUM数据集中的目标。此外，我们还展示了我们的融合网络的局限性和未来的发展方向。</p>
 <blockquote>
 <p>雷达：直接获取目标的距离和径向速度信息。它能够在与地面平行的二维平面上定位物体。与相机相比，雷达传感器无法获得高度信息。</p>
 </blockquote>
-<h2 id="P3：文章的内容结构"><a href="#P3：文章的内容结构" class="headerlink" title="P3：文章的内容结构"></a>P3：文章的内容结构</h2><ul>
+<h2 id="P3：文章的内容结构">P3：文章的内容结构</h2>
+<ul>
 <li>第二节：讨论了目标检测和传感器融合的相关方法。</li>
 <li>第三节：描述了我们在将雷达数据融合到网络之前对其进行预处理的方法。</li>
 <li>第四节：继续描述网络架构。</li>
 <li>第五节：对该方法进行评估和讨论。</li>
 <li>第六节：结论</li>
 </ul>
-<h1 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h1><h2 id="P1-：卷积神经网络的发展"><a href="#P1-：卷积神经网络的发展" class="headerlink" title="P1 ：卷积神经网络的发展"></a>P1 ：卷积神经网络的发展</h2><ul>
-<li><p>[4]: 第一个成功将卷积神经网络应用于图像分类的公司</p>
+<h1>Related Work</h1>
+<h2 id="P1-：卷积神经网络的发展">P1 ：卷积神经网络的发展</h2>
+<ul>
+<li>[4]: 第一个成功将卷积神经网络应用于图像分类的公司</li>
+<li>[5][6]: 用于分类的神经网络结构被增强以执行额外的任务，如目标检测和语义分割</li>
+<li>[7]: 实际应用中，单镜头结构（single shot architectures）已经被证明在保持合理低计算时间的情况下执行准确</li>
+<li>[8]-[11]: 近年来，人们又提出了新的特征提取体系结构，将其应用于特定的元体系结构中，可以提高目标检测的性能。</li>
+<li>[12][13]: 最近的研究又出现了了自动调参（auto-tune）和初始神经网络结构设计，以增加检测性能或者减少运行时间，（在不明显影响检测性能表现的情况下）</li>
+</ul>
+<h2 id="P2：激光雷达融合的发展">P2：激光雷达融合的发展</h2>
+<ul>
+<li>
+<p>[14]: 将激光雷达数据进行<a href="%E5%B0%86%E5%9B%BE%E5%83%8F%E6%8A%95%E5%BD%B1%E5%88%B02d%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95!%5Bimage-20201026214942009%5D(https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026214942009.png)">^鸟类视觉投影</a>到2d地面，并且将相机数据与之结合以进行3d目标检测。</p>
 </li>
-<li><p>[5][6]: 用于分类的神经网络结构被增强以执行额外的任务，如目标检测和语义分割</p>
+<li>
+<p>[15]: 将激光雷达分别投影到地面和垂直图像平面，然后将两者和相机数据结合在一个神经网络中进行融合。</p>
 </li>
-<li><p>[7]: 实际应用中，单镜头结构（single shot architectures）已经被证明在保持合理低计算时间的情况下执行准确</p>
+<li>
+<p>[16]: 将激光雷达和相机数据在一个神经网络中进行融合来进行可行驶路段的分割。这些分支之间的互连是可训练的，这样在训练过程中，网络就可以在网络中学习到一个优化的深度级别，以便进行数据融合。</p>
 </li>
-<li><p>[8]-[11]: 近年来，人们又提出了新的特征提取体系结构，将其应用于特定的元体系结构中，可以提高目标检测的性能。</p>
-</li>
-<li><p>[12][13]: 最近的研究又出现了了自动调参（auto-tune）和初始神经网络结构设计，以增加检测性能或者减少运行时间，（在不明显影响检测性能表现的情况下） </p>
-<h2 id="P2：激光雷达融合的发展"><a href="#P2：激光雷达融合的发展" class="headerlink" title="P2：激光雷达融合的发展"></a>P2：激光雷达融合的发展</h2></li>
-<li><p>[14]: 将激光雷达数据进行<a href="%E5%B0%86%E5%9B%BE%E5%83%8F%E6%8A%95%E5%BD%B1%E5%88%B02d%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95!%5Bimage-20201026214942009%5D(https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026214942009.png)">^鸟类视觉投影</a>到2d地面，并且将相机数据与之结合以进行3d目标检测。</p>
-</li>
-<li><p>[15]: 将激光雷达分别投影到地面和垂直图像平面，然后将两者和相机数据结合在一个神经网络中进行融合。</p>
-</li>
-<li><p>[16]: 将激光雷达和相机数据在一个神经网络中进行融合来进行可行驶路段的分割。这些分支之间的互连是可训练的，这样在训练过程中，网络就可以在网络中学习到一个优化的深度级别，以便进行数据融合。</p>
-</li>
-<li><p>[17]: 利用了和[16]相似的融合方式但是对于激光雷达和相机同时应用了<a href="%E5%B0%86%E5%9B%BE%E5%83%8F%E6%8A%95%E5%BD%B1%E5%88%B02d%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95!%5Bimage-20201026214942009%5D(https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026214942009.png)">^鸟类视觉投影</a></p>
+<li>
+<p>[17]: 利用了和[16]相似的融合方式但是对于激光雷达和相机同时应用了<a href="%E5%B0%86%E5%9B%BE%E5%83%8F%E6%8A%95%E5%BD%B1%E5%88%B02d%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95!%5Bimage-20201026214942009%5D(https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026214942009.png)">^鸟类视觉投影</a></p>
 </li>
 </ul>
-<h2 id="P3-5：雷达融合的发展"><a href="#P3-5：雷达融合的发展" class="headerlink" title="P3-5：雷达融合的发展"></a>P3-5：雷达融合的发展</h2><ul>
+<h2 id="P3-5：雷达融合的发展">P3-5：雷达融合的发展</h2>
+<ul>
 <li>[18]: 使用雷达探测在相机图像中创建感兴趣的区域，以便用一个简单的神经网络在这些区域分类对象。</li>
 <li>[19]-[22]: 一系列利用雷达来得到目标检测的感兴趣区域的相似方法</li>
 <li>[24]: 融合每个传感器的独立跟踪检测，以产生一个包含两个传感器读数的最终位置估计。</li>
 <li>[25]: 提出了一种深度学习方法与生成对抗网络(GANs)融合相机数据和雷达数据，合并到一个2D鸟瞰图网格图，以执行自由空间检测(free space detection)。</li>
 <li>[26]:给出了传感器融合的<strong>深度学习方法的概览</strong>。他们指出<strong>原始数据层</strong>的相机数据和雷达数据很少被考虑，这方面的研究应该需要进一步进行。</li>
-<li>[27]:将低空雷达数据投影到垂直于道路的摄像机图像平面上，提出一种与摄像机图像融合的神经网络。他们使用距离和距离率的雷达作为额外的图像通道。 该论文提出了<strong>两种传感器的融合策略</strong>:<ul>
+<li>[27]:将低空雷达数据投影到垂直于道路的摄像机图像平面上，提出一种与摄像机图像融合的神经网络。他们使用距离和距离率的雷达作为额外的图像通道。 该论文提出了<strong>两种传感器的融合策略</strong>:
+<ul>
 <li>一种是在初始分离层之后在固定层上进行合并(concatenation).</li>
 <li>一种是在初始分离层之后在固定层上进行元素方式的添加(element-wise addition).</li>
 </ul>
 </li>
 </ul>
-<h2 id="P6-本文的工作及方法"><a href="#P6-本文的工作及方法" class="headerlink" title="P6: 本文的工作及方法"></a>P6: 本文的工作及方法</h2><ul>
-<li><p>用了一个类似于[27]中的投影方法将雷达数据投影到相机图像的垂直面上当进行融合</p>
+<h2 id="P6-本文的工作及方法">P6: 本文的工作及方法</h2>
+<ul>
+<li>
+<p>用了一个类似于[27]中的投影方法将雷达数据投影到相机图像的垂直面上当进行融合</p>
 </li>
-<li><p>提出了一个融合网络，它可以使得融合结果最有利于减少网络损失的情况下进行学习。</p>
+<li>
+<p>提出了一个融合网络，它可以使得融合结果最有利于减少网络损失的情况下进行学习。</p>
 </li>
-<li><p>在图像空间中操作2D真实标注(ground truth)数据，与3D标签相比，这大大方便了训练数据的生成。</p>
+<li>
+<p>在图像空间中操作2D真实标注(ground truth)数据，与3D标签相比，这大大方便了训练数据的生成。</p>
 </li>
 </ul>
-<h2 id="P7：对运动目标滤波的说明"><a href="#P7：对运动目标滤波的说明" class="headerlink" title="P7：对运动目标滤波的说明"></a>P7：对运动目标滤波的说明</h2><ul>
+<h2 id="P7：对运动目标滤波的说明">P7：对运动目标滤波的说明</h2>
+<ul>
 <li>由于有范围测量，通过雷达数据可以将运动的物体和环境区分开。对于某些实际应用，例如自适应巡航驾驶(Adaptive Cruise Control, AAC)，其对运动的物体进行了滤波以减少错误的雷达回波。同时，重要的静止物体，例如，停在红绿灯前面的车辆也被过滤了出来。在这篇文章中没有对运动目标进行滤波，所以我们可以同时检测到运动和静止的交通目标。</li>
 </ul>
-<h1 id="RADAR-DATA-PREPROCESSING"><a href="#RADAR-DATA-PREPROCESSING" class="headerlink" title="RADAR DATA PREPROCESSING"></a>RADAR DATA PREPROCESSING</h1><h2 id="P1：雷达数据处理总述"><a href="#P1：雷达数据处理总述" class="headerlink" title="P1：雷达数据处理总述"></a>P1：雷达数据处理总述</h2><p>雷达数据的处理主要有<strong>四点问题</strong>：</p>
+<h1>RADAR DATA PREPROCESSING</h1>
+<h2 id="P1：雷达数据处理总述">P1：雷达数据处理总述</h2>
+<p>雷达数据的处理主要有<strong>四点问题</strong>：</p>
 <ul>
 <li>雷达和相机数据的<strong>空间校准</strong></li>
 <li>如何应对雷达回波<strong>丢失的高度信息</strong></li>
 <li>如何应对<strong>雷达数据的稀疏性</strong></li>
 <li>用<strong>真实标注信息滤波</strong>(ground-truth filtering, GF)方法来消除雷达数据的噪声和杂波</li>
 </ul>
-<h2 id="P2-雷达和相机数据空间校准"><a href="#P2-雷达和相机数据空间校准" class="headerlink" title="P2: 雷达和相机数据空间校准"></a>P2: 雷达和相机数据空间校准</h2><p>雷达输出的是具有雷达性质的<strong>2D-稀疏-点云信息</strong>，本工作中应用的雷达信息主要有<strong>方位角</strong>，<strong>距离</strong>，<strong>雷达散射截面</strong>(radar cross section, RCS)。我们将雷达信息从2D地面平面转换到了图像面的垂直面上。雷达回波信息被在扩维图像(augmented image)上面被保存为像素。无雷达回波的位置上，投影的雷达通道值的像素被标记为0。输入的相机图片信息包含三通道(红，绿，蓝)；我们将先前提到的雷达通道作为神经网络的输入。在我们的数据集中，三个雷达的the field of view(FOV)和前视鱼眼相机的FOV重合。我们将三个雷达点云信息合并到一个中去，然后利用这个作为投影雷达输入信息源。投影的算法不尽相同，例如nuScenes利用70°FOV相机，但是TUM利用180°FOV鱼眼相机。在nuScenes中，提供了摄像机内外映射矩阵，用于将点从世界坐标转换为图像坐标。而鱼眼透镜的非线性不能用线性矩阵运算来映射。我们使用[28]提供的校准方法将世界坐标映射到我们自己的图像坐标。</p>
+<h2 id="P2-雷达和相机数据空间校准">P2: 雷达和相机数据空间校准</h2>
+<p>雷达输出的是具有雷达性质的<strong>2D-稀疏-点云信息</strong>，本工作中应用的雷达信息主要有<strong>方位角</strong>，<strong>距离</strong>，<strong>雷达散射截面</strong>(radar cross section, RCS)。我们将雷达信息从2D地面平面转换到了图像面的垂直面上。雷达回波信息被在扩维图像(augmented image)上面被保存为像素。无雷达回波的位置上，投影的雷达通道值的像素被标记为0。输入的相机图片信息包含三通道(红，绿，蓝)；我们将先前提到的雷达通道作为神经网络的输入。在我们的数据集中，三个雷达的the field of view(FOV)和前视鱼眼相机的FOV重合。我们将三个雷达点云信息合并到一个中去，然后利用这个作为投影雷达输入信息源。投影的算法不尽相同，例如nuScenes利用70°FOV相机，但是TUM利用180°FOV鱼眼相机。在nuScenes中，提供了摄像机内外映射矩阵，用于将点从世界坐标转换为图像坐标。而鱼眼透镜的非线性不能用线性矩阵运算来映射。我们使用[28]提供的校准方法将世界坐标映射到我们自己的图像坐标。</p>
 <p>总结重点：</p>
 <ul>
 <li>三个雷达点云信息合并为一个，作为雷达信息源</li>
@@ -278,41 +295,53 @@
 <li>鱼眼相机的世界坐标投影到图像坐标上</li>
 <li>投影雷达数据作为图像信息的扩维，无回波的地方像素就为0</li>
 </ul>
-<h2 id="P3-应对雷达高度信息缺失"><a href="#P3-应对雷达高度信息缺失" class="headerlink" title="P3: 应对雷达高度信息缺失"></a>P3: 应对雷达高度信息缺失</h2><ul>
-<li><p>首先考虑到我们检测的目标主要是车，卡车，摩托车，自行车和行人</p>
+<h2 id="P3-应对雷达高度信息缺失">P3: 应对雷达高度信息缺失</h2>
+<ul>
+<li>
+<p>首先考虑到我们检测的目标主要是车，卡车，摩托车，自行车和行人</p>
 </li>
-<li><p>我们假设了雷达得到的回波点的高度都是3m，以覆盖这些目标的高度</p>
+<li>
+<p>我们假设了雷达得到的回波点的高度都是3m，以覆盖这些目标的高度</p>
 </li>
-<li><p>然后这个高度线也作为像素投影到了图像平面</p>
+<li>
+<p>然后这个高度线也作为像素投影到了图像平面</p>
 </li>
 </ul>
-<h2 id="P4-应对雷达信息的稀疏性"><a href="#P4-应对雷达信息的稀疏性" class="headerlink" title="P4: 应对雷达信息的稀疏性"></a>P4: 应对雷达信息的稀疏性</h2><ul>
+<h2 id="P4-应对雷达信息的稀疏性">P4: 应对雷达信息的稀疏性</h2>
+<ul>
 <li>nuScene中激光雷达一次返回约14000点(相同水平张角下)[29], 这大概等同于雷达每周期探测57次的信息量.</li>
 <li>为了解决稀疏性问题,[25]利用了<strong>概率网格图</strong>(probabilistic grid maps)来获得雷达的连续性信息.</li>
 <li>我们通过<strong>融合最后13次雷达周期(约1s)的图像</strong>来提高雷达数据的密度.</li>
 <li>在这个方法中,我们<strong>补偿了自身运动</strong>(Ego-motion),但是<strong>目标车辆的运动无法补偿</strong></li>
 <li>这种方法也增加了噪声,因为前一时刻对移动目标的检测与当前目标物体的位置不一致.但是为了增加额外信息,这个缺点是可以忍受的.</li>
-<li>下图展示了神经网络的输入数据的形式,雷达数据(距离和RCS)被标记在相同位置所以这里有均匀的颜色<br><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027020717937.png" alt="image-20201027020717937"></li>
+<li>下图展示了神经网络的输入数据的形式,雷达数据(距离和RCS)被标记在相同位置所以这里有均匀的颜色<br>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027020717937.png" alt="image-20201027020717937"></li>
 </ul>
-<h2 id="P5-雷达数据的滤波"><a href="#P5-雷达数据的滤波" class="headerlink" title="P5: 雷达数据的滤波"></a>P5: 雷达数据的滤波</h2><p>雷达回波会返回需要与目标无关的检测信息,例如幽灵目标,无关目标和地面检测. 这些检测信息就是所说的噪声或杂波。在评价中，我们比较了融合原始雷达数据和利用两种额外滤波方法的雷达数据融合的效果。首先在nuScene中，只有一些标记目标被雷达检测到。在训练和估计中，我们因此实施了一种<strong>注解标注滤波器</strong>（<strong>annotation  filter，AF</strong>），这样经过滤波后的真实标注信息只包含至少同时被雷达点检测到的目标。这种方法对于可能被两种模式检测到的目标能发挥它的潜力。第二，我们采用了真实标注信息滤波器ground-truth filter来移除3D真实标注信息边界外的雷达探测点。当然，这个步骤如果实际场景是无法进行的。本文的目的是在输入信号杂波较少的情况下，证明融合概念的普遍可行性。经过雷达滤波后的图像在图像2b中被展示。注意，<strong>GRF（ground-truth radar filter）</strong>并没有输出完美的雷达数据，其中滤掉了部分数据的相关检测，原因有四：…（总结中有）</p>
+<h2 id="P5-雷达数据的滤波">P5: 雷达数据的滤波</h2>
+<p>雷达回波会返回需要与目标无关的检测信息,例如幽灵目标,无关目标和地面检测. 这些检测信息就是所说的噪声或杂波。在评价中，我们比较了融合原始雷达数据和利用两种额外滤波方法的雷达数据融合的效果。首先在nuScene中，只有一些标记目标被雷达检测到。在训练和估计中，我们因此实施了一种<strong>注解标注滤波器</strong>（<strong>annotation  filter，AF</strong>），这样经过滤波后的真实标注信息只包含至少同时被雷达点检测到的目标。这种方法对于可能被两种模式检测到的目标能发挥它的潜力。第二，我们采用了真实标注信息滤波器ground-truth filter来移除3D真实标注信息边界外的雷达探测点。当然，这个步骤如果实际场景是无法进行的。本文的目的是在输入信号杂波较少的情况下，证明融合概念的普遍可行性。经过雷达滤波后的图像在图像2b中被展示。注意，**GRF（ground-truth radar filter）**并没有输出完美的雷达数据，其中滤掉了部分数据的相关检测，原因有四：…（总结中有）</p>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027022608947.png" alt="image-20201027022608947"></p>
 <p>总结：</p>
 <ul>
-<li>两种滤波器：<ul>
+<li>两种滤波器：
+<ul>
 <li><strong>AF</strong>:过滤没有同时被雷达数据检测到的目标</li>
 <li><strong>GRF</strong>:过滤超出真实标注边界的目标</li>
 </ul>
 </li>
-<li>滤波无法输出完美雷达数据的四点原因：<ul>
+<li>滤波无法输出完美雷达数据的四点原因：
+<ul>
 <li>没有对运动目标的补偿。雷达探测频率2Hz，探测周期中间的目标可能就消失了</li>
 <li>雷达数据和相机数据具有轻微的空间错校准</li>
 <li>雷达数据和相机数据不是刚好都是同一时间产生的</li>
-<li>虽然雷达距离测量非常可靠，但其测量并不完美，轻微的误差就会导致探测落在真实标注边界之外。在图2b中可以看到对部分相关数据进行了无意的过滤<h1 id="NETWORK-FUSION-ARCHITECTURE"><a href="#NETWORK-FUSION-ARCHITECTURE" class="headerlink" title="NETWORK FUSION ARCHITECTURE"></a>NETWORK FUSION ARCHITECTURE</h1></li>
+<li>虽然雷达距离测量非常可靠，但其测量并不完美，轻微的误差就会导致探测落在真实标注边界之外。在图2b中可以看到对部分相关数据进行了无意的过滤</li>
 </ul>
 </li>
 </ul>
-<h2 id="P1-训练网络"><a href="#P1-训练网络" class="headerlink" title="P1: 训练网络"></a>P1: 训练网络</h2><p>我们的神经网络架构建立在 <strong>RetinaNet</strong>[30]上 ，其中实现了一个[^VGG]的<strong>backbone</strong>[31][11]。这个网络被扩展以处理扩维图像的额外的雷达通道。网络的输出是<strong>边界盒(bounding box)的坐标系和分类分数</strong>的2D回归。该网络利用**焦损失(focal loss)**[30]进行训练。我们的基本方法是在第一个卷积层利用[^VGG]特征提取器</p>
-<h2 id="P2-雷达数据的特征提取和融合网络"><a href="#P2-雷达数据的特征提取和融合网络" class="headerlink" title="P2: 雷达数据的特征提取和融合网络"></a>P2: 雷达数据的特征提取和融合网络</h2><ul>
+<h1>NETWORK FUSION ARCHITECTURE</h1>
+<h2 id="P1-训练网络">P1: 训练网络</h2>
+<p>我们的神经网络架构建立在 <strong>RetinaNet</strong>[30]上 ，其中实现了一个[^VGG]的<strong>backbone</strong>[31][11]。这个网络被扩展以处理扩维图像的额外的雷达通道。网络的输出是<strong>边界盒(bounding box)的坐标系和分类分数</strong>的2D回归。该网络利用<strong>焦损失(focal loss)</strong>[30]进行训练。我们的基本方法是在第一个卷积层利用[^VGG]特征提取器</p>
+<h2 id="P2-雷达数据的特征提取和融合网络">P2: 雷达数据的特征提取和融合网络</h2>
+<ul>
 <li><strong>为什么不能直接融合（在第一层就开始融合）？</strong></li>
 </ul>
 <blockquote>
@@ -326,88 +355,104 @@
 </blockquote>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027030428076.png" alt="image-20201027030428076"></p>
 <ul>
-<li><p><strong>网络介绍</strong></p>
+<li><strong>网络介绍</strong>
 <ul>
 <li>相机和雷达数据在顶排被输送给该网络。</li>
 <li>在左侧，原始雷达数据通过[^max-pooling]来改变尺寸以送进更深的网络层。</li>
 <li>雷达数据被合并到前一级融合网络层的主要分支上</li>
-<li>**特征金字塔网络(Feature Pyramid Network, FPN)**[33],其中雷达数据被分级融合进去，通过将雷达通道合并到额外的通道上去</li>
+<li><strong>特征金字塔网络(Feature Pyramid Network, FPN)</strong>[33],其中雷达数据被分级融合进去，通过将雷达通道合并到额外的通道上去</li>
 <li>最后FPN的输出通过回归和分类块进行处理[30]</li>
 </ul>
 </li>
-<li><p><strong>网络优势</strong></p>
+<li><strong>网络优势</strong>
 <ul>
-<li><p>通过调节雷达特征在各个层的权值，优化器隐式地教会了该网络在何种深度将雷达数据进行融合具有最好的影响</p>
+<li>
+<p>通过调节雷达特征在各个层的权值，优化器隐式地教会了该网络在何种深度将雷达数据进行融合具有最好的影响</p>
 </li>
-<li><p>类似的技术被[16]所采用</p>
+<li>
+<p>类似的技术被[16]所采用</p>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="P3-训练策略"><a href="#P3-训练策略" class="headerlink" title="P3: 训练策略"></a>P3: 训练策略</h2><ul>
+<h2 id="P3-训练策略">P3: 训练策略</h2>
+<ul>
 <li><strong>BlackIn</strong> :有意在部分训练中禁用了所有图像数据输入神经元，这个比例大概是0.2。这样做的目的是：图像数据的丢失能更加刺激该网络更依赖于雷达数据。‘教育’该网络稀疏的雷达数据是独立于密集的图像数据的。</li>
 <li>用预先在图像上训练的权重开始训练，用于特征提取器。</li>
 </ul>
-<h1 id="EXPERIMENTS-AND-RESULTS"><a href="#EXPERIMENTS-AND-RESULTS" class="headerlink" title="EXPERIMENTS AND RESULTS"></a>EXPERIMENTS AND RESULTS</h1><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032257258.png" alt="image-20201027032257258"></p>
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>训练细节略</p>
-<h2 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h2><p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032430797.png" alt="image-20201027032430797"></p>
-<h2 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h2><p>下图的对比能很好低表现CRF-Net的优势：</p>
+<h1>EXPERIMENTS AND RESULTS</h1>
+<h2 id="数据集">数据集</h2>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032257258.png" alt="image-20201027032257258"></p>
+<h2 id="训练">训练</h2>
+<p>训练细节略</p>
+<h2 id="评价">评价</h2>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032430797.png" alt="image-20201027032430797"></p>
+<h2 id="一个例子">一个例子</h2>
+<p>下图的对比能很好低表现CRF-Net的优势：</p>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032539422.png" alt="image-20201027032539422"></p>
-<h1 id="CONCLUSIONS-AND-OUTLOOK"><a href="#CONCLUSIONS-AND-OUTLOOK" class="headerlink" title="CONCLUSIONS AND OUTLOOK"></a>CONCLUSIONS AND OUTLOOK</h1><h2 id="P1：本文工作"><a href="#P1：本文工作" class="headerlink" title="P1：本文工作"></a>P1：本文工作</h2><ul>
-<li><p>提出了CRF-Net结构来融合雷达和相机数据</p>
+<h1>CONCLUSIONS AND OUTLOOK</h1>
+<h2 id="P1：本文工作">P1：本文工作</h2>
+<ul>
+<li>提出了CRF-Net结构来融合雷达和相机数据</li>
+<li>本研究适应了激光雷达和相机数据处理的思路，为<strong>雷达数据融合研究</strong>开辟了新的方向。</li>
+<li>对雷达数据处理的难点和解决方案进行了讨论</li>
+<li>引入了<strong>BlackIn</strong>训练策略进行雷达和相机数据的融合。</li>
+<li>证明了采用神经网络对雷达和摄像机数据进行融合，可以有效地提高目前最先进的目标检测网络的精度</li>
+<li>由于对雷达与相机数据的神经网络融合的研究是最近才开始的，寻找优化的网络架构还需要进一步的探索。</li>
+</ul>
+<h2 id="P2：未来工作">P2：未来工作</h2>
+<ul>
+<li>计划研究一种能<strong>滤除雷达数据中的噪声的预处理神经网络结构</strong></li>
+<li><strong>与其他传感器形式(如激光雷达数据)的融合</strong>可以进一步提高检测精度，但是同时会因为引入新层数和新设计概率而增加复杂性。</li>
+<li>神经网络融合方法对<strong>传感器空间和时间误校准的鲁棒性研究</strong>需要评估。</li>
+<li>我们看到了在恶劣天气条件下驾驶的多模态神经网络融合的增长潜力。需要<strong>创建具有这些条件的其他数据集</strong>来研究这一假设。</li>
+<li>最后，由于雷达传感器将距离信息引入到检测方案中，<strong>融合概念在三维目标检测中的适用性</strong>是我们想要探索的方向</li>
+<li>在硬件方面，<strong>高分辨率或成像雷达</strong>[38]有望增加雷达数据的信息密度，减少杂波。硬件方面的进步有望提高我们方法的检测结果</li>
+</ul>
+<h1>附录-某些基础概念：</h1>
+<p>由于我初接触神经网络相关知识，一些基本概念理解也附录上。</p>
+<h2 id="mAP">mAP:</h2>
+<ul>
+<li>
+<p>mAP: mean Average Precision, 即各类别AP的平均值</p>
 </li>
-<li><p>本研究适应了激光雷达和相机数据处理的思路，为<strong>雷达数据融合研究</strong>开辟了新的方向。</p>
+<li>
+<p>AP: PR曲线下面积，后文会详细讲解</p>
 </li>
-<li><p>对雷达数据处理的难点和解决方案进行了讨论</p>
+<li>
+<p>PR曲线: Precision-Recall曲线</p>
 </li>
-<li><p>引入了<strong>BlackIn</strong>训练策略进行雷达和相机数据的融合。</p>
+<li>
+<p>Precision: TP / (TP + FP)</p>
 </li>
-<li><p>证明了采用神经网络对雷达和摄像机数据进行融合，可以有效地提高目前最先进的目标检测网络的精度</p>
+<li>
+<p>Recall: TP / (TP + FN)</p>
 </li>
-<li><p>由于对雷达与相机数据的神经网络融合的研究是最近才开始的，寻找优化的网络架构还需要进一步的探索。</p>
-<h2 id="P2：未来工作"><a href="#P2：未来工作" class="headerlink" title="P2：未来工作"></a>P2：未来工作</h2></li>
-<li><p>计划研究一种能<strong>滤除雷达数据中的噪声的预处理神经网络结构</strong></p>
+<li>
+<p>TP: [^IoU]&gt;0.5的检测框数量（同一Ground Truth只计算一次）</p>
 </li>
-<li><p><strong>与其他传感器形式(如激光雷达数据)的融合</strong>可以进一步提高检测精度，但是同时会因为引入新层数和新设计概率而增加复杂性。</p>
+<li>
+<p>FP: [^IoU]&lt;=0.5的检测框，或者是检测到同一个GT的多余检测框的数量</p>
 </li>
-<li><p>神经网络融合方法对<strong>传感器空间和时间误校准的鲁棒性研究</strong>需要评估。</p>
+<li>
+<p>FN: 没有检测到的GT的数量</p>
 </li>
-<li><p>我们看到了在恶劣天气条件下驾驶的多模态神经网络融合的增长潜力。需要<strong>创建具有这些条件的其他数据集</strong>来研究这一假设。</p>
-</li>
-<li><p>最后，由于雷达传感器将距离信息引入到检测方案中，<strong>融合概念在三维目标检测中的适用性</strong>是我们想要探索的方向</p>
-</li>
-<li><p>在硬件方面，<strong>高分辨率或成像雷达</strong>[38]有望增加雷达数据的信息密度，减少杂波。硬件方面的进步有望提高我们方法的检测结果</p>
+<li>
+<p>IoU：交并比（Intersection over Union）。[^IoU] 计算的是 “预测的边框” 和 “真实的边框” 的交集和并集的比值。</p>
 </li>
 </ul>
-<h1 id="附录-某些基础概念："><a href="#附录-某些基础概念：" class="headerlink" title="附录-某些基础概念："></a>附录-某些基础概念：</h1><p>由于我初接触神经网络相关知识，一些基本概念理解也附录上。</p>
-<h2 id="mAP"><a href="#mAP" class="headerlink" title="mAP:"></a>mAP:</h2><ul>
-<li><p>mAP: mean Average Precision, 即各类别AP的平均值</p>
-</li>
-<li><p>AP: PR曲线下面积，后文会详细讲解</p>
-</li>
-<li><p>PR曲线: Precision-Recall曲线</p>
-</li>
-<li><p>Precision: TP / (TP + FP)</p>
-</li>
-<li><p>Recall: TP / (TP + FN)</p>
-</li>
-<li><p>TP: [^IoU]&gt;0.5的检测框数量（同一Ground Truth只计算一次）</p>
-</li>
-<li><p>FP: [^IoU]&lt;=0.5的检测框，或者是检测到同一个GT的多余检测框的数量</p>
-</li>
-<li><p>FN: 没有检测到的GT的数量</p>
-</li>
-<li><p>IoU：交并比（Intersection over Union）。[^IoU] 计算的是 “预测的边框” 和 “真实的边框” 的交集和并集的比值。</p>
-</li>
-</ul>
-<h2 id="ground-truth："><a href="#ground-truth：" class="headerlink" title="ground truth："></a>ground truth：</h2><p>在*有监督学习中，数据是有标注的，以(x, t)的形式出现，其中x是输入数据，t是标注.<strong>正确的t标注是ground truth，</strong> 错误的标记则不是。（也有人将所有标注数据都叫做ground truth）</p>
+<h2 id="ground-truth：">ground truth：</h2>
+<p>在*有监督学习中，数据是有标注的，以(x, t)的形式出现，其中x是输入数据，t是标注.<strong>正确的t标注是ground truth，</strong> 错误的标记则不是。（也有人将所有标注数据都叫做ground truth）</p>
 <p>来源：知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22464082">https://www.zhihu.com/question/22464082</a></p>
-<h2 id="RetinaNet-Focal-Loss-："><a href="#RetinaNet-Focal-Loss-：" class="headerlink" title="RetinaNet(Focal Loss)："></a>RetinaNet(Focal Loss)：</h2><p>Focal loss主要是为了解决one-stage目标检测中正负样本比例严重失衡的问题。该损失函数降低了大量简单负样本在训练中所占的权重，也可理解为一种困难样本挖掘。</p>
+<h2 id="RetinaNet-Focal-Loss-：">RetinaNet(Focal Loss)：</h2>
+<p>Focal loss主要是为了解决one-stage目标检测中正负样本比例严重失衡的问题。该损失函数降低了大量简单负样本在训练中所占的权重，也可理解为一种困难样本挖掘。</p>
 <p>目标识别有两大经典结构:</p>
 <ol>
-<li><p>第一类是以Faster RCNN为代表的两级识别方法，这种结构的第一级专注于proposal的提取，第二级则对提取出的proposal进行分类和精确坐标回归。两级结构准确度较高，但因为第二级需要单独对每个proposal进行分类/回归，速度就打了折扣；</p>
+<li>
+<p>第一类是以Faster RCNN为代表的两级识别方法，这种结构的第一级专注于proposal的提取，第二级则对提取出的proposal进行分类和精确坐标回归。两级结构准确度较高，但因为第二级需要单独对每个proposal进行分类/回归，速度就打了折扣；</p>
 </li>
-<li><p>第二类结构是以YOLO和SSD为代表的单级结构，它们摒弃了提取proposal的过程，只用一级就完成了识别/回归，虽然速度较快但准确率远远比不上两级结构。</p>
+<li>
+<p>第二类结构是以YOLO和SSD为代表的单级结构，它们摒弃了提取proposal的过程，只用一级就完成了识别/回归，虽然速度较快但准确率远远比不上两级结构。</p>
 </li>
 </ol>
 <p>那有没有办法<strong>在单级结构中也能实现较高的准确度</strong>呢？Focal Loss就是要解决这个问题。</p>
@@ -545,7 +590,7 @@
         
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="nav-number">2.1.</span> <span class="nav-text">P1：问题引出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%9C%AC%E6%96%87%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">P2：本文解决问题的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%96%87%E7%AB%A0%E7%9A%84%E5%86%85%E5%AE%B9%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：文章的内容结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-%EF%BC%9A%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.1.</span> <span class="nav-text">P1 ：卷积神经网络的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E8%9E%8D%E5%90%88%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.2.</span> <span class="nav-text">P2：激光雷达融合的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-5%EF%BC%9A%E9%9B%B7%E8%BE%BE%E8%9E%8D%E5%90%88%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.3.</span> <span class="nav-text">P3-5：雷达融合的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P6-%E6%9C%AC%E6%96%87%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8F%8A%E6%96%B9%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">P6: 本文的工作及方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7%EF%BC%9A%E5%AF%B9%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%BB%A4%E6%B3%A2%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-number">3.5.</span> <span class="nav-text">P7：对运动目标滤波的说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RADAR-DATA-PREPROCESSING"><span class="nav-number">4.</span> <span class="nav-text">RADAR DATA PREPROCESSING</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%80%BB%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">P1：雷达数据处理总述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2-%E9%9B%B7%E8%BE%BE%E5%92%8C%E7%9B%B8%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%A9%BA%E9%97%B4%E6%A0%A1%E5%87%86"><span class="nav-number">4.2.</span> <span class="nav-text">P2: 雷达和相机数据空间校准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-%E5%BA%94%E5%AF%B9%E9%9B%B7%E8%BE%BE%E9%AB%98%E5%BA%A6%E4%BF%A1%E6%81%AF%E7%BC%BA%E5%A4%B1"><span class="nav-number">4.3.</span> <span class="nav-text">P3: 应对雷达高度信息缺失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P4-%E5%BA%94%E5%AF%B9%E9%9B%B7%E8%BE%BE%E4%BF%A1%E6%81%AF%E7%9A%84%E7%A8%80%E7%96%8F%E6%80%A7"><span class="nav-number">4.4.</span> <span class="nav-text">P4: 应对雷达信息的稀疏性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P5-%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E6%BB%A4%E6%B3%A2"><span class="nav-number">4.5.</span> <span class="nav-text">P5: 雷达数据的滤波</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NETWORK-FUSION-ARCHITECTURE"><span class="nav-number">5.</span> <span class="nav-text">NETWORK FUSION ARCHITECTURE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-%E8%AE%AD%E7%BB%83%E7%BD%91%E7%BB%9C"><span class="nav-number">5.1.</span> <span class="nav-text">P1: 训练网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2-%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E5%92%8C%E8%9E%8D%E5%90%88%E7%BD%91%E7%BB%9C"><span class="nav-number">5.2.</span> <span class="nav-text">P2: 雷达数据的特征提取和融合网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5"><span class="nav-number">5.3.</span> <span class="nav-text">P3: 训练策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EXPERIMENTS-AND-RESULTS"><span class="nav-number">6.</span> <span class="nav-text">EXPERIMENTS AND RESULTS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">6.1.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">6.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7"><span class="nav-number">6.3.</span> <span class="nav-text">评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">6.4.</span> <span class="nav-text">一个例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CONCLUSIONS-AND-OUTLOOK"><span class="nav-number">7.</span> <span class="nav-text">CONCLUSIONS AND OUTLOOK</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E6%9C%AC%E6%96%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">7.1.</span> <span class="nav-text">P1：本文工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C"><span class="nav-number">7.2.</span> <span class="nav-text">P2：未来工作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95-%E6%9F%90%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">8.</span> <span class="nav-text">附录-某些基础概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mAP"><span class="nav-number">8.1.</span> <span class="nav-text">mAP:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ground-truth%EF%BC%9A"><span class="nav-number">8.2.</span> <span class="nav-text">ground truth：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RetinaNet-Focal-Loss-%EF%BC%9A"><span class="nav-number">8.3.</span> <span class="nav-text">RetinaNet(Focal Loss)：</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="nav-number">2.1.</span> <span class="nav-text">P1：问题引出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%9C%AC%E6%96%87%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">P2：本文解决问题的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%96%87%E7%AB%A0%E7%9A%84%E5%86%85%E5%AE%B9%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：文章的内容结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-%EF%BC%9A%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.1.</span> <span class="nav-text">P1 ：卷积神经网络的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E8%9E%8D%E5%90%88%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.2.</span> <span class="nav-text">P2：激光雷达融合的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-5%EF%BC%9A%E9%9B%B7%E8%BE%BE%E8%9E%8D%E5%90%88%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">3.3.</span> <span class="nav-text">P3-5：雷达融合的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P6-%E6%9C%AC%E6%96%87%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8F%8A%E6%96%B9%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">P6: 本文的工作及方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7%EF%BC%9A%E5%AF%B9%E8%BF%90%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%BB%A4%E6%B3%A2%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-number">3.5.</span> <span class="nav-text">P7：对运动目标滤波的说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">RADAR DATA PREPROCESSING</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%80%BB%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">P1：雷达数据处理总述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2-%E9%9B%B7%E8%BE%BE%E5%92%8C%E7%9B%B8%E6%9C%BA%E6%95%B0%E6%8D%AE%E7%A9%BA%E9%97%B4%E6%A0%A1%E5%87%86"><span class="nav-number">4.2.</span> <span class="nav-text">P2: 雷达和相机数据空间校准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-%E5%BA%94%E5%AF%B9%E9%9B%B7%E8%BE%BE%E9%AB%98%E5%BA%A6%E4%BF%A1%E6%81%AF%E7%BC%BA%E5%A4%B1"><span class="nav-number">4.3.</span> <span class="nav-text">P3: 应对雷达高度信息缺失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P4-%E5%BA%94%E5%AF%B9%E9%9B%B7%E8%BE%BE%E4%BF%A1%E6%81%AF%E7%9A%84%E7%A8%80%E7%96%8F%E6%80%A7"><span class="nav-number">4.4.</span> <span class="nav-text">P4: 应对雷达信息的稀疏性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P5-%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E6%BB%A4%E6%B3%A2"><span class="nav-number">4.5.</span> <span class="nav-text">P5: 雷达数据的滤波</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">NETWORK FUSION ARCHITECTURE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-%E8%AE%AD%E7%BB%83%E7%BD%91%E7%BB%9C"><span class="nav-number">5.1.</span> <span class="nav-text">P1: 训练网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2-%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E5%92%8C%E8%9E%8D%E5%90%88%E7%BD%91%E7%BB%9C"><span class="nav-number">5.2.</span> <span class="nav-text">P2: 雷达数据的特征提取和融合网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-%E8%AE%AD%E7%BB%83%E7%AD%96%E7%95%A5"><span class="nav-number">5.3.</span> <span class="nav-text">P3: 训练策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">EXPERIMENTS AND RESULTS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">6.1.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">6.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7"><span class="nav-number">6.3.</span> <span class="nav-text">评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">6.4.</span> <span class="nav-text">一个例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">CONCLUSIONS AND OUTLOOK</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E6%9C%AC%E6%96%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">7.1.</span> <span class="nav-text">P1：本文工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C"><span class="nav-number">7.2.</span> <span class="nav-text">P2：未来工作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">附录-某些基础概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mAP"><span class="nav-number">8.1.</span> <span class="nav-text">mAP:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ground-truth%EF%BC%9A"><span class="nav-number">8.2.</span> <span class="nav-text">ground truth：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RetinaNet-Focal-Loss-%EF%BC%9A"><span class="nav-number">8.3.</span> <span class="nav-text">RetinaNet(Focal Loss)：</span></a></li></ol></li></ol>
     </div>
 </div>
         
