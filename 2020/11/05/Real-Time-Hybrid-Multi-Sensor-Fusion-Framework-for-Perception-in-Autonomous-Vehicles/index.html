@@ -353,9 +353,17 @@ classifier)融合激光雷达和相机数据，进行道路检测</p>
 <center>传感器的位置和探测范围</center>
 <h2 id="相机">相机</h2>
 <h3 id="P1：相机的工作原理">P1：相机的工作原理</h3>
+<ul>
+<li>
 <p>相机是进行高分辨率的任务：类似目标分类、语义分割、场景感知和需要色彩感知的任务类似交通灯或信号确认的重要传感器。</p>
+</li>
+<li>
 <p>镜头接受光→感光元件(CCD or CMOS)→ADC（AD转换器）→ISP（image signal processor）→RGB pattern</p>
+</li>
+<li>
 <p>物体位置[x,y,z] → （透镜）→ 像平面[x’, y’]</p>
+</li>
+</ul>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107143844155.png" alt="image-20201107143844155"></p>
 <center>相机工作流程</center>
 <h3 id="P2：相机的校准，两种感光元件">P2：相机的校准，两种感光元件</h3>
@@ -480,6 +488,40 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 </ul>
 </li>
 </ul>
+<h1>Hybrid Sensor Fusion Algorithm Overview</h1>
+<h2 id="混合传感器融合算法概述">混合传感器融合算法概述</h2>
+<p>算法分为两个部分，他们彼此并行，如图6。在每个子部分中，选用了最适合当前任务的一系列传感器参数和融合方法。</p>
+<h3 id="算法第一部分：">算法第一部分：</h3>
+<ul>
+<li>
+<p>处理高分辨率任务：如目标分类，定位和道路语义分割</p>
+</li>
+<li>
+<p>使用LiDAR + camera</p>
+</li>
+<li>
+<p>卷积神经网络CNN和全卷积网络FCN相比于传统方法，即特征提取器(SIFT, HOG)具有更好的性能表现</p>
+</li>
+<li>
+<p>FCN结构的融合是最好的</p>
+</li>
+<li>
+<p>我们优先考虑实时性能和精度，所以我们没有像[32]中那样将道路场景分割为多个场景进行分割，我们只分割了两类：可驾驶区域和不可驾驶区域</p>
+</li>
+<li>
+<p>我们还利用了高效和快速的网络例如YOLO V3[33]来探测分割后路面的障碍物。</p>
+</li>
+</ul>
+<h3 id="算法第二部分">算法第二部分</h3>
+<ul>
+<li>处理目标检测和状态跟踪任务</li>
+<li>使用LiDAR + radar</li>
+<li>两种传感器的数据在目标层(object level)进行融合</li>
+<li>激光雷达和雷达数据处理会在感兴趣区域(ROI)内产生障碍物簇及其状态。处理后的传感器数据在目标层上的融合称为后期融合。结果融合后的激光雷达和雷达数据被发送到一种状态估计方法，以最佳组合每个传感器的噪声测量状态。</li>
+<li>状态估计方法采用KF，但是是争对线性模型的</li>
+<li>因为像汽车这样的障碍物的运动是非线性的;我们使用改进版的KF，即扩展卡尔曼滤波器(EKF)。了解和跟踪道路上障碍物的状态有助于预测和解释它们在AV路径规划和决策堆栈中的行为。最后，我们覆盖每个融合输出并在汽车监视器上显示它们</li>
+</ul>
+<h2 id="利用深度学习进行目标分类和道路分割">利用深度学习进行目标分类和道路分割</h2>
 
         </div>
 
@@ -597,7 +639,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
         
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">P1：自动驾驶车辆的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">P2：问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%9C%AC%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：本文结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Fusion Systems Literature Review</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%B3%BB%E7%BB%9F%E6%96%87%E7%8C%AE%E5%9B%9E%E9%A1%BE"><span class="nav-number">3.1.</span> <span class="nav-text">融合系统文献回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Autonomous Vehicle Perception Sensors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">本文使用的传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">相机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">P1：相机的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E6%A0%A1%E5%87%86%EF%BC%8C%E4%B8%A4%E7%A7%8D%E6%84%9F%E5%85%89%E5%85%83%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">P2：相机的校准，两种感光元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.3.</span> <span class="nav-text">雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.3.1.</span> <span class="nav-text">P1：雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9AFMCW%E9%9B%B7%E8%BE%BE%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.3.2.</span> <span class="nav-text">P2：FMCW雷达工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.4.</span> <span class="nav-text">激光雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.4.1.</span> <span class="nav-text">P1：激光雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.4.2.</span> <span class="nav-text">P2：激光雷达的工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">4.4.3.</span> <span class="nav-text">P3：激光雷达的特点</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">P1：自动驾驶车辆的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">P2：问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%9C%AC%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：本文结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Fusion Systems Literature Review</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%B3%BB%E7%BB%9F%E6%96%87%E7%8C%AE%E5%9B%9E%E9%A1%BE"><span class="nav-number">3.1.</span> <span class="nav-text">融合系统文献回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Autonomous Vehicle Perception Sensors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">本文使用的传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">相机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">P1：相机的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E6%A0%A1%E5%87%86%EF%BC%8C%E4%B8%A4%E7%A7%8D%E6%84%9F%E5%85%89%E5%85%83%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">P2：相机的校准，两种感光元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.3.</span> <span class="nav-text">雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.3.1.</span> <span class="nav-text">P1：雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9AFMCW%E9%9B%B7%E8%BE%BE%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.3.2.</span> <span class="nav-text">P2：FMCW雷达工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.4.</span> <span class="nav-text">激光雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.4.1.</span> <span class="nav-text">P1：激光雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.4.2.</span> <span class="nav-text">P2：激光雷达的工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">4.4.3.</span> <span class="nav-text">P3：激光雷达的特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Hybrid Sensor Fusion Algorithm Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">混合传感器融合算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-number">5.1.1.</span> <span class="nav-text">算法第一部分：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="nav-number">5.1.2.</span> <span class="nav-text">算法第二部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E7%9B%AE%E6%A0%87%E5%88%86%E7%B1%BB%E5%92%8C%E9%81%93%E8%B7%AF%E5%88%86%E5%89%B2"><span class="nav-number">5.2.</span> <span class="nav-text">利用深度学习进行目标分类和道路分割</span></a></li></ol></li></ol>
     </div>
 </div>
         
