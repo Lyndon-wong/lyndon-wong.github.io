@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles |
+        
+        Wang&#39;s Space
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/tubiao.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let ILS = window.ILS || {};
+    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+  </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="page-container">
+
+    <header class="page-header">
+        <div class="header-progress"></div>
+    </header>
+
+    <main class="page-main">
+
+        <div class="page-main-content">
+
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            Wang&#39;s Space
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/tags"
+                    >
+                        标签
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2020-11-05 18:00:05
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Technique/">Technique</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/sensor-fusion/">sensor fusion</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/LiDAR/">LiDAR</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/lidar-fusion/">lidar fusion</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/object-detection/">object detection</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/EKF/">EKF</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Babak-Shahian-Jahromi/">Babak Shahian Jahromi</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+    
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<p>论文笔记，原创内容；未经许可，请勿转载</p>
+</blockquote>
+<h1>Abstract</h1>
+<p>目前有许多文献提出了利用各种不同传感器和融合方法的融合框架。目前，提升精度表现吸引了更多的注意；然而，在实际车辆上的实施的可行性很少受到关注。一些融合框架在实验室里用高性能平台可以得到很好的结果；但是在实际应用中，由于他们昂贵的加个和大量的计算需求，不能被应用在嵌入式计算机上。我们提出了一种新型的混合多传感器融合通道配置，为自动驾驶车辆执行环境感知，如道路分割、障碍检测和跟踪。这种融合框架使用所提出的**基于编码-解码的全卷积神经网络(encoder-decoder based Fully Convolutional Neural Network, FCNx)<strong>和传统的</strong>扩展卡尔曼滤波器(Extended Kalman Filter, EKF)**非线性状态估计方法。该混合框架的目标是提供一个成本效益高、轻量级、模块化和强鲁棒性(在传感器故障情况下)的融合系统解决方案。它使用了FCNx算法，相比于基准模型提高了道路检测的准确性，同时保持了实时效率，可用于自主车辆嵌入式计算机。在超过3K个道路场景上的测试表明，我们的融合算法相比于基本网络算法显示出了更好的性能表现。除此之外，该算法被部署到了实际车辆上并且利用车辆收集到的数据进行测试，进行了实时的环境感知。</p>
+<p><strong>why？</strong>：现有算法只关注了精度提升，没有关注可实施性</p>
+<p><strong>how？</strong>：FCNx + EKF</p>
+<p><strong>result?</strong>：1.比现有算法的更好性能表现  2.被部署到了实际车辆上进行了实时感知</p>
+<h1>Introduction</h1>
+<h2 id="P1-自动驾驶车辆的工作流程">P1: 自动驾驶车辆的工作流程</h2>
+<p>自动驾驶车辆(autonomous vehicles, AV)需要解决的两个主要问题：</p>
+<ul>
+<li><strong>自我定位</strong>——我自己在哪？：GNSS,IMU,vehicle odometry（里程记）</li>
+<li><strong>环境感知</strong>——我旁边有些什么？:LiDAR, camera，radar</li>
+</ul>
+<p>定位和感知的结果被送到AV的路径规划算法中来决定下一步的动作。这些动作进一步送到电机控制器上来控制车辆运动。图1显示了这个工作流程：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201106002443544.png" alt="image-20201106002443544"></p>
+<center>图1 自动驾驶车辆结构。该论文关注于感知</center>
+<h2 id="P2：问题引入">P2：问题引入</h2>
+<p>当前环境感知的研究主要包括传感器信号处理和各种融合算法</p>
+<blockquote>
+<ul>
+<li><strong>传感器类别</strong>：相机，激光雷达，雷达</li>
+<li><strong>融合算法类别</strong>：
+<ul>
+<li>状态估计融合算法(i.e. KF)</li>
+<li>基于机器学习的算法(i.e. deep neural network, DNN)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>当前的研究还是侧重于精度的提升而没有考虑部署的可能性，所以需要一种高效，轻量，模块化和鲁棒的流程。因此我们需要能一种<strong>平衡融合融合模型的复杂度和真实世界实时应用性</strong>，且同时能提升<strong>环境感知精度</strong>的算法。</p>
+<h2 id="P3：本文结构">P3：本文结构</h2>
+<ul>
+<li>第二节：回顾传感器融合文献</li>
+<li>第三节：回顾和我们用的传感器相关的感知技术</li>
+<li>第四节：展示我们所利用的传感器融合流程概览，并且展示如何处理传感器数据和实施融合方法（即我们的FCNx的细节和传统EKF的回顾）</li>
+<li>第五节：实验流程，工具和数据集</li>
+<li>第六节：实验结果和评估</li>
+<li>第七节：结论</li>
+</ul>
+<h1>Fusion Systems Literature Review</h1>
+<h2 id="融合系统文献回顾">融合系统文献回顾</h2>
+<ul>
+<li>
+<p>[1-5]:关注于<strong>相机和激光雷达的融合</strong>，利用深度学习方法来进行各种计算机视觉的任务</p>
+</li>
+<li>
+<p>[6]:关注于<strong>单传感器</strong>(相机或激光雷达)和<strong>单一方法</strong>（深度学习或者传统计算机视觉）的技术</p>
+</li>
+<li>
+<p>[1,2,7]：关注于<strong>激光雷达+相机</strong>和一种融合方法</p>
+</li>
+<li>
+<p>[8-10]：关注于<strong>激光雷达+雷达+相机</strong>和<strong>状态估计方法</strong>(卡尔曼滤波或例子滤波)</p>
+</li>
+<li>
+<p>[11]：<strong>不考虑实际世界部署</strong>或者<strong>传感器的特殊情况</strong>的融合方法，回顾了自动驾驶车辆系统的技术</p>
+</li>
+<li>
+<p>[12]：回顾了环境感知算法和介绍了智能车辆，包括车道和道路检测、交通标志识别、车辆跟踪、行为分析和场景理解的<strong>建模方法</strong>。</p>
+</li>
+<li>
+<p>[13]：回顾了传感器和传感器融合方法</p>
+</li>
+<li>
+<p>[6]：使用两种分离的CNN网络提出了一个RGBD目标检测架构</p>
+</li>
+<li>
+<p>[1,2]：利用快速决策树分类器(boosted decision tree<br>
+classifier)融合激光雷达和相机数据，进行道路检测</p>
+</li>
+<li>
+<p>[3]：利用几何变换，提出了一种基于视觉的道路检测方法</p>
+</li>
+<li>
+<p>[4]：提出了一种统一的方法来进行联合分类、检测和语义分割，重点关注效率。</p>
+</li>
+<li>
+<p>[14]：仅仅利用激光雷达，利用FCN来进行基于深度学习的路面检测</p>
+</li>
+<li>
+<p>[15]：提出了一种高维传感器融合架构并且在ADAS系统上进行了测试，例如紧急刹车辅助。</p>
+</li>
+<li>
+<p><strong>[16]：融合相机和激光雷达点云数据，利用几种FCNs和不同的融合策略：早期、中期和后期融合来进行路面检测</strong></p>
+</li>
+<li>
+<p>[17]：利用毫米波雷达和单色相机(mono camera)融合来进行车辆检测和跟踪</p>
+</li>
+<li>
+<p>[18]：展示了一种叫做&quot;SegNet&quot;的解码-编码FCN进行道路和室内图像的像素语义分割</p>
+</li>
+<li>
+<p>[7]：提出了一种用于传感器融合的深度学习框架ChiNet，该框架利用立体摄像机在不同的分支上融合深度和外观特征。ChiNet有两个输入分支用于深度和外观，两个输出分支用于道路和对象的分割</p>
+</li>
+<li>
+<p>[8]：提出了一种<strong>基于二维激光扫描仪和摄像机传感器的融合系统</strong>，结合**无迹卡尔曼滤波(UKF)**和联合概率数据关联来检测车辆</p>
+</li>
+<li>
+<p>[9]：利用UKF来融合传感器数据来研究室内的轮椅位置估计问题</p>
+</li>
+<li>
+<p>[5]：提出了一种基于深度学习的基于激光雷达和摄像机的端到端城市驾驶融合框架</p>
+</li>
+<li>
+<p>[19]：采用两阶段融合的方式，利用立体相机和激光雷达提升车辆检测的性能</p>
+</li>
+<li>
+<p>[20]：争对复杂城市场景，利用CNN和KF，融合相机，2d激光雷达和先验地理道路地图，提出了一种车辆检测和跟踪系统</p>
+</li>
+<li>
+<p>[21]：提出了一个用于行人、自行车和车辆检测的摄像头系统，然后使用雷达和激光雷达改进跟踪和运动分类。</p>
+</li>
+<li>
+<p>[22]：提出了一种基于热敏摄像机和RGB摄像机深度学习的多光谱行人检测系统</p>
+</li>
+<li>
+<p>[23]：提出了一种卷积神经网络进行语义分割——全卷积神经网络(fully convolutional network, FCN)</p>
+</li>
+<li>
+<p>[24]：改进了[23]的结构，提出了反卷积网络(DeconvNet)，使用带有反卷积滤波器的解码层对下采样的特征图进行上采样。</p>
+</li>
+<li>
+<p>[25]：利用编码器层和解码器层之间的连接改进了DeconvNet。在U-Net中，另一种基于编码器-解码器的结构用于语义分割，所有的特征映射都通过剩余连接从编码层转移到解码层。</p>
+</li>
+<li>
+<p>[26]：<strong>Mask-RCNN</strong></p>
+</li>
+<li>
+<p>[27]：<strong>Fast - RCNN</strong></p>
+<p>我们的目标：提供一种低成本，轻量化的融合系统，它可以被部署到相对便宜和高效的嵌入式边缘计算电脑上</p>
+</li>
+</ul>
+<h1>Autonomous Vehicle Perception Sensors</h1>
+<h2 id="本文使用的传感器">本文使用的传感器</h2>
+<p>本文使用三种传感器，他们的位置分布如下</p>
+<blockquote>
+<ul>
+<li>
+<p>相机：受到环境变化例如：遮挡、光照和天气变化</p>
+</li>
+<li>
+<p>LiDRA：受到雨、雪恶劣天气影响</p>
+</li>
+<li>
+<p>雷达：低探测率和低分辨率</p>
+</li>
+</ul>
+</blockquote>
+<p>使用三种传感器并采用合适的传感器融合算法有助于确定各种传感器的失效情况。同时提高了整体的误差容限和精度。</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107142333380.png" alt="image-20201107142333380"></p>
+<center>传感器的位置和探测范围</center>
+<h2 id="相机">相机</h2>
+<h3 id="P1-：相机的工作原理">P1 ：相机的工作原理</h3>
+<p>相机是进行高分辨率的任务：类似目标分类、语义分割、场景感知和需要色彩感知的任务类似交通灯或信号确认的重要传感器。</p>
+<p>镜头接受光→感光元件(CCD or CMOS)→ADC（AD转换器）→ISP（image signal processor）→RGB pattern</p>
+<p>物体位置[x,y,z] → （透镜）→ 像平面[x’, y’]</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107143844155.png" alt="image-20201107143844155"></p>
+<center>相机工作流程</center>
+<h3 id="P2：相机的校准，两种感光元件">P2：相机的校准，两种感光元件</h3>
+<ul>
+<li>
+<p>校准相机：由于镜头扭曲了生成的图像，需要先对每个相机进行校准。</p>
+</li>
+<li>
+<p>校准方法：我们通过<strong>使用已知物体的图片(如棋盘)来矫正这些失真</strong>。棋盘的尺寸和几何形状是已知的;因此，对于那些扭曲，我们就可以计算通过相机输出图像与原始图像的比较来标定参数。</p>
+</li>
+<li>
+<p>两种感光元件</p>
+</li>
+</ul>
+<blockquote>
+<p>CCD : 高光敏感度，更好的成像质量，耗电更好，发热大，价格贵<br>
+CMOS：低成本，低耗电量，数据处理更快——我们采用</p>
+</blockquote>
+<h2 id="雷达">雷达</h2>
+<h3 id="P1">P1:</h3>
+
+        </div>
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next btn"
+                           rel="next"
+                           href="/2020/10/28/3D%E6%89%93%E5%8D%B0%E9%A3%9E%E6%9C%BA%E6%8E%A2%E7%B4%A2%E8%AE%B0/"
+                        >
+                            <span class="post-nav-title-item">3D打印飞机探索记</span>
+                            <span class="post-nav-item">下一篇</span>
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                    
+
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+        </div>
+    </div>
+</footer>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+
+        
+
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa fa-outdent"></i>
+            </li>
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="sidebar-tools-2">
+        <div class="tools2-container">
+
+    <button class="tools-button">
+        <i class="fa fa-plus"></i>
+    </button>
+
+    <ul class="tools-wrapper">
+        <!-- back2top -->
+        
+            <li class="tools-item scroll-to-bottom">
+                <i class="fa fa-arrow-down"></i>
+            </li>
+            <li class="tools-item scroll-to-top">
+                <i class="fa fa-arrow-up"></i>
+            </li>
+        
+
+        <!-- mode toggle -->
+        <li class="tools-item mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+
+    </ul>
+</div>
+
+    </div>
+
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">P1: 自动驾驶车辆的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">P2：问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%9C%AC%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：本文结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Fusion Systems Literature Review</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%B3%BB%E7%BB%9F%E6%96%87%E7%8C%AE%E5%9B%9E%E9%A1%BE"><span class="nav-number">3.1.</span> <span class="nav-text">融合系统文献回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Autonomous Vehicle Perception Sensors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">本文使用的传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">相机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1-%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">P1 ：相机的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E6%A0%A1%E5%87%86%EF%BC%8C%E4%B8%A4%E7%A7%8D%E6%84%9F%E5%85%89%E5%85%83%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">P2：相机的校准，两种感光元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.3.</span> <span class="nav-text">雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1"><span class="nav-number">4.3.1.</span> <span class="nav-text">P1:</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        
+    </aside>
+
+</div>
+
+
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/dark-light-toggle.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+    
+<script src="/js/back2top.js"></script>
+
+
+
+
+
+    
+<script src="/js/left-side-toggle.js"></script>
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+</body>
+</html>
