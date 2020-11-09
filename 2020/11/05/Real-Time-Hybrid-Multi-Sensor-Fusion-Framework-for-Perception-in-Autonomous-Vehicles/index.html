@@ -152,7 +152,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Technique/">Technique</a>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>
                     </li>
                 
             </ul>
@@ -168,15 +168,15 @@
                     </li>
                 
                     <li>
+                        | <a href="/tags/object-detection/">object detection</a>
+                    </li>
+                
+                    <li>
                         | <a href="/tags/LiDAR/">LiDAR</a>
                     </li>
                 
                     <li>
                         | <a href="/tags/lidar-fusion/">lidar fusion</a>
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/object-detection/">object detection</a>
                     </li>
                 
                     <li>
@@ -491,7 +491,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 <h1>Hybrid Sensor Fusion Algorithm Overview</h1>
 <h2 id="混合传感器融合算法概述">混合传感器融合算法概述</h2>
 <p>算法分为两个部分，他们彼此并行，如图6。在每个子部分中，选用了最适合当前任务的一系列传感器参数和融合方法。</p>
-<h3 id="算法第一部分：">算法第一部分：</h3>
+<h3 id="算法第一部分：LiDAR-camera">算法第一部分：LiDAR + camera</h3>
 <ul>
 <li>
 <p>处理高分辨率任务：如目标分类，定位和道路语义分割</p>
@@ -512,7 +512,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 <p>我们还利用了高效和快速的网络例如YOLO V3[33]来探测分割后路面的障碍物。</p>
 </li>
 </ul>
-<h3 id="算法第二部分">算法第二部分</h3>
+<h3 id="算法第二部分：LiDAR-radar">算法第二部分：LiDAR + radar</h3>
 <ul>
 <li>处理目标检测和状态跟踪任务</li>
 <li>使用LiDAR + radar</li>
@@ -522,6 +522,183 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 <li>因为像汽车这样的障碍物的运动是非线性的;我们使用改进版的KF，即扩展卡尔曼滤波器(EKF)。了解和跟踪道路上障碍物的状态有助于预测和解释它们在AV路径规划和决策堆栈中的行为。最后，我们覆盖每个融合输出并在汽车监视器上显示它们</li>
 </ul>
 <h2 id="利用深度学习进行目标分类和道路分割">利用深度学习进行目标分类和道路分割</h2>
+<ul>
+<li>
+<p>raw data combine</p>
+</li>
+<li>
+<p>RGBD图像，其中D为深度通道</p>
+</li>
+<li>
+<p>将这些数据传输给我们提出的全卷积层神经网络FCNx</p>
+</li>
+<li>
+<p>**FCNx is an encoder-decoder-based network with modified filter numbers and sizes in the downsampling and upsampling portions and improved skip connections to the decoder section.  **</p>
+</li>
+<li>
+<p>FCNx是一种基于编码-解码的网络，它拥有一些在下采样和上采样过程中，数量和大小参数都修正过的滤波器；还在解码环节拥有改进跳跃连接。</p>
+</li>
+</ul>
+<h3 id="相机-激光雷达Raw-Data融合">相机-激光雷达Raw Data融合</h3>
+<ul>
+<li>数据准备：
+<ul>
+<li>相机：2D图像，RGB</li>
+<li>激光雷达：除了点云图像，还有高分辨率深度图</li>
+</ul>
+</li>
+<li><strong>早期融合</strong>：
+<ul>
+<li>我们将raw data结合在了一起</li>
+<li>得到RGBD图像</li>
+</ul>
+</li>
+<li>融合过程：
+<ul>
+<li>to FCN：进行道路语义分割</li>
+<li>to CNN：目标检测和定位</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109135624774.png" alt="image-20201109135624774"></p>
+<center>相机-激光雷达融合流程图</center>
+<h3 id="全卷积神经网络结构FCNx">全卷积神经网络结构FCNx</h3>
+<p>结构包括两个主要部分：编码器和解码器</p>
+<ul>
+<li>编码器：
+<ul>
+<li>基于VGG16[34]</li>
+<li>VGG16的全连接层替换为卷积层</li>
+<li>编码器的目的是从RGBD图像提取特征和空间信息</li>
+<li>它使用一系列的卷积层来提取特征，池化层来减小特征图的尺寸</li>
+</ul>
+</li>
+<li>解码器：
+<ul>
+<li>基于FCN8[23]</li>
+<li>其目的是在保持低、高层信息完整性的前提下，将像素类的预测重新恢复到原始图像大小。</li>
+<li>它采用转置的卷积层来对编码器的最后一个卷积层的输出进行采样</li>
+<li>它还采用<strong>跳跃卷积层</strong>来结合来自编码器的<strong>精细的低等级特征</strong>(finer low-level features)和转置(上采样)卷积层的<strong>粗糙的高等级特征</strong>(coarser high-level features)。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109144221655.png" alt="image-20201109144221655"></p>
+<center>网络结构</center>
+<p>网络结构介绍：</p>
+<ul>
+<li>
+<p>将第四层的编码层的输出和第七层上采样层结合。这个结合是元素意义上的合并。这个结合后的特征图被添加到第三层的跳跃连接上。</p>
+</li>
+<li>
+<p>…</p>
+<p>原文直接抛出来把，这里太乱了…给我看晕了都</p>
+<blockquote>
+<p><em>In our proposed network, which builds on the above shown in Figure 8, we combine the encoder output from layer four with the upsampled layer seven. This combination is an element-wise addition. This combined feature map is then added to the output of the third layer skip connection. In the skip connection of the layer three output, we use a second convolutional layer to further extract features from layer three output. The addition of this convolutional layer adds some features that would be extracted in layer four. Including some basic layer four level feature maps will help the layer three skip connection to represent a combined feature map of layer three and layer four. This combined feature map is then added to the upsampled layer nine, which itself represents a combined feature map of layer seven and layer four. This addition is shown to give a better accuracy and lower Cross-Entropy loss compared to the base VGG16-FCN8 architecture. The better performance can be explained by the fact that having some similar layer four feature maps can help better align the extracted features when performing the last addition. We will refer to our proposed architecture as FCNx</em></p>
+</blockquote>
+</li>
+<li>
+<p>优点：相比于基础的VGG16-FCN8网络，拥有<strong>更高的精度和更低的交叉熵损失</strong>（lower Cross-Entropy loss）</p>
+</li>
+<li>
+<p>原因：当进行最后的添加操作时，拥有比较相似的四个特征图可以帮助更好地对齐提取的特征。</p>
+</li>
+</ul>
+<h2 id="利用kalman滤波进行障碍物检测和跟踪实验">利用kalman滤波进行障碍物检测和跟踪实验</h2>
+<p>在本节中，我们利用雷达和激光雷达数据来检测障碍物和测量他们的状态。我们进行了后数据融合或者说是目标级的融合。然后，利用非线性卡尔曼滤波方法，利用这些噪声传感器来估计和跟踪障碍物状态，其精度比单个传感器都要高。</p>
+<h3 id="雷达拍频信号（beat-signal）处理">雷达拍频信号（beat signal）处理</h3>
+<p>雷达传感器可以探测到障碍物和他们的状态，通过图9的过程：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109182826661.png" alt="image-20201109182826661"></p>
+<ul>
+<li>
+<p><strong>第一步：带噪声信号 → (雷达内部ADC) → 数字信号</strong></p>
+<ul>
+<li>处理从雷达接收到的有噪声的数字化混合信号或拍频信号。拍频信号通过雷达内部的ADC发送，并转换为数字信号。数字信号在时域内，由多频分量组成。</li>
+</ul>
+</li>
+<li>
+<p><strong>第二步：时域信号 → (1D-FFT) → 频域信号</strong></p>
+<ul>
+<li>
+<p>1D - FFT也被称为1st stage or Range FFT。分离它的全部频率分量。FFT的结果是被单位为dBm代表的信号强度或者分值，横坐标是拍频的频率MHz。<strong>每个频率峰代表一个检测到的目标</strong>。</p>
+</li>
+<li>
+<p>x轴可以从目标的拍频的频率转换为目标的距离，通过公式：</p>
+<p>$$<br>
+R=\frac{c \cdot T_{\text {sweep}} \cdot f_{b}}{2 \cdot B_{\text {sweep}}}<br>
+$$</p>
+</li>
+<li>
+<p>其中R：目标距离；c：光速；T_sweep &amp; B_sweep：啁啾/扫描时间和带宽</p>
+</li>
+<li>
+<p>T_sweep &amp; B_sweep的计算公式：</p>
+<p>$$<br>
+T_{\text {sweep}}=5.5 \cdot \frac{2 \cdot R_{\max }}{c}<br>
+$$</p>
+<p>$$<br>
+B_{\text {swee } p}=\frac{c}{2 \cdot d_{\text {res}}}<br>
+$$</p>
+</li>
+<li>
+<p>R_max是最大距离，d_res是雷达距离分辨率。常数5.5来自假设：对应于最大雷达扫描距离，扫描时间通常是延迟的5-6倍</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>如上所讨论的，range FFT可以告诉我们拍频，峰值，相位和距离。为了测量目标的速度（Doppler velocity），我们需要找到多普勒频移，即雷达chirps的相位变化率。目标从一个chirps变化到另外一个。因此，在得到range FFT后，进行第三步。</p>
+<ul>
+<li>
+<p><strong>第三步：Doppler FFT 测量相位的变化率——多普勒频移</strong></p>
+</li>
+<li>
+<p>输出结果是一个3D图，分别由信号强度，距离和多普勒速度代表</p>
+</li>
+<li>
+<p>这个3D图也叫做**(Range Doppler Map, RDM)**。RDM给出了我们目标的距离和速度的概览</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109181512103.png" alt="image-20201109181512103"></p>
+<ul>
+<li>
+<p><strong>第四步：过滤RDM的噪声和杂波</strong></p>
+<ul>
+<li>
+<p>最常用方法：Cell Averaging CFAR (CA-CFAR) [38]</p>
+<blockquote>
+<p>CFAR : 它会根据信号局部噪声的大小动态调整阈值，如图10，CA-CFAR在我们生成的2D FFT图像上生成一个滑动窗口。窗口包括：</p>
+<ul>
+<li>Cell Under Test (CUT)：正在被测试目标是否出现的格子</li>
+<li>guard cells (GC)：CUT附近的格子，防止目标信号泄漏到周围的单元，从而对噪声估计产生负面影响</li>
+<li>reference or training cells (RC) ：包住CUT周围环境的格子<br>
+噪声的等级是根据RC的平均值来估计的，如果CUT中的信号比该阈值低，则它被去除；如果比阈值高，那么就认为检测到了目标。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>最后，我们实现了具有距离和多普勒速度信息的雷达CFAR检测，但目标的实时检测和跟踪是一个计算量大的过程。因此，我们将属于同一障碍物的雷达检测聚类在一起，以提升该流程的性能。我们使用基于欧氏距离的聚类算法。该方法将目标大小范围内的所有雷达探测点视为一个聚类。为该聚类分配一个中心距离和速度，该距离和速度等于所有聚类检测距离和速度的平均值</p>
+<h3 id="激光雷达点云数据处理">激光雷达点云数据处理</h3>
+<h1>基础知识</h1>
+<ul>
+<li>全卷积神经网络FCNx</li>
+<li>FCN8</li>
+<li>跳跃卷积层</li>
+<li>downsampling and upsampling</li>
+<li>交叉熵</li>
+</ul>
+<h1>其他参考内容</h1>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/128514763?utm_source=ZHShareTargetIDMore">自动驾驶毫米波雷达物体检测技术-算法</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/128514055">自动驾驶毫米波雷达物体检测技术-硬件</a></p>
+<blockquote>
+<p>介绍了有关毫米波雷达测距测速的相关基础知识原理，和本论文所讲的这方面内容比较重合,作者<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/william.hyin">william</a>是一名自动驾驶全栈工程师</p>
+</blockquote>
+</li>
+</ul>
 
         </div>
 
@@ -639,7 +816,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
         
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">P1：自动驾驶车辆的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">P2：问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%9C%AC%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：本文结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Fusion Systems Literature Review</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%B3%BB%E7%BB%9F%E6%96%87%E7%8C%AE%E5%9B%9E%E9%A1%BE"><span class="nav-number">3.1.</span> <span class="nav-text">融合系统文献回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Autonomous Vehicle Perception Sensors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">本文使用的传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">相机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">P1：相机的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E6%A0%A1%E5%87%86%EF%BC%8C%E4%B8%A4%E7%A7%8D%E6%84%9F%E5%85%89%E5%85%83%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">P2：相机的校准，两种感光元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.3.</span> <span class="nav-text">雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.3.1.</span> <span class="nav-text">P1：雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9AFMCW%E9%9B%B7%E8%BE%BE%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.3.2.</span> <span class="nav-text">P2：FMCW雷达工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.4.</span> <span class="nav-text">激光雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.4.1.</span> <span class="nav-text">P1：激光雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.4.2.</span> <span class="nav-text">P2：激光雷达的工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">4.4.3.</span> <span class="nav-text">P3：激光雷达的特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Hybrid Sensor Fusion Algorithm Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">混合传感器融合算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A"><span class="nav-number">5.1.1.</span> <span class="nav-text">算法第一部分：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="nav-number">5.1.2.</span> <span class="nav-text">算法第二部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E7%9B%AE%E6%A0%87%E5%88%86%E7%B1%BB%E5%92%8C%E9%81%93%E8%B7%AF%E5%88%86%E5%89%B2"><span class="nav-number">5.2.</span> <span class="nav-text">利用深度学习进行目标分类和道路分割</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">P1：自动驾驶车辆的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">P2：问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%9C%AC%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：本文结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Fusion Systems Literature Review</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%B3%BB%E7%BB%9F%E6%96%87%E7%8C%AE%E5%9B%9E%E9%A1%BE"><span class="nav-number">3.1.</span> <span class="nav-text">融合系统文献回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Autonomous Vehicle Perception Sensors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">本文使用的传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">相机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">P1：相机的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E6%A0%A1%E5%87%86%EF%BC%8C%E4%B8%A4%E7%A7%8D%E6%84%9F%E5%85%89%E5%85%83%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">P2：相机的校准，两种感光元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.3.</span> <span class="nav-text">雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.3.1.</span> <span class="nav-text">P1：雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9AFMCW%E9%9B%B7%E8%BE%BE%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.3.2.</span> <span class="nav-text">P2：FMCW雷达工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.4.</span> <span class="nav-text">激光雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.4.1.</span> <span class="nav-text">P1：激光雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.4.2.</span> <span class="nav-text">P2：激光雷达的工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">4.4.3.</span> <span class="nav-text">P3：激光雷达的特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Hybrid Sensor Fusion Algorithm Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">混合传感器融合算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9ALiDAR-camera"><span class="nav-number">5.1.1.</span> <span class="nav-text">算法第一部分：LiDAR + camera</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9ALiDAR-radar"><span class="nav-number">5.1.2.</span> <span class="nav-text">算法第二部分：LiDAR + radar</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E7%9B%AE%E6%A0%87%E5%88%86%E7%B1%BB%E5%92%8C%E9%81%93%E8%B7%AF%E5%88%86%E5%89%B2"><span class="nav-number">5.2.</span> <span class="nav-text">利用深度学习进行目标分类和道路分割</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA-%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BERaw-Data%E8%9E%8D%E5%90%88"><span class="nav-number">5.2.1.</span> <span class="nav-text">相机-激光雷达Raw Data融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84FCNx"><span class="nav-number">5.2.2.</span> <span class="nav-text">全卷积神经网络结构FCNx</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8kalman%E6%BB%A4%E6%B3%A2%E8%BF%9B%E8%A1%8C%E9%9A%9C%E7%A2%8D%E7%89%A9%E6%A3%80%E6%B5%8B%E5%92%8C%E8%B7%9F%E8%B8%AA%E5%AE%9E%E9%AA%8C"><span class="nav-number">5.3.</span> <span class="nav-text">利用kalman滤波进行障碍物检测和跟踪实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE%E6%8B%8D%E9%A2%91%E4%BF%A1%E5%8F%B7%EF%BC%88beat-signal%EF%BC%89%E5%A4%84%E7%90%86"><span class="nav-number">5.3.1.</span> <span class="nav-text">雷达拍频信号（beat signal）处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%82%B9%E4%BA%91%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="nav-number">5.3.2.</span> <span class="nav-text">激光雷达点云数据处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">其他参考内容</span></a></li></ol>
     </div>
 </div>
         
