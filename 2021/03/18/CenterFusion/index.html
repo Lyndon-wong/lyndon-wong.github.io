@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        CenterFusion\:Center-based Radar and Camera Fusion for 3D Object Detection |
+        
+        Wang&#39;s Space
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/tubiao.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let ILS = window.ILS || {};
+    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+  </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="page-container">
+
+    <header class="page-header">
+        <div class="header-progress"></div>
+    </header>
+
+    <main class="page-main">
+
+        <div class="page-main-content">
+
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            Wang&#39;s Space
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/tags"
+                    >
+                        标签
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">CenterFusion\:Center-based Radar and Camera Fusion for 3D Object Detection</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2021-03-18 00:52:09
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/sensor-fusion/">sensor fusion</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/object-detection/">object detection</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/radar/">radar</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+    
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<p>论文笔记，原创内容；未经许可，请勿转载</p>
+</blockquote>
+<h1>Abstract</h1>
+<ul>
+<li>
+<p>背景：目前提升检测和跟踪目标的鲁棒性和精确度的主要手段还是增加感知手段（传感器种类），这就使得传感器融合变为非常重要的一部分</p>
+</li>
+<li>
+<p>方法：CenterFusion</p>
+<ul>
+<li>a center point detection network ,中心点检测网络</li>
+<li>a novel frustum-based method  ，基于平截体视景的新方法</li>
+</ul>
+</li>
+<li>
+<p>结果：</p>
+<ul>
+<li>数据集：nuScenes</li>
+<li>比nuScenes Detection Score(NDS)上基于相机的最先进的方法分数提升12%</li>
+<li>进一步证明了CenterFusion在不使用任何额外时态信息的情况下显著提高了速度估计精度。</li>
+</ul>
+</li>
+<li>
+<p>code: <a target="_blank" rel="noopener" href="https://github.com/mrnabati/CenterFusion">https://github.com/mrnabati/CenterFusion</a></p>
+</li>
+</ul>
+<h1>1.Introduction</h1>
+<h2 id="P1-传感器信息融合现状">P1:传感器信息融合现状</h2>
+<ul>
+<li>
+<p>[4,10,14,19]: 2D和3D的目标检测</p>
+</li>
+<li>
+<p>[33,16]: 语义分割</p>
+</li>
+<li>
+<p>[1,7]: 目标跟踪</p>
+</li>
+</ul>
+<h2 id="P2-LiDAR-Camera融合">P2:LiDAR+Camera融合</h2>
+<p>近些年来，大多数采用：LiDAR + Camera 进行3D目标检测</p>
+<ul>
+<li>LiDAR：近距离准确，远距离点云稀疏，能力弱</li>
+<li>Camera：表面纹理信息丰富，深度信息差</li>
+</ul>
+<p>这种融合方式的限制</p>
+<ul>
+<li>
+<p>Cameras and LiDARs 都对恶劣天气敏感（雪、雾、雨）</p>
+</li>
+<li>
+<p>Cameras and LiDARs  都需要使用(temporal information)时态信息才能估计物体的速度</p>
+</li>
+<li>
+<p>估计物体的速度在避免碰撞中，而需要时态信息在时序要求严格的情况(time-critical situations)下可能并不可行。</p>
+</li>
+</ul>
+<h2 id="P3-radar的特点">P3:radar的特点</h2>
+<ul>
+<li>成功应用在Advanced Driving Assistance System (ADAS) 和Adaptive Cruise Control(ACC)  系统上</li>
+<li>探测距离远（主动雷达可达到200m）、受恶劣天气影响小</li>
+<li>利用多普勒效应测速，不需要时序信息</li>
+<li>相比于LiDARs，radar只需要少量信息处理</li>
+</ul>
+<h2 id="P4-radar融合少的原因">P4:radar融合少的原因</h2>
+<ul>
+<li>数据集少</li>
+<li>应用于LiDARs的方法不好迁移到radar上</li>
+<li>radar点云更稀疏，不好提取3D信息。聚合多个雷达扫描会增加点的密度，但也会给系统带来延迟。</li>
+<li>radar点云虽然通常是在3d坐标下，但是其纵向测量往往不准确或根本不存在。所以大多数主动雷达只输出目标的距离和角度。</li>
+</ul>
+<h2 id="P5-前-后-中层融合方法介绍">P5:前/后/中层融合方法介绍</h2>
+<p>[8]: 利用了神经网络层次特征进行融合</p>
+<p>（early fusion）前融合方法：将不同传感器的原始数据或者预处理数据进行融合，网络学习到了感知形式的一种联合表示。早期的融合方法受到空间和时序信息的误匹配很敏感。<strong>——数据层</strong></p>
+<p>（late fusion）后融合方法：在决策层融合了来自不同感知形式的数据，并且网络可以灵活地加入新的感知形式数据。然而这种方式没有充分挖掘数据的全部潜力。<strong>——决策层</strong></p>
+<p>（middle fusion）中融合方法：从不同的感知形式中提取出特征，然后融合特征，利用网络学习这些特征，并且在感知能力(sensitivity)和灵活性(flexibility)之间创造一种平衡。<strong>——特征层</strong></p>
+<h2 id="P6-我们的工作">P6:我们的工作</h2>
+<p>CenterFusion：聚焦于将雷达检测和图片的初步检测结果相关联，然后产生雷达特征图并且它和图片特征来准确地估计3D的目标检测框。</p>
+<p>算法步骤：</p>
+<blockquote>
+<p>1.利用关键点检测网络进行初步的3D目标检测<br>
+2.利用新的基于视景的雷达关联方法将雷达检测结果和3D空间的目标进行关联<br>
+3.然后将雷达的观测在图片中标出，用来创建特征图来完善基于图片的特征方法<br>
+4.最后融合的特征被用来精确地估计目标的3D特性，例如深度，角度和速度。</p>
+</blockquote>
+<p>网络的结构如图1所示</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210320230117198.png" alt="image-20210320230117198"></p>
+<h1>2.Related Work</h1>
+<h2 id="2-1-单传感器的方法">2.1 单传感器的方法</h2>
+<h3 id="单目相机3D目标检测方法（Monocular-3D-object-detection）">单目相机3D目标检测方法（Monocular 3D object detection）:</h3>
+<ul>
+<li>[11]：3D-RCNN: 利用额外的标签和3D投影使用R-CNN，还使用了一些列CAD模型来进行目标先验的形状类别区分。</li>
+<li>[17]：Deep3DBox首先使用CNN回归(regress)了一系列3D目标的性质，然后利用2D目标的检测框的集合约束来创建目标的3D约束框</li>
+</ul>
+<h3 id="LiDAR-3D目标检测方法">LiDAR 3D目标检测方法</h3>
+<ul>
+<li>[12,35]: 基于3D体元（3D voxels）进行点云显示</li>
+<li>[13,5,29,31]: 基于2D投影来进行点云显示。</li>
+</ul>
+<p>体元方法通常速度比较慢，将得到的高纬度的3D体网格；投影法可能会受到目标在投影面上形状或体积的大的变化的影响。</p>
+<ul>
+<li>[25]：PointRCNN直接在原始点云上操作，使用点云分割，以自底向上的方式生成3D对象预选框(proposal)。这些预选框在第二阶段得到修正，以产生最终的检测框。</li>
+</ul>
+<h2 id="2-2-基于融合的方法">2.2 基于融合的方法</h2>
+<h3 id="LiDAR和Camera融合">LiDAR和Camera融合</h3>
+<ul>
+<li>[4]: MV3D从前视图和鸟类视角图(Bird’s Eye View, BEV)。LiDAR的BEV被用来生成3D目标预选框，然后一个深度融合网络被用来从每个视角融合特征来预测目标类和检测框。</li>
+<li>[28]: PointFusion分别使用CNN和PointNet处理图像和LiDAR数据，然后利用特征提取生成3D目标预选框。</li>
+<li>[23]: Frustum PointNet直接对从RGB-D相机上的原始点云数据进行处理，然后利用RGB图像和2D目标检测器来在点云图中定位目标。</li>
+</ul>
+<h3 id="radar和其他传感器融合">radar和其他传感器融合</h3>
+<ul>
+<li>
+<p>[30]: RadarNet将雷达和激光雷达数据进行融合进行3D目标检测，它利用一个前融合机制来学习两种传感器的联合表示，然后利用一个后融合机制来挖掘雷达的径向速度证据来提升目标速度的估计精度</p>
+</li>
+<li>
+<p>[3]: Chadwick等人将雷达结果投影到像平面然后利用他们来提升远距离目标的估计精度</p>
+</li>
+<li>
+<p>[20]: 作者首先使用雷达检测结果来生成3D目标检测的预选框，然后将他们投影到像平面进行联合2D目标检测和深度估计。</p>
+</li>
+<li>
+<p>[22]:CRF-Net也将radar检测投影到像平面，但是用竖线表示他们，其中像素值等于每个点的深度。图片数据然后被用雷达信息增广，并且利用卷积神经网络进行2D目标识别。</p>
+</li>
+</ul>
+<h1>3.Preliminary</h1>
+<h2 id="3-1-雷达点云">3.1 雷达点云</h2>
+<p>主动雷达通常得到目标在BEV下的2D点云图，每次检测，雷达将会报告目标的径向瞬时速度。这个速度通常不是物体的实际速度，如图2所演示的。</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210320232947682.png" alt="image-20210320232947682"></p>
+<p>​	我们将目标作为中心坐标系下的一个3D点来处理，P = （x,y,z,vx,vy），vx，vy分别表示了径向速度在x，y方向上的分量。径向速度已经通过车辆自身运动进行了补偿</p>
+<p>​	对于每个场景，我们聚合了雷达点云的3次扫描(在过去0.25秒内的探测)。nuScenes数据集提供了从雷达坐标系统到自我中心和相机坐标系统映射雷达点云所需的校准参数。</p>
+<h2 id="3-2-CenterNet">3.2 CenterNet</h2>
+<p>​	CenterNet代表了利用单相机的最先进的3D目标检测。</p>
+<ul>
+<li>输入：I:R(W×H×3)</li>
+<li>输出：关键点热图[0,1](W/R×H/R×C),R是下采样率，C为目标种类的个数，Y=1表示检测到在(x,y)处存在一个C类目标</li>
+<li>真值热图通过2D检测框真值通过高斯核生成</li>
+<li><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323235928853.png" alt="image-20210323235928853"></li>
+<li>pi 是c类目标的真值中心，q是二维平面上的像素位置点，σi是尺寸自适应标准差，根据目标类别的大小控制热图的大小。然后一个全卷积编码-解码神经网络被用来预测Y。</li>
+<li>3D检测框生成：
+<ul>
+<li>目标的深度、维度、方向直接通过探测的中心点分别回归得到。</li>
+<li>深度D[0,1](W/R×H/R)通过逆激活变换（inverse sigmoidal transformation  ）作为一个额外的输出通道输出。</li>
+<li>维度直接回归为三个输出通道，大小为其长宽高绝对值（单位：m）</li>
+<li>方向默认是单标量的值，然而其也很难回归。我们参考【A. Mousavian, D. Anguelov, J. Flynn, and J. Kosecka. 3d bounding box estimation using deep learning and geometry. In CVPR, 2017.】， 用两个bins来呈现方向，且i做n-bin回归。特别地，方向用8个标量值来编码的形式，每个bin有4个值。对于一个bin,两个值用作softmax分类，其余两个值回归到在每个bin中的角度。</li>
+</ul>
+</li>
+<li>对于每个中心点，也预测一个局部偏移量来补偿骨干网中输出跨步造成的离散化误差</li>
+<li>损失函数：
+<ul>
+<li><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324002317872.png" alt="image-20210324002317872"></li>
+</ul>
+</li>
+</ul>
+<p>N：目标个数，Y：标注目标的真值热图，α、β焦损失的超参数。</p>
+<h1>4.CenterFusion</h1>
+<p>​	利用[34]作为目标中心检测网络，返回目标的3D位置，方向和维度等属性。我们提出了一种中融合机制，它可以将雷达检测和他们对应的目标中心点关联起来并且挖掘雷达和图像的特征，通过重新估计他们的深度，速度，转角和分布来提升初步检测的效果。</p>
+<p><strong>我们融合机制的核心是：精确地将雷达的探测结果和目标进行关联</strong></p>
+<p>​	目标中心点检测网络为每个目标类别生成一张热点图(heat map)，热点图的峰值代表每个目标的可能的中心，这些位置的图片的特征被用来估计目标的其他属性。为了在这个设置下挖掘雷达数据的特征，雷达特征需要被标记到图片中对应目标的中心，这需要对雷达检测结果和目标进行准确的关联。</p>
+<h2 id="4-1-Center-Point-Detection">4.1 Center Point Detection</h2>
+<p>​	我们对于生成图片的初步检测采用了CenterNet检测网络，图片的特征首先利用一个全卷积编码解码骨干（backbone）网络。我们遵循CenterNet利用一个简化版的深层聚合网络（Deep Layer Aggregation，DLA）作为主干。提取出的图片特征然后被用来在图片上预测目标的中心点，以及目标的2D大小，中心偏移(Center offset)，3D维度，深度和转速。这些值都利用初步回归表(primary regression heads)估计。每个初步回归表包括256通道的3*3的卷积层和一个1*1的卷积层来产生预设的目标。这为每个 探测的目标提供了一个准确的2D检测框和初步的3D检测框。</p>
+<h2 id="4-2-Radar-Association">4.2 Radar Association</h2>
+<p>​	为了将雷达检测结果和相应的检测目标进行关联，一个naïve的方法就是：<strong>将雷达的检测点映射(mapping)到图片上，然后如果这个点在2D的检测框中就保留它。</strong></p>
+<p>​	这不是一种非常鲁棒性的方法，原因是：</p>
+<ul>
+<li>因为雷达的检测和图片中的目标很可能不是一对一映射的；很多场景中的目标会产生很多个雷达检测，并且也有些雷达检测根本不对应任何目标。</li>
+<li>除此之外，由于雷达的z方向不是十分准确（甚至根本不存在），映射后的雷达检测可能会超出相应目标的2D检测框。</li>
+<li>最后，被阻挡的物体会映射到图片的相同区域，这使得在2D图像上区分他们十分困难，几乎不可能。</li>
+</ul>
+<h3 id="平截体视景关联机制">平截体视景关联机制</h3>
+<p>我们开发了一种使用目标的2D检测框以及它的估计深度和尺寸来创建3D的感兴趣平截体区域（Region of Interest ，RoI）  的方法。在拥有目标的2D检测框的情况下，我们为目标创建了一个类似图3的平截体。</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210321161756484.png" alt="image-20210321161756484"></p>
+<p>这大大缩小了需要检查关联的雷达探测范围，因为任何超出这个截锥的点都可以忽略。然后，我们使用估计的对象深度、尺寸和转角来创建对象周围的RoI，以进一步过滤出与该对象不相关的雷达检测。如果还是有多个雷达检测在RoI内，我们选择最近的点作为这个目标对应的雷达检测结果。</p>
+<p>​	在训练阶段中，我们使用目标的真实3D检测框来创建一个紧凑的ROI平截体并且将雷达检测和目标进行关联。在测试阶段中，ROI平截体通过上述的方法进行估计。在这个过程中，我们利用一个参数σ来控制RoI平截体的大小（如图3）这是为了考虑深度估计值的不准确性，因为在这一阶段，对象的深度完全是使用基于图像的特征来确定的.使用该参数扩大截锥，即使估计的深度稍有偏差，也会增加截锥内包含相应雷达探测的机会。σ的值应该谨慎选择，一个较大的RoI可能包含了其他临近目标的雷达检测结果。</p>
+<p>​	<strong>截锥体方法的优点</strong>：</p>
+<ul>
+<li>
+<p>解决了重叠目标的问题：RoI截锥方法使关联重叠对象变得轻而易举，因为对象在三维空间中是分开的，因此会有单独的RoI截锥。</p>
+</li>
+<li>
+<p>解决了雷达检测重复的问题：它还消除了多检测关联问题，因为只有在RoI截锥内最接近的雷达检测与目标相关联。</p>
+</li>
+</ul>
+<p>​	<strong>截锥体方法的不足</strong>：</p>
+<ul>
+<li>并不能帮助解决z方向的不准确问题，因为雷达检测到的高度信息不准确，可能在其对应对象的ROI截锥之外。</li>
+</ul>
+<h3 id="柱体扩张">柱体扩张</h3>
+<p>为了解决高度信息不准确的问题，我们介绍了一种雷达信息预处理技术:柱体扩张，即每一个雷达检测点都被扩张为一个固定尺寸大小的柱体，如图4所示。柱体创造了雷达检测目标的一种良好的物理表现形式，拥有了这个形式，我们可以简单的认为如果一个雷达点的柱体都在截体内部，则认为这个雷达点在截体内部，如图1.</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210321170505547-1616317621976.png" alt="image-20210321170505547"></p>
+<h3 id="雷达特征提取">雷达特征提取</h3>
+<p>​    当将目标对应雷达数据完成关联后，我们就可以使用雷达的深度和速度数据来补全图片数据的特征。特别的，对于每一个关联到目标的雷达检测，我们根据检测框的位置生成三张热图（中心在目标的2D检测框处并且大小成比例），我们利用参数α来控制heatmap的大小。heatmap的值是归一化后的目标深度(d),和径向速度的x、y方向的分量vx，vy。</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210322184116311.png" alt="image-20210322184116311"></p>
+<ul>
+<li>
+<p>特征图的编号：i = 1，2，3</p>
+</li>
+<li>
+<p>归一化因子：Mi</p>
+</li>
+<li>
+<p>特征值fi：（d，vx，vy）</p>
+</li>
+<li>
+<p>cx、cy：第j个目标的检测框中心坐标</p>
+</li>
+<li>
+<p>wj，hj：第j个检测框的宽和高</p>
+</li>
+</ul>
+<p>如果两个目标具有重合的heatmap区域，那么具有较小深度的那个将主导，因为只有近处的目标在图片中完全可见。</p>
+<p>生成的热图将被合并到图片的特征中作为额外通道。这些特征将作为第二次分类回归器的输入来重新计算目标的深度和角度，以及速度和属性。第二次分类回归器包含三层3*3卷积核核1*1卷积核来产生理想的输出。这些额外的卷积层对比于第一次的回归分类器有利于学习来自雷达特征图的高维度特征。最后一步是将分类回归器的输出解码为3D检测框。</p>
+<h1>5.Implementation Details</h1>
+<ul>
+<li>
+<p><strong>目标检测网络</strong>：采用DLA为主干的CenterNet。（虽然Hourglass network为主干性能更好，但是采用了DLA因为其结果不错的同时训练速度快。）</p>
+</li>
+<li>
+<p><strong>baseline</strong>：直接采用发布版的CenterNet（已经在nuScenes上训练了140个epochs）这个模型默认不提供速度和属性，我们对于这两个head训练了30个epochs。利用这些结果作为我们的baseline。</p>
+</li>
+<li>
+<p><strong>二次分类回归器训练</strong>：采用雷达和图片的特征数据训练了60个epochs，batch size：26.平台：2*Nvidia P5000 GPUs</p>
+</li>
+<li>
+<p>其他说明：</p>
+<ul>
+<li>
+<p><strong>像素降低</strong>：训练和测试过程中，图片像素从1600*900转为800*450</p>
+</li>
+<li>
+<p><strong>数据增强-训练阶段</strong>：在训练期间我们使用数据增强，随机左右翻转(概率为0.5)和随机移动(从0到图像大小的20%)。同样的增强也适用于参考相机坐标系的雷达点云。我们不应用任何缩放增强，因为它改变了3D测量值。</p>
+</li>
+<li>
+<p><strong>数据增强-测试阶段</strong>：在测试时，我们只使用翻转测试增强，将图像及其翻转版本输入网络，并将网络输出的平均值用于解码3D检测框。我们不像CenterNet那样使用多尺度测试增强。在[x, y, z]方向设置柱尺寸为[0.2,0.2,1.5]m， δ设置为将RoI截锥的长度增加20%。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>损失函数：除了对热图中心点头使用焦损失和对属性头采用二进制交叉熵(BCE)损失，我们对大多数回归头使用L1损失。</p>
+</li>
+</ul>
+<h1>6.Results</h1>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234307136.png" alt="image-20210323234307136"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234412854.png" alt="image-20210323234412854"></p>
+<h1>7.Ablation Study</h1>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234524513.png" alt="image-20210323234524513"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234541014.png" alt="image-20210323234541014"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234814795-1616514624639.png" alt="image-20210323234814795"></p>
+<h1>相关知识</h1>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/04c2a9ccaa75">1*1卷积层的作用</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv4020256/">神经网络可视化——heatmap</a></p>
+
+        </div>
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next btn"
+                           rel="next"
+                           href="/2021/01/06/2020%E6%80%BB%E7%BB%93/"
+                        >
+                            <span class="post-nav-title-item">2020总结</span>
+                            <span class="post-nav-item">下一篇</span>
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                    
+
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2021 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+        </div>
+    </div>
+</footer>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+
+        
+
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa fa-outdent"></i>
+            </li>
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="sidebar-tools-2">
+        <div class="tools2-container">
+
+    <button class="tools-button">
+        <i class="fa fa-plus"></i>
+    </button>
+
+    <ul class="tools-wrapper">
+        <!-- back2top -->
+        
+            <li class="tools-item scroll-to-bottom">
+                <i class="fa fa-arrow-down"></i>
+            </li>
+            <li class="tools-item scroll-to-top">
+                <i class="fa fa-arrow-up"></i>
+            </li>
+        
+
+        <!-- mode toggle -->
+        <li class="tools-item mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+
+    </ul>
+</div>
+
+    </div>
+
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">1.Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-%E4%BC%A0%E6%84%9F%E5%99%A8%E4%BF%A1%E6%81%AF%E8%9E%8D%E5%90%88%E7%8E%B0%E7%8A%B6"><span class="nav-number">2.1.</span> <span class="nav-text">P1:传感器信息融合现状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2-LiDAR-Camera%E8%9E%8D%E5%90%88"><span class="nav-number">2.2.</span> <span class="nav-text">P2:LiDAR+Camera融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-radar%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.3.</span> <span class="nav-text">P3:radar的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P4-radar%E8%9E%8D%E5%90%88%E5%B0%91%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.4.</span> <span class="nav-text">P4:radar融合少的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P5-%E5%89%8D-%E5%90%8E-%E4%B8%AD%E5%B1%82%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.5.</span> <span class="nav-text">P5:前&#x2F;后&#x2F;中层融合方法介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P6-%E6%88%91%E4%BB%AC%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.6.</span> <span class="nav-text">P6:我们的工作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">2.Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%8D%95%E4%BC%A0%E6%84%9F%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 单传感器的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA3D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%88Monocular-3D-object-detection%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">单目相机3D目标检测方法（Monocular 3D object detection）:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LiDAR-3D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.2.</span> <span class="nav-text">LiDAR 3D目标检测方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%9F%BA%E4%BA%8E%E8%9E%8D%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 基于融合的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LiDAR%E5%92%8CCamera%E8%9E%8D%E5%90%88"><span class="nav-number">3.2.1.</span> <span class="nav-text">LiDAR和Camera融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#radar%E5%92%8C%E5%85%B6%E4%BB%96%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88"><span class="nav-number">3.2.2.</span> <span class="nav-text">radar和其他传感器融合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">3.Preliminary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E9%9B%B7%E8%BE%BE%E7%82%B9%E4%BA%91"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 雷达点云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-CenterNet"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 CenterNet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">4.CenterFusion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Center-Point-Detection"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 Center Point Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Radar-Association"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 Radar Association</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%88%AA%E4%BD%93%E8%A7%86%E6%99%AF%E5%85%B3%E8%81%94%E6%9C%BA%E5%88%B6"><span class="nav-number">5.2.1.</span> <span class="nav-text">平截体视景关联机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%B1%E4%BD%93%E6%89%A9%E5%BC%A0"><span class="nav-number">5.2.2.</span> <span class="nav-text">柱体扩张</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">5.2.3.</span> <span class="nav-text">雷达特征提取</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">5.Implementation Details</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">6.Results</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">7.Ablation Study</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">9.</span> <span class="nav-text">相关知识</span></a></li></ol>
+    </div>
+</div>
+        
+    </aside>
+
+</div>
+
+
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/dark-light-toggle.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+    
+<script src="/js/back2top.js"></script>
+
+
+
+
+
+    
+<script src="/js/left-side-toggle.js"></script>
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+</body>
+</html>
