@@ -134,15 +134,25 @@
                 <main class="main-content normal-code-theme">
 
                     
-                        
-    <div class="fade-in-down-animation">
-        <div class="tagcloud-container">
-            <div class="tagcloud-content">
-                <a href="/tags/Babak-Shahian-Jahromi/" style="font-size: 0.98em;">Babak Shahian Jahromi</a> <a href="/tags/COVID-19/" style="font-size: 0.98em;">COVID-19</a> <a href="/tags/EKF/" style="font-size: 0.98em;">EKF</a> <a href="/tags/Felix-Nobis/" style="font-size: 0.98em;">Felix Nobis</a> <a href="/tags/LiDAR/" style="font-size: 0.98em;">LiDAR</a> <a href="/tags/VTOL/" style="font-size: 0.98em;">VTOL</a> <a href="/tags/cadc/" style="font-size: 0.98em;">cadc</a> <a href="/tags/depth-prediction/" style="font-size: 0.98em;">depth prediction</a> <a href="/tags/drones/" style="font-size: 0.98em;">drones</a> <a href="/tags/information-fusion/" style="font-size: 0.98em;">information fusion</a> <a href="/tags/infrared-light/" style="font-size: 0.98em;">infrared light</a> <a href="/tags/lidar-fusion/" style="font-size: 0.98em;">lidar fusion</a> <a href="/tags/life/" style="font-size: 1.5em;">life</a> <a href="/tags/object-detection/" style="font-size: 1.24em;">object detection</a> <a href="/tags/paper/" style="font-size: 0.98em;">paper</a> <a href="/tags/radar/" style="font-size: 0.98em;">radar</a> <a href="/tags/record/" style="font-size: 0.98em;">record</a> <a href="/tags/research/" style="font-size: 0.98em;">research</a> <a href="/tags/review/" style="font-size: 0.98em;">review</a> <a href="/tags/sensor-fusion/" style="font-size: 1.5em;">sensor fusion</a> <a href="/tags/visible-light/" style="font-size: 0.98em;">visible light</a> <a href="/tags/website/" style="font-size: 0.98em;">website</a>
-            </div>
-        </div>
-    </div>
+                        @require "../common/magic-theme.styl";
 
+.tagcloud-container {
+
+  background: var(--background-color);
+
+  magic-container(1.005, 1.01, 30px);
+
+  .tagcloud-content {
+
+    text-align: justify;
+    font-size: 1.2em;
+
+    a {
+      padding: 8px 6px;
+      display: inline-block;
+    }
+  }
+}
 
 
                     
