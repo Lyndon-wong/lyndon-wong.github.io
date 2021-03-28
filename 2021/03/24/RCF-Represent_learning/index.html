@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        Radar Camera Fusion via Representation Learning in Autonomous Driving | CVPR 2021 |
+        
+        Wang&#39;s Space
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/tubiao.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let ILS = window.ILS || {};
+    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+  </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="page-container">
+
+    <header class="page-header">
+        <div class="header-progress"></div>
+    </header>
+
+    <main class="page-main">
+
+        <div class="page-main-content">
+
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            Wang&#39;s Space
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/tags"
+                    >
+                        标签
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">Radar Camera Fusion via Representation Learning in Autonomous Driving | CVPR 2021</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2021-03-24 11:29:52
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/sensor-fusion/">sensor fusion</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/radar/">radar</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/representation-learning/">representation learning</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+    
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<p>论文笔记，原创内容；未经许可，请勿转载</p>
+</blockquote>
+<h1>Abstract</h1>
+<ul>
+<li><strong>背景</strong>：雷达和图像是成熟，低成本，鲁棒并且广泛应用在产品级的感知手段，由于他们的互补性，雷达检测（点云）和图像（2D检测框）通常被融合后生成最优感知结果。<strong>雷达-图像融合成功的关键点是数据关联。</strong></li>
+<li><strong>工作</strong>：我们想通过深度表征学习（deep representation learning）进行rad-cam关联，来进行特征级的交互和全局的推理。
+<ul>
+<li>设计了一种损失采样机理和新型序数损失（ordinal loss ）来克服 标签不准确 和强化严格的人类推理（enforce critical human reasoning）</li>
+</ul>
+</li>
+<li><strong>结果</strong>：
+<ul>
+<li>尽管在使用具有噪声的标签进行训练的情况下，我们提出的方法实现了92.2% 的F1分数，这比基于规则的老师算法提升了11.6%。</li>
+<li>除此之外，这种基于数据的方法同样使得其通过极端情况（corner case）挖掘实现不断的性能提升。</li>
+</ul>
+</li>
+</ul>
+<h1>Introduction</h1>
+<h2 id="P1-2-Lidar的缺点-radar的优点">P1-2: Lidar的缺点&amp;radar的优点</h2>
+<p>LiDAR的缺点：</p>
+<ul>
+<li>容易出现错误</li>
+<li>购买，维护成本高</li>
+<li>商品级雷达尚未满足需求</li>
+</ul>
+<p>毫米波radar的优点：</p>
+<ul>
+<li>距离速度估计相对精确</li>
+<li>鲁棒性高，低成本，维护成本低</li>
+</ul>
+<h2 id="P3-传统radar融合">P3:传统radar融合</h2>
+<p>传统的radar-carmera fusion：</p>
+<ul>
+<li>
+<p>基于关联规则的算法和基于运动学模型的跟踪，<strong>关键点是将雷达观测和相机观测进行配准</strong></p>
+</li>
+<li>
+<p><strong>缺点</strong>：传统的关联过程是基于最小化特定的距离度量和一些启发式规则“手动”操作的。它不仅需要大量的工程和调优，而且很难适应不断增长的数据。</p>
+</li>
+</ul>
+<p>[16,25,28]: 结合雷达和相机数据作为输入进行3D目标检测，这些方法都以激光雷达数据作为真值来建立radar和相机的关系。对于大部分公开数据集例如nuScenes，Waymo这是足够的，但是 他们不能被部署到大部分商用车辆上。</p>
+<p>在这项研究中，我们提出了一个基于可扩展学习的框架来关联雷达和相机信息。</p>
+<h2 id="P4：我们的方法">P4：我们的方法</h2>
+<p>我们的目标：找到雷达和相机检测结果的一个表征形式，能使得配对后的距离近而未配对的距离远。我们将检测结果转换到图像通道上然后叠加到原图上，再进入名为<strong>AssociationNet</strong>的CNN网络中。训练是通过从基于传统的基于规则的关联方法（rule-based association method）获得的不完美的标签上进行的。通过引入损失采样机制可以减少错误标签。为了进一步提升性能，我们通过增加了一个新型的序列损失（ordinal loss）。该网络通过对于实际场景的推理，显著地超越了基于规则的方法。</p>
+<h2 id="P5：我们的主要贡献">P5：我们的主要贡献</h2>
+<ul>
+<li>我们提出了一种可扩展的、基于学习的雷达-相机融合框架，无需使用激光雷达的地面真实标签，适合在真实的自动驾驶应用中构建低成本、可生产的感知系统。</li>
+<li>我们设计了一个损耗采样机制来减轻标签噪声的影响，并发明了一个顺序损耗来加强关键关联逻辑到模型中以提高性能。</li>
+<li>我们通过表征学习发展了一种鲁棒性的模型，可以操作多种具有挑战性的场景，，同时它的F1分数比传统的基于规则的算法提升了约11.6%</li>
+</ul>
+<h1>Related Work</h1>
+<h2 id="2-1-Sensor-Fusion">2.1 Sensor Fusion</h2>
+<ul>
+<li>
+<p>[9,17,19,12,31]: 目标级融合（object-level fusion）,各个传感器分别处理数据检测目标，然后融合算法融合目标检测结果形成全局机动跟踪航迹。</p>
+</li>
+<li>
+<p>[1,5]: 3D目标检测和多目标跟踪</p>
+<p>传统的方法倾向于手动设计各种距离指标，来表示不同传感器输出之间的相似性。</p>
+</li>
+<li>
+<p>[2]距离最小化和其他启发式规则被用来找到关联方式。为了处理复杂性和不确定性，在关联过程中有时也采用概率模型</p>
+</li>
+</ul>
+<h2 id="2-2-Learning-Based-Radar-Camera-Fusion">2.2 Learning-Based Radar-Camera Fusion</h2>
+<ul>
+<li>[28,14]: 前期融合</li>
+<li>[16,7,26]:中期融合</li>
+</ul>
+<p>由于从检测结果得到的信息太少，基于融合的目标级融合仍待探索。在本研究中，我们提出的方法属于这一类：我们聚焦于关联雷达和相机的检测结果。因此，我们的方法和传统的传感器融合流程更加兼容。另外一方面，我们的方法直接采用原始相机和雷达数据来进行性能提升增强。</p>
+<h2 id="2-3-CNN-for-Heterogeneous-Data">2.3 CNN for Heterogeneous Data</h2>
+<p>CNN在结构化图片上的巨大成功激发了人们将其应用在其他多种类型的数据上，例如传感器参数、点云和两类数据的关联关系上。为了能和CNN进行兼容，一种流行的方法是将异类数据转化为“伪图片”的形式。例子包括</p>
+<ul>
+<li>
+<p>[11]: 用归一化坐标和视场映射将摄像机内在编码到图像中(? ? ?)</p>
+</li>
+<li>
+<p>[6,28]: 将雷达数据投影到图像平面，形成新的图像通道</p>
+</li>
+<li>
+<p>[30,23]:各种形式的基于投影的激光雷达点云表示</p>
+</li>
+</ul>
+<p>我们采用了相似的方法处理雷达和相机输出。</p>
+<h2 id="2-4-Representation-Learning">2.4 Representation Learning</h2>
+<p>表征学习被认为是理解复杂环境和问题的关键[3,20,18]。表征学习被广泛应用于许多自然语言处理任务，如单词嵌入[24]，以及许多计算机视觉任务，如图像分类[8]，目标检测[13]，关键点匹配[10]。在本研究中，我们的目标是在高维特征空间中学习一个向量作为场景中每个对象的表征，以建立对象之间的交互，并进行场景的全局推理。</p>
+<h1>Problem Formulation</h1>
+<ul>
+<li>
+<p>传感器：</p>
+<ul>
+<li>相机：FOV:120度，52度；像素：1828*948；频率：10Hz</li>
+</ul>
+</li>
+<li>
+<p>雷达：输出的是一系列经过后处理的点，这些点据有一些属性，也叫做雷达针（radar pins）。这些雷达针是在目标级上的。每帧输出都可能有几十个雷达针。</p>
+<ul>
+<li>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328192921912.png" alt="image-20210328192921912" style="zoom:50%;" />
+</li>
+</ul>
+</li>
+<li>
+<p>雷达针值得注意的点：</p>
+<ul>
+<li>在BEV视角下进行2D信息处理。不考虑仰角，因为在纵向上精度很差</li>
+<li>每一个雷达针都对应了一个移动的目标（例如车、自行车、行人等）或者是某种具有干扰的静态结构（例如交通牌、路灯、桥等）</li>
+</ul>
+</li>
+</ul>
+<p>在这项研究中，我们聚焦于将来自相机的2D识别框和雷达针相关联。在具有精确关联情况下，许多类似3D目标检测和跟踪的任务会变得更加简单。</p>
+<h1>Methods</h1>
+<p>我们的工作主要包括：</p>
+<ul>
+<li>
+<p>前处理：配准雷达和相机数据</p>
+</li>
+<li>
+<p>基于CNN的表征学习网络 AssociationNet</p>
+</li>
+<li>
+<p>后处理：表征提取和关联</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328194038332.png" alt="image-20210328194038332"></p>
+</li>
+</ul>
+<h2 id="4-1-Radar-and-Camera-Data-Preprocessing">4.1 Radar and Camera Data Preprocessing</h2>
+<p>前处理：进行时-空配准。(temporal and spatial alignment）</p>
+<ul>
+<li>时间配准：将和图片帧时间最近的雷达帧相互进行配准。</li>
+<li>空间配准：利用已知信息将雷达针从雷达坐标进一步转换到相机坐标。雷达针的所有属性将在AssociationNet中使用。</li>
+</ul>
+<p>相机的每帧图像都会先进行2D目标检测并输出检测框，检测框的属性见表2。虽然在本研究中，网络使用的是RetinaNet，其实任何2D检测网络都可。经过前处理，一系列时–空配准的雷达针和相机检测框就可以进行接下来的关联了。</p>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328204716586.png" alt="image-20210328204716586" style="zoom:50%;" />
+<h2 id="4-2-Deep-Association-by-Representation-Learning">4.2 Deep Association by Representation Learning</h2>
+<h3 id="P1-表征学习的原理">P1: 表征学习的原理</h3>
+<p>利用AssociationNet学习每个雷达针和每个检测框的语义表征信息。<strong>在这个表征下，一对匹配的雷达针和检测框将会”看上去“相似，即他们的学习表征距离比较接近。</strong> 这个过程的大致描述见图2.</p>
+<h3 id="P2：Process-a：得到伪图像；Process-b：叠加原图">P2：Process a：得到伪图像；Process b：叠加原图</h3>
+<p>为了利用强大的CNN架构工具，我们将每个雷达针和2D检测框投影到像平面来产生一个伪图像（pseudo-image），每一种属性都占据了一个独立的通道。</p>
+<p>Process a：</p>
+<ul>
+<li>每一个检测框被分配到其中心的像素位置上</li>
+<li>每一个雷达针通过将其3D位置投影到相平面上来分类到像素位置上</li>
+</ul>
+<p>接下来，我们将原始RGB相机图像和相应的伪图像叠加以合并丰富的像素级信息。然后应用AssociationNet进行表征学习。</p>
+<h3 id="P3-AssociationNet的结构；process-c：提取表征向量">P3: AssociationNet的结构；process c：提取表征向量</h3>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328205842596.png" alt="image-20210328205842596"></p>
+<ul>
+<li>Backbone：ResNet</li>
+<li>FPN：融合不同尺度的特征</li>
+<li>two extra layers ：将特征恢复到输入图的尺寸</li>
+</ul>
+<p>输出的特征图包括了雷达针和检测框的高维语义表征信息。每个雷达针和检测框都在特征图中有独有的像素位置，我们在输出的特征图的对应像素位置提取他们的表征向量。这个过程就是process c。</p>
+<h3 id="P4-网络的输入及输出">P4: 网络的输入及输出</h3>
+<ul>
+<li>
+<p>输入-伪图：</p>
+<ul>
+<li>7个雷达针通道：object-id, obstacle-prob, position-x, position-y, velocity-x,<br>
+velocity-y, heatmap</li>
+<li>4个检测框通道：height, width, category, heatmap</li>
+<li>3个原图RGB通道</li>
+</ul>
+</li>
+<li>
+<p>输出-特征图：</p>
+<ul>
+<li>总共128通道</li>
+<li>每个雷达针的表征向量 64维</li>
+<li>每个检测框的表征向量 64维</li>
+</ul>
+</li>
+</ul>
+<h3 id="P5：损失函数">P5：损失函数</h3>
+<p>我们所得到的表征向量代表了雷达针和检测框在高维空间中的语义含义。如果一个雷达对表示了现实世界中的同一个目标，我们就把它作为一个正样本，反之为负样本。我们尝试最小化所有的正样本的表征向量之间的距离，并且将负样本的表征向量之间的距离最大化。基于这个逻辑，我们设计了根据关联真值标签的损失函数。我们将这些正样本的表征向量加和到一起，得到吸引损失（pull loss）：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328215940440.png" alt="image-20210328215940440"></p>
+<p>我们将负样本的损失加和，得到排斥损失（push loss）：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328220059985.png" alt="image-20210328220059985"></p>
+<ul>
+<li>
+<p>POS,NEG:正样本集、负样本集</p>
+</li>
+<li>
+<p>npos，nneg：POS中的关联数和NEG中的关联数</p>
+</li>
+<li>
+<p>（i1,i2）:第i个关联对，包含雷达针i1，检测框i2</p>
+</li>
+<li>
+<p>hi1，hi2：代表对应的学习出的表征向量</p>
+</li>
+<li>
+<p>m1，m2：设想的表征向量间的距离的阈值，我们设定为了2.0和8.0</p>
+<p>在推理过程中，我们计算了所有可能的雷达针-检测框对的表示向量之间的欧氏距离。如果距离低于一定阈值，则认为雷达针与检测框成功关联。</p>
+</li>
+</ul>
+<h3 id="4-2-1-Loss-Sampling">4.2.1 Loss Sampling</h3>
+<p>用于监督学习过程的关联标签基本上来自于传统的基于规则的方法，这些标签远远没有达到100%精确度并且包含了部分噪声。</p>
+<ul>
+<li><strong>训练时：过滤某些关联标签</strong>：为了减轻不准确的标签的影响，我们首先通过过滤掉了某些低可信度的关联对，以纯化标签。这提升了剩余关联标签的精确度，但是代价是破坏了回归结果（undermined recall）。</li>
+<li><strong>训练时：过滤某些排斥标签对</strong>在训练AssociationNet 时，排斥损失的计算过程中，我们只取样了一部分用来训练，以减少错误地分开了正关联对。取样的负关联对的数目和正关联对的数目相等。</li>
+</ul>
+<h3 id="4-2-2-Ordinal-Loss">4.2.2 Ordinal Loss</h3>
+<p>AssociationNet 犯的一个特殊类型的错误是：它可能会违反简单顺序规则(simple ordinal rule),即这种现象：一个较远的雷达针关联到一个较近的检测框，一个较近的雷达针关联到了较远的检测框。为了解决这个情况，我们提出了顺序损失。</p>
+<p>将检测框i的底部的y坐标设为ymax_i，相应的3D世界的深度为d_i。对于任意两个在同一张图片上的检测框，我们有如下的性质：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328223627219.png" alt="image-20210328223627219"></p>
+<p>物体在3D世界中的顺序可以通过检测框底部的相对距离次序来推测。因此，我们设计了一个额外的顺序损失根据顺序规则来强化自身一致性（self-consistency ），这个损失是：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224040650.png" alt="image-20210328224040650"></p>
+<ul>
+<li>^POS:预测的正关联集</li>
+<li>^n_pos:^POS的大小</li>
+<li>i1，i2：第i个预测关联的雷达针和检测框</li>
+<li>j1，j2：第j个预测关联的雷达针和检测框</li>
+<li>d*：相机坐标系下雷达针的深度</li>
+<li>y*_max：检测框底部的y坐标</li>
+<li>σ：激活函数，用来平滑损失值</li>
+</ul>
+<p>最后, 总损失为:</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224525126.png" alt="image-20210328224525126"></p>
+<p>其中w_ord是用来平衡损失的权重系数.</p>
+<h2 id="4-3-Training-and-Inference">4.3 Training and Inference</h2>
+<ul>
+<li>训练:
+<ul>
+<li>硬件:2080Ti</li>
+<li>batch size: 48</li>
+<li>训练方法:SGD,10K次迭代</li>
+<li>学习率:初始10^-4, 8K次迭代结束时下降10倍,9K次迭代结束时再下降10倍</li>
+</ul>
+</li>
+<li>推理:
+<ul>
+<li>首先, 使用训练后的模型先生成雷达针和检测框的表征向量</li>
+<li>然后计算一个关系矩阵(affinity matrix)，其中每个矩阵元素对应于雷达引脚的表示和一个包围框之间的距离。在实际过程中,一个检测框可能和多个雷达针关联,但是每个雷达针只能和最近的检测框关联。因此，我们设计每个雷达针与关系矩阵中距离最小的检测框相关联。</li>
+<li>最后,距离大于阈值的不可能的关联被过滤掉，这通常包括来自干扰静态物体的雷达针。</li>
+<li>整个推理过程见图4<br>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328230729490.png" alt="image-20210328230729490"></li>
+</ul>
+</li>
+</ul>
+<h2 id="4-4-Evaluation">4.4 Evaluation</h2>
+<p>在测试数据集中，将预测的关联与人为标注的关联进行比较。我们使用精度、回忆和F1分数作为评估性能的指标。</p>
+<p>在一些非常复杂的场景中，即使是人类的注释员，正确地将所有雷达针和检测框联系起来是非常具有挑战性的。因此，在评估过程中，我们将这些看似可信但不确定的关联标记为“不确定”。示例如图5所示。对于那些“不确定”的关联，它们既不被视为积极的联想，也不被视为消极的联想，这将被排除在正确和错误的正面预测之外。</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328231638271.png" alt="image-20210328231638271"></p>
+<h1>Experiments and Discussion</h1>
+<h2 id="5-1-Dataset">5.1 Dataset</h2>
+<h2 id="5-2-Effect-of-Loss-Sampling">5.2 Effect of Loss Sampling</h2>
+
+        </div>
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev btn"
+                           rel="prev"
+                           href="/2021/03/25/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%B1%87%E6%8A%A5/"
+                        >
+                            <i class="fa fa-chevron-left"></i>
+                            <span class="post-nav-title-item">2021 - 组会汇报记录</span>
+                            <span class="post-nav-item">上一篇</span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next btn"
+                           rel="next"
+                           href="/2021/03/18/CenterFusion/"
+                        >
+                            <span class="post-nav-title-item">CenterFusion:Center-based Radar and Camera Fusion for 3D Object Detection | WACV 2021</span>
+                            <span class="post-nav-item">下一篇</span>
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                    
+
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2021 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+        </div>
+    </div>
+</footer>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+
+        
+
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa fa-outdent"></i>
+            </li>
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="sidebar-tools-2">
+        <div class="tools2-container">
+
+    <button class="tools-button">
+        <i class="fa fa-plus"></i>
+    </button>
+
+    <ul class="tools-wrapper">
+        <!-- back2top -->
+        
+            <li class="tools-item scroll-to-bottom">
+                <i class="fa fa-arrow-down"></i>
+            </li>
+            <li class="tools-item scroll-to-top">
+                <i class="fa fa-arrow-up"></i>
+            </li>
+        
+
+        <!-- mode toggle -->
+        <li class="tools-item mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+
+    </ul>
+</div>
+
+    </div>
+
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-2-Lidar%E7%9A%84%E7%BC%BA%E7%82%B9-radar%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">P1-2: Lidar的缺点&amp;radar的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-%E4%BC%A0%E7%BB%9Fradar%E8%9E%8D%E5%90%88"><span class="nav-number">2.2.</span> <span class="nav-text">P3:传统radar融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P4%EF%BC%9A%E6%88%91%E4%BB%AC%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">P4：我们的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P5%EF%BC%9A%E6%88%91%E4%BB%AC%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">2.4.</span> <span class="nav-text">P5：我们的主要贡献</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Sensor-Fusion"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 Sensor Fusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Learning-Based-Radar-Camera-Fusion"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 Learning-Based Radar-Camera Fusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-CNN-for-Heterogeneous-Data"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 CNN for Heterogeneous Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Representation-Learning"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 Representation Learning</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Problem Formulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Radar-and-Camera-Data-Preprocessing"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 Radar and Camera Data Preprocessing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Deep-Association-by-Representation-Learning"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 Deep Association by Representation Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1-%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">5.2.1.</span> <span class="nav-text">P1: 表征学习的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9AProcess-a%EF%BC%9A%E5%BE%97%E5%88%B0%E4%BC%AA%E5%9B%BE%E5%83%8F%EF%BC%9BProcess-b%EF%BC%9A%E5%8F%A0%E5%8A%A0%E5%8E%9F%E5%9B%BE"><span class="nav-number">5.2.2.</span> <span class="nav-text">P2：Process a：得到伪图像；Process b：叠加原图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3-AssociationNet%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%9Bprocess-c%EF%BC%9A%E6%8F%90%E5%8F%96%E8%A1%A8%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">5.2.3.</span> <span class="nav-text">P3: AssociationNet的结构；process c：提取表征向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4-%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BE%93%E5%85%A5%E5%8F%8A%E8%BE%93%E5%87%BA"><span class="nav-number">5.2.4.</span> <span class="nav-text">P4: 网络的输入及输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5%EF%BC%9A%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">5.2.5.</span> <span class="nav-text">P5：损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-Loss-Sampling"><span class="nav-number">5.2.6.</span> <span class="nav-text">4.2.1 Loss Sampling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Ordinal-Loss"><span class="nav-number">5.2.7.</span> <span class="nav-text">4.2.2 Ordinal Loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Training-and-Inference"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 Training and Inference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Evaluation"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 Evaluation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">Experiments and Discussion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Dataset"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 Dataset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-Effect-of-Loss-Sampling"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 Effect of Loss Sampling</span></a></li></ol></li></ol>
+    </div>
+</div>
+        
+    </aside>
+
+</div>
+
+
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/dark-light-toggle.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+    
+<script src="/js/back2top.js"></script>
+
+
+
+
+
+    
+<script src="/js/left-side-toggle.js"></script>
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+</body>
+</html>
