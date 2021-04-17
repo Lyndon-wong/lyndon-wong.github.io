@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.2"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
@@ -319,12 +319,7 @@
 </ul>
 <h2 id="P8-9-：本文的主要工作工作及章节介绍">P8-9 ：本文的主要工作工作及章节介绍</h2>
 <p>在本文中，我们提出了一种基于CNN的架构，称为IVFuseNet(图1)，自适应融合红外和可见光图像的互补信息，进行深度预测，它具有：<strong>共特征融合子网络</strong>、<strong>全特征融合子网络</strong>和<strong>高分辨率重建子网络</strong>3个子网络。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201116171952710.png"
-                      alt="image-20201116171952710"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201116171952710.png" alt="image-20201116171952710"></p>
 <p><strong>共特征融合子网络</strong>：</p>
 <blockquote>
 <ul>
@@ -397,32 +392,12 @@
 <li><strong>双流程结构</strong>：我们的共同特征融合子网络的详细机制如图2中的红色点框所示。我们采用的是双流程结构。</li>
 <li><strong>AlexNet为每个流的基础</strong>：对于每个流，我们使用AlexNet[33]作为基础，因为AlexNet的参数数量相对较小。共特征融合子网络的具体内容如表1所示。此外，我们还可以选择其他网络作为基准，如VggNet[34]。该子网以256×512分辨率的红外图像及其对应的可见光图像作为子网的输入。</li>
 <li><strong>部分耦合过滤器</strong>：与传统的双流CNN不同，我们在每个卷积层中设计部分耦合过滤器来学习红外和可见光图像之间的可转移特征。耦合比率如表2所示。<br>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024345405.png"
-                      alt="image-20201117024345405"
-                ></li>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024345405.png" alt="image-20201117024345405"></li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024537691.png"
-                      alt="image-20201117024537691"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024558702.png"
-                      alt="image-20201117024558702"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024537691.png" alt="image-20201117024537691"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024558702.png" alt="image-20201117024558702"></p>
 <h3 id="P3：过滤器">P3：过滤器</h3>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024747169.png"
-                      alt="image-20201117024747169"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024747169.png" alt="image-20201117024747169"></p>
 <ul>
 <li>
 <p>如图3所示，共特征融合子网络的过滤器可以分为三类:</p>
@@ -448,12 +423,7 @@
 <p>部分耦合过滤器数目与过滤器总数之比称为耦合比</p>
 </li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025130443.png"
-                      alt="image-20201117025130443"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025130443.png" alt="image-20201117025130443"></p>
 <p>其中Ri为第i层的耦合比，ki为第i卷积层部分耦合过滤器的个数，ni为第i卷积层全部过滤器的个数。在本文中，我们使用以下耦合比率:0,0.25,0.5,0.75。我们在第4节中通过粗网格搜索演示了这些耦合比率的性能</p>
 <h3 id="P4：耦合比">P4：耦合比</h3>
 <ul>
@@ -462,25 +432,10 @@
 </ul>
 <h3 id="P5：网络训练方法">P5：网络训练方法</h3>
 <p>在共特征融合网络中，利用BP算法更新滤波权值。可以发现，无论红外图像流还是可见光图像流，耦合过滤器的权值在每次训练迭代中更新两次，而非耦合过滤器的权值在每次迭代中更新一次。因此，假设我们先更新红外流的权值，再更新可见光流的权值，过滤器权值更新如下:</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025536729.png"
-                      alt="image-20201117025536729"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025940889.png"
-                      alt="image-20201117025940889"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025536729.png" alt="image-20201117025536729"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025940889.png" alt="image-20201117025940889"></p>
 <p>其中n为迭代次数，μ为学习率，L为损失函数。耦合过滤器的权值在每次迭代更新如下:</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117030025450.png"
-                      alt="image-20201117030025450"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117030025450.png" alt="image-20201117030025450"></p>
 <h3 id="P6：特点和接下来的介绍">P6：特点和接下来的介绍</h3>
 <p>综上所述，在共特征融合子网络中设计部分耦合过滤器，学习红外和可见光图像共同特征间的非线性变换关系，相当于增强两种图像的特征，融合共同特征。</p>
 <p>从红外图像和可见光图像中提取的特征分为共同特征和个体特征。为了同时利用公共特征和个体特征进行深度预测，我们提出了全特征融合子网络来融合双流结构的所有特征。全特征融合子网络的效率将在第3.2节中进行分析。</p>
@@ -493,58 +448,28 @@
 <li>第二:将融合特征与核k∈2c×c×1×1进行卷积，其中2c为输入通道数，c为输出通道数，核大小为1×1。受[43]的启发，由于融合特征f_fusion同时考虑了红外和可见光图像的特征，因此该卷积运算的输出与这两种特征都有关。因此，这个程序学习了两种特征之间的相关性。在得到f_ir或f_vi的相同维数的初始系数矩阵M后，我们计算它们的点积，表示它们对不同场景深度预测的不同贡献。</li>
 <li>第三，我们设计了一个sigmoid层，将M中的每个元素转换成0到1之间的概率形式。经过这三个步骤，最终得到系数矩阵g。其过程如下:</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117031612216.png"
-                      alt="image-20201117031612216"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117031612216.png" alt="image-20201117031612216"></p>
 <p>其中b为批大小,n代表输出通道的数量.我们令红外图像的系数矩阵G_ir = G,可见光图像的系数矩阵为G_vi =1 - G, 其中G_ir和G_vi分别表示红外图像和可见光图像对深度预测的贡献水平。</p>
 <p>在不同的条件下，系数矩阵是不同的.例如,G_ir可能在暗光情况下比G_vi大而,G_vi可能在白天下比G_ir大.G_ir和G_vi分别表示红外图像和可见光图像特征的贡献，具体如下:</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032109864.png"
-                      alt="image-20201117032109864"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032109864.png" alt="image-20201117032109864"></p>
 <p>其中’圈点’代表点积.全融合特征可以这样得到:</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032217955.png"
-                      alt="image-20201117032217955"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032217955.png" alt="image-20201117032217955"></p>
 <p>全特征融合子网络决定了红外特征和可见光特征对深度预测的依赖程度。</p>
 <h2 id="高分辨率重建子网络">高分辨率重建子网络</h2>
 <h3 id="P1：网络结构">P1：网络结构</h3>
 <p>利用共特征融合子网络和全特征融合子网络，获得了分辨率为真值图1 / 16的融合特征。为了预测深度图，我们需要将低分辨率的深度图映射到与真值图具有相同分辨率的高分辨率深度图上。如果采用传统的反褶积方法进行深度预测，将会产生棋盘状伪影，并丢失详细信息。受[28,29]的启发，我们设计了一种基于残差密集卷积块的高分辨率重构子网络。图4为高分辨率重建子网图。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032348017.png"
-                      alt="image-20201117032348017"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032348017.png" alt="image-20201117032348017"></p>
 <h3 id="P2：原理">P2：原理</h3>
 <p>令f_fusion’为从全特征融合网络中得到的低分辨率特征.</p>
 <ul>
 <li>首先, 我们使用卷积层从红外和可见光图像的低分辨率融合特征中学习信息。</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033007450.png"
-                      alt="image-20201117033007450"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033007450.png" alt="image-20201117033007450"></p>
 <p>其中g()为3×3卷积与批处理归一化(BN)的复合函数。</p>
 <ul>
 <li>然后将F0作为残差密集卷积块的输入。在残差密集卷积块中，各层的输出直接与当前残差密集卷积块的后续各层相连。它还允许将前一残差密集卷积块的输出连接到当前残差密集卷积块的各层.</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033235433.png"
-                      alt="image-20201117033235433"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033235433.png" alt="image-20201117033235433"></p>
 <p>其中n为第n个残密卷积块，i为当前残密卷积块的第i层。如果每个剩余密度卷积的输出块N0特性和每一层的每一块有N个特性,我们连接的特性由前面的块和前层当前的块,导致𝑁0 +(𝑖−1)𝑁特征图的输入层。在这篇文章中,我们设置𝑁0 =𝑁= 32和每一块有三个复合操作的卷积,批量标准化和纠正线性单元</p>
 <p>与传统的卷积神经网络相比，残差密集卷积块可以利用原始低分辨率特征的层次特征增强细节特征。在得到拼接的特征图后，我们采用1×1卷积运算自适应地学习各层的特征，并使通道数与F0相同进行残差学习。通过3个残差密集卷积块，使层间信息最大，得到信息更详细的特征图。然后利用残差学习，加上F0和最后一个块的输出，进一步增强了网络的预测能力。最后，我们设计了一个上采样层而不是反卷积层，该层的输出大小为256×512，是我们预测的深度图。我们将在第4节演示高分辨率重建的有效性.</p>
 <h2 id="实施细节">实施细节</h2>
@@ -556,23 +481,13 @@
 <p>显卡:NVIDIA GTX 1080Ti, 11G显存</p>
 </li>
 <li>
-<p>初始参数:为了对不同方法进行比较，尽可能减少参数设置对最终深度预测的影响，本模型中各方法的初始参数设置相同。具体来说,权重都是初始化的截断正态分布的标准差σ= 2∕(𝑘×𝑘×𝑛_𝑖𝑛)<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033928011.png"
-                      alt="image-20201117033928011"
-                ></p>
+<p>初始参数:为了对不同方法进行比较，尽可能减少参数设置对最终深度预测的影响，本模型中各方法的初始参数设置相同。具体来说,权重都是初始化的截断正态分布的标准差σ= 2∕(𝑘×𝑘×𝑛_𝑖𝑛)<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033928011.png" alt="image-20201117033928011"></p>
 </li>
 <li>
 <p>k是内核大小,外祖母是渠道的数量输入,𝜇是期望和截断范围(a, b)</p>
 </li>
 <li>
-<p>所有方法的学习率初始为1e−4，每20000次迭代降低0.9倍，所有方法的总迭代次数为80,000次。经过80000次迭代，所有方法都可以收敛;批量大小为4，每个卷积层后使用批量归一化处理。为了防止训练过程中出现过拟合，我们将每个激活函数层后的dropout操作设置为0.8。对于训练损失，选择交叉熵作为我们的损失，利用Adam优化器对网络进行优化。<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034155029.png"
-                      alt="image-20201117034155029"
-                ></p>
+<p>所有方法的学习率初始为1e−4，每20000次迭代降低0.9倍，所有方法的总迭代次数为80,000次。经过80000次迭代，所有方法都可以收敛;批量大小为4，每个卷积层后使用批量归一化处理。为了防止训练过程中出现过拟合，我们将每个激活函数层后的dropout操作设置为0.8。对于训练损失，选择交叉熵作为我们的损失，利用Adam优化器对网络进行优化。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034155029.png" alt="image-20201117034155029"></p>
 </li>
 </ul>
 <p>其中L是损失，y_predictedi是实际预测，y_i是预期预测.</p>
@@ -583,12 +498,7 @@
 <p>大多数基于视觉的无人驾驶深度预测研究仅关注白天可见光图像的情况。然而，无人驾驶车辆在低光照条件下行驶的情况也应予以考虑。既包含红外图像又包含可见光图像的开源数据集很少。</p>
 <p>本文使用的是NUST-SR数据集，该数据集由无人驾驶车辆在白天和黑夜行驶时拍摄的实际道路场景组成。车载远红外相机、车载RGB相机和Lidar采集的原始NUST-SR数据集，包含分辨率为768×576的红外和可见光图像以及深度雷达数据。在原始数据集中，并非每个点都有深度值，如图5(a)所示，我们首先在NYUDepth development kit[9]中使用Levin等人的着色方案填充不存在深度值的点，如图5(b)所示。</p>
 <h3 id="P3：使用分类方法预测深度">P3：使用分类方法预测深度</h3>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034731422.png"
-                      alt="image-20201117034731422"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034731422.png" alt="image-20201117034731422"></p>
 <p>此外，我们使用分类方法来预测深度，而不是以往的回归方法[19,38,39]。原因是真实场景比较复杂，预测每个像素的深度值要比预测深度范围困难得多，而且我们对远、近物体深度预测精度的要求也不一样。这种分类方法使得我们对近场景[38]有较高的准确率，而对远场景[38]有较低的准确率。对于不同的层数，如图5所示，级数越大，真值越详细，越接近原始深度图。我们可以发现，16级的深度图相对于32或64级的深度图来说是比较粗糙的，所以我们重点比较了32级和64级的深度图。64级的深度图接近比32层的深度图更接近真值,但获得的参数的数量和失败的训练次数,63级别分别比32级高7%和22%,但预测的深度地图两种方法之间的差别很小。因此，本文将深度图在对数空间划分为32个级别作为训练标签，如图6©所示。最后，我们将红外图像、可见光图像和深度图裁剪到256×512的分辨率。通过对原始数据进行预处理，得到了NUST-SR数据集，该数据集拥有标注红外图像、可见光图像和对应的真值图,白天6529幅, 夜间5612幅。</p>
 <h3 id="P4-P5：评价标准">P4-P5：评价标准</h3>
 <p>在NUST-SR数据集的测试图像上，我们使用四个指标对提出的IVFuseNet进行评估:</p>
@@ -599,50 +509,15 @@
 <li>识别准确率</li>
 </ul>
 <h2 id="红外与可见光融合的结果">红外与可见光融合的结果</h2>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040236519.png"
-                      alt="image-20201117040236519"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040319129.png"
-                      alt="image-20201117040319129"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040333233.png"
-                      alt="image-20201117040333233"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040236519.png" alt="image-20201117040236519"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040319129.png" alt="image-20201117040319129"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040333233.png" alt="image-20201117040333233"></p>
 <h2 id="密集卷积块的结果">密集卷积块的结果</h2>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040356160.png"
-                      alt="image-20201117040356160"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040448970.png"
-                      alt="image-20201117040448970"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040356160.png" alt="image-20201117040356160"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040448970.png" alt="image-20201117040448970"></p>
 <h2 id="和相关方法的对比">和相关方法的对比</h2>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040520466.png"
-                      alt="image-20201117040605941"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040624907.png"
-                      alt="image-20201117040624907"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040520466.png" alt="image-20201117040605941"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040624907.png" alt="image-20201117040624907"></p>
 <h1>Conclusion</h1>
 <h2 id="主要贡献">主要贡献</h2>
 <ul>
@@ -953,8 +828,6 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
 
 
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts pjax">

@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.2"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
@@ -265,18 +265,8 @@
 <ul>
 <li>常规弧形平凸翼形</li>
 </ul>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405231114444.png"
-                      alt="image-20210405231114444" style="zoom: 50%;" /
-                >
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405231017397.png"
-                      alt="image-20210405231017397" style="zoom:50%;" /
-                >
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405231114444.png" alt="image-20210405231114444" style="zoom: 50%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405231017397.png" alt="image-20210405231017397" style="zoom:50%;" />
 <p>平衡状态分析：重心在c/4之后，才能静平衡</p>
 <blockquote>
 <p>第一张图：平凸翼形具有”低头“的总力矩（nose heavy moment），为了保持平衡，那么重心必须位于c/4之后，而具体这个距离的远近取绝于低头力矩的大小，也就是说，如果M*=0的话，那么我们需要刚好把重心放到c/4处。(带*表示平衡状态)</p>
@@ -288,20 +278,10 @@
 <ul>
 <li>
 <p>弯折翼型</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405232102723.png"
-                      alt="image-20210405232102723" style="zoom:50%;" /
-                >
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405232102723.png" alt="image-20210405232102723" style="zoom:50%;" />
 </li>
 </ul>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405232113644.png"
-                      alt="image-20210405232113644" style="zoom:50%;" /
-                >
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210405232113644.png" alt="image-20210405232113644" style="zoom:50%;" />
 <p>平衡状态分析：重心在c/4之前，才能静平衡</p>
 <blockquote>
 <p>第一张图：弯折翼形具有”抬头“的总力矩（tail heavy moment），为了保持平衡，那么重心必须位于c/4之前，而具体这个距离的远近取绝于低头力矩的大小，也就是说，如果M*=0的话，那么我们需要刚好把重心放到c/4处。(带*表示平衡状态)</p>
@@ -314,51 +294,26 @@
 <p>气动中心：攻角改变，但是作用在这个点上的总力矩不变，这个点就是翼形的气动中心。大多数翼形的气动中心都在c/4附近。所以上面的分析中，使用了c/4这个点用来判断，这是因为在实际航模飞行中，c/4点比较好找！如果重心离气动中心远一些，那么飞机的静稳定裕度就越大，静稳定性越强。</p>
 <h2 id="后掠翼设计">后掠翼设计</h2>
 <p>为了使得飞机在纵向具有一定的静稳定裕度，我们熟知的一个要点是重心(center of gravity, CG)要在气动中心(aerodynamic center, AC)之前。对于飞翼飞机而言，采用后掠翼的一个好处是其能够有效将气动中心后移，从而使得重心能够更方便地配平。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210110184632987.png"
-                      alt=""
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210110184632987.png" alt=""></p>
 <center>平直翼与后掠翼的对比</center>
 <h3 id="气动中心和稳定性-2">气动中心和稳定性</h3>
 <ul>
 <li>平均气动弦长Cm计算</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406105918667.png"
-                      alt=""
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406105918667.png" alt=""></p>
 <ul>
 <li>
 <p>lu:平均气动弦长；lr：翼根部弦长，λ=lt/lr.梢根比</p>
 </li>
 <li>
 <p>后掠翼飞翼气动中心的位置</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406110620947.png"
-                      alt="image-20210406110620947"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406110620947.png" alt="image-20210406110620947"></p>
 </li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406110724430.png"
-                      alt="image-20210406110724430"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406110724430.png" alt="image-20210406110724430"></p>
 <p>​	如图，我们能够找到平均气动弦长在机翼上的位置，通过这个位置我们就能够确定气动中心的位置，然后将重心设计到这一点前面即可使得飞机具有静稳定性。</p>
 <p>​	除了以上基于几何关系的方法，我们还能采用下列的经验公式直接估算气动重心的位置。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406111639577.png"
-                      alt="image-20210406111639577"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406111639577.png" alt="image-20210406111639577"></p>
 <h3 id="机翼的扭转（twist）的设计">机翼的扭转（twist）的设计</h3>
 <ul>
 <li>CG处在AC之前是纵向稳定性的需求，除此之外，为了平衡性，在CG附近的力矩和必须为零。首先因为我们已经确定了确保纵向稳定性的CG位置，我们<strong>只能通过调整机翼的扭转使得气动力矩在CG附近的和为零。</strong></li>
@@ -374,12 +329,7 @@
 <h4 id="计算几何扭转角βreq">计算几何扭转角βreq</h4>
 <ul>
 <li>我们可以通过两张图表来确定需求的扭转角βreq.</li>
-<li><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406112215618.png"
-                      alt="image-20210406112215618"
-                ></li>
+<li><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406112215618.png" alt="image-20210406112215618"></li>
 </ul>
 <p>这张表是</p>
 <ul>
@@ -396,28 +346,13 @@
 <p>得到的标准情况，我们可以将自己的翼形设计的比例叠加上去就能得到我们实际需要的βreq，其中我们可以发现，如果CL=0.5,即缩小50%，那么机翼的扭转也能缩小50%；除此之外，要是我们采用较小的稳定系数，那么也能减少机翼的扭转</p>
 <h4 id="零升攻角的变化">零升攻角的变化</h4>
 <p>如果我们在翼根和翼梢采用不同的翼形，那么他们的零攻角升力方向可能不一样，这将影响平衡状态。通过这种手段，我们可以减少几何扭转</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406113437074.png"
-                      alt="image-20210406113437074" style="zoom: 67%;" /
-                >
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406113437074.png" alt="image-20210406113437074" style="zoom: 67%;" />
 <p>如果翼根，翼梢采用相同的翼形，那么这个角就是0.</p>
 <h4 id="翼形力矩系数的影响">翼形力矩系数的影响</h4>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406113930554.png"
-                      alt="image-20210406113930554"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406113930554.png" alt="image-20210406113930554"></p>
 <p>翼形的力矩系数对于平衡也有影响，上面这张图可以用来帮助我们找到对扭转角进行修正的合适角度。如果我们采用了具有正力矩系数的翼形，那么β_cm就会为正，那么它将能够减少扭转量。这张图也是根据标准翼形的参考所描绘的，其中cm*=0.05。如果我们在翼根和翼尖采用了不同翼形，那么我们需要利用(c_m,tip+c_m,root)/2来计算这个力矩系数。</p>
 <p>最后，我们可以计算出机翼几何扭转角的净值β_geo,即</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406134014291.png"
-                      alt="image-20210406134014291"
-                ></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210406134014291.png" alt="image-20210406134014291"></p>
 
         </div>
 
@@ -711,8 +646,6 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
 
 
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts pjax">
