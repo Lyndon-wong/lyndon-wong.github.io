@@ -2,119 +2,148 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="我的个人网站">
+    <meta name="author" content="Lyndon Wong">
     
     <title>
-        2020总结 |
+        
+            2020总结 |
         
         Wang&#39;s Space
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <link rel="shortcut icon" href="/images/logo2.png">
-    
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
-    let ILS = window.ILS || {};
-    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 
 <body>
-<div class="page-container">
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-    <header class="page-header">
-        <div class="header-progress"></div>
-    </header>
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
 
-    <main class="page-main">
 
-        <div class="page-main-content">
+<main class="page-container">
 
-            <div class="page-main-content-top">
-                <header class="header-wrapper">
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
     <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Wang&#39;s Space
+            </a>
+        </div>
 
-        <a class="logo-title" href="/">
-            Wang&#39;s Space
-        </a>
-
-        <ul class="menu-list">
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/"
-                    >
-                        首页
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/archives"
-                    >
-                        归档
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/categories"
-                    >
-                        分类
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/tags"
-                    >
-                        标签
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/about"
-                    >
-                        关于
-                    </a>
-                </li>
-            
-        </ul>
-
-        <div class="menu-bar">
-            <div class="menu-bar-middle"></div>
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="header-drawer">
         <ul class="drawer-menu-list">
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/">首页</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/archives">归档</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/categories">分类</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/tags">标签</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/about">关于</a>
                 </li>
@@ -127,32 +156,42 @@
 </header>
 
 
-            </div>
+        </div>
 
-            <div class="page-main-content-middle">
+        <div class="page-main-content-middle">
 
-                <main class="main-content normal-code-theme">
+            <div class="main-content">
 
-                    
-                        <div class="fade-in-down-animation">
+                
+                    <div class="fade-in-down-animation">
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">2020总结</a></h3>
+            <span class="title-hover-animation">2020总结</span>
         </div>
 
-        <div class="meta-info">
-            <div class="article-meta-info">
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/touxiang.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Lyndon Wong</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2021-01-06 23:09:02
+        <i class="fas fa-edit"></i>&nbsp;2021-01-06 23:09:02
     </span>
     
         <span class="article-categories article-meta-item">
-            <i class="fa fa-folder"></i>
+            <i class="fas fa-folder"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/categories/Life/">Life</a>
+                        <a href="/categories/Life/">Life</a>&nbsp;
                     </li>
                 
             </ul>
@@ -160,26 +199,43 @@
     
     
         <span class="article-tags article-meta-item">
-            <i class="fa fa-tags"></i>
+            <i class="fas fa-tags"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/tags/life/">life</a>
+                        <a href="/tags/life/">life</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/record/">record</a>
+                        | <a href="/tags/record/">record</a>&nbsp;
                     </li>
                 
             </ul>
         </span>
     
+
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>684 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
+                    </div>
+                </div>
+            </div>
+        
 
         <div class="article-content markdown-body">
             <h1>概述</h1>
@@ -214,7 +270,12 @@
 </li>
 <li>
 <p>自学cadence（部分）</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210107001644900.png" alt="image-20210107001644900" style="zoom: 40%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210107001644900.png"
+                      alt="image-20210107001644900" style="zoom: 40%;" /
+                >
 </li>
 </ul>
 <h2 id="三月">三月</h2>
@@ -223,7 +284,12 @@
 <li>自学c语言（小甲鱼课程）</li>
 <li>社区疫情志愿者</li>
 </ul>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/IMG_20200229_164045.jpg" alt="IMG_20200229_164045" style="zoom: 12%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/IMG_20200229_164045.jpg"
+                      alt="IMG_20200229_164045" style="zoom: 12%;" /
+                >
 <h2 id="四月">四月</h2>
 <ul>
 <li>
@@ -234,7 +300,12 @@
 </li>
 <li>
 <p>学习xflow仿真</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210107005237451.png" alt="image-20210107005237451" style="zoom:23%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210107005237451.png"
+                      alt="image-20210107005237451" style="zoom:23%;" /
+                >
 </li>
 </ul>
 <h2 id="五月">五月</h2>
@@ -255,7 +326,12 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/psc" alt="img"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/psc"
+                      alt="img"
+                ></p>
 <h2 id="七月">七月</h2>
 <ul>
 <li>垂起倾转双旋翼原型机MARK-I ~ MARK-X</li>
@@ -274,7 +350,17 @@
 <ul>
 <li>3D打印飞机一代机 - TinyTrainer 3D设计、制造、试飞
 <ul>
-<li><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190548360.png" alt="image-20210324190548360" style="zoom: 67%;" /><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190605682.png" alt="image-20210324190605682" style="zoom: 67%;" /></li>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190548360.png"
+                      alt="image-20210324190548360" style="zoom: 67%;" /
+                ><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190605682.png"
+                      alt="image-20210324190605682" style="zoom: 67%;" /
+                ></li>
 </ul>
 </li>
 <li>了解异类传感器信息融合相关知识</li>
@@ -292,15 +378,30 @@
 <ul>
 <li>星系与宇宙学大作业：</li>
 <li>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324185930009.png" alt="image-20210324185930009" style="zoom:33%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324185930009.png"
+                      alt="image-20210324185930009" style="zoom:33%;" /
+                >
 </li>
 <li>飞行力学大作业：</li>
 <li>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190108954.png" alt="image-20210324190108954" style="zoom: 25%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190108954.png"
+                      alt="image-20210324190108954" style="zoom: 25%;" /
+                >
 </li>
 <li>马克思理论：对当代人工智能异化问题的思考</li>
 <li>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190304118.png" alt="image-20210324190304118" style="zoom:33%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324190304118.png"
+                      alt="image-20210324190304118" style="zoom:33%;" /
+                >
 </li>
 <li>最优化方法：凸优化方法与支持向量机分类问题</li>
 </ul>
@@ -351,28 +452,38 @@
         </div>
 
         
+
+        
             <div class="article-nav">
                 
                     <div class="article-prev">
-                        <a class="prev btn"
+                        <a class="prev"
                            rel="prev"
                            href="/2021/03/15/%E8%A5%BF%E7%93%9C%E8%99%AB%E5%92%8C%E8%9A%82%E8%9A%81%E7%9A%84%E6%95%85%E4%BA%8B/"
                         >
-                            <i class="fa fa-chevron-left"></i>
-                            <span class="post-nav-title-item">西瓜虫和蚂蚁的故事</span>
-                            <span class="post-nav-item">上一篇</span>
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">西瓜虫和蚂蚁的故事</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
                         </a>
                     </div>
                 
                 
                     <div class="article-next">
-                        <a class="next btn"
+                        <a class="next"
                            rel="next"
                            href="/2020/11/22/%E4%B8%A4%E7%A7%8D%E5%89%8D%E6%B2%BF%E7%9A%84%E5%BC%82%E7%B1%BB%E4%BC%A0%E6%84%9F%E5%99%A8%E4%BF%A1%E6%81%AF%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/"
                         >
-                            <span class="post-nav-title-item">两种前沿的异类传感器信息融合方法</span>
-                            <span class="post-nav-item">下一篇</span>
-                            <i class="fa fa-chevron-right"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">两种前沿的异类传感器信息融合方法</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
                         </a>
                     </div>
                 
@@ -380,116 +491,217 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'hnFBe1r9GzXW5L5mp7p5xxRd-MdYXbMMI',
+                    appKey: 'e3d8gXfeUxAgXvphPa28bFjm',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Lyndon Wong';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
 
-                    
-
-                </main>
-
+                
             </div>
 
-            <div class="page-main-content-bottom">
-                <footer class="footer">
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
-            &copy; 2021 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+            &copy;
+            
+              <span>2019</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
-            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
                 
                 
                     <span id="busuanzi_container_site_pv">
-                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
-                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
+        
     </div>
 </footer>
 
-            </div>
         </div>
-    </main>
+    </div>
 
-    <div class="sidebar-tools">
-        <div class="tools-container">
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
     <ul class="tools-list">
-        
-
-        
-
         <!-- TOC aside toggle -->
         
             <li class="tools-item page-aside-toggle">
-                <i class="fa fa-outdent"></i>
+                <i class="fas fa-outdent"></i>
             </li>
         
 
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
     </ul>
 </div>
 
-    </div>
+        </div>
+    
 
-    <div class="sidebar-tools-2">
-        <div class="tools2-container">
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-    <button class="tools-button">
-        <i class="fa fa-plus"></i>
-    </button>
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-    <ul class="tools-wrapper">
-        <!-- back2top -->
-        
-            <li class="tools-item scroll-to-bottom">
-                <i class="fa fa-arrow-down"></i>
-            </li>
-            <li class="tools-item scroll-to-top">
-                <i class="fa fa-arrow-up"></i>
-            </li>
-        
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-        <!-- mode toggle -->
-        <li class="tools-item mode-toggle">
-            <i class="fa fa-moon-o"></i>
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
         </li>
 
         <!-- rss -->
         
 
+        
 
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
     </ul>
 </div>
 
     </div>
 
-
-    <!-- page aside -->
-    <aside class="page-aside">
-        
+    
+        <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">月记事</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%9C%88"><span class="nav-number">2.1.</span> <span class="nav-text">一月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%9C%88"><span class="nav-number">2.2.</span> <span class="nav-text">二月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%9C%88"><span class="nav-number">2.3.</span> <span class="nav-text">三月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E6%9C%88"><span class="nav-number">2.4.</span> <span class="nav-text">四月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E6%9C%88"><span class="nav-number">2.5.</span> <span class="nav-text">五月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E6%9C%88"><span class="nav-number">2.6.</span> <span class="nav-text">六月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E6%9C%88"><span class="nav-number">2.7.</span> <span class="nav-text">七月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E6%9C%88"><span class="nav-number">2.8.</span> <span class="nav-text">八月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E6%9C%88"><span class="nav-number">2.9.</span> <span class="nav-text">九月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E6%9C%88"><span class="nav-number">2.10.</span> <span class="nav-text">十月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E6%9C%88"><span class="nav-number">2.11.</span> <span class="nav-text">十一月</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E6%9C%88"><span class="nav-number">2.12.</span> <span class="nav-text">十二月</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">2020成果</span></a></li></ol>
     </div>
 </div>
-        
-    </aside>
+        </aside>
+    
 
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
-
-    <div class="search-pop-overlay">
+    
+        <div class="search-pop-overlay">
     <div class="popup search-popup">
         <div class="search-header">
-          <span class="search-icon">
-            <i class="fa fa-search"></i>
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
           </span>
             <div class="search-input-container">
                 <input autocomplete="off"
@@ -502,51 +714,75 @@
                 >
             </div>
             <span class="popup-btn-close">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </span>
         </div>
         <div id="search-result">
             <div id="no-result">
-                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<script src="/js/utils.js"></script>
-<script src="/js/header-shrink.js"></script>
-<script src="/js/dark-light-toggle.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-
-
-    
-<script src="/js/back2top.js"></script>
-
-
-
-
-
-    
-<script src="/js/left-side-toggle.js"></script>
-
-
-    
-        
-<script src="/js/code-copy.js"></script>
-
     
 
-    
-        
-<script src="/lib/anime.min.js"></script>
-<script src="/js/toc.js"></script>
+</main>
 
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
     
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
 
 
 </body>

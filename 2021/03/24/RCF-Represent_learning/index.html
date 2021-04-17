@@ -2,119 +2,148 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="我的个人网站">
+    <meta name="author" content="Lyndon Wong">
     
     <title>
-        Radar Camera Fusion via Representation Learning in Autonomous Driving | Pre-published |
+        
+            Radar Camera Fusion via Representation Learning in Autonomous Driving | Pre-published |
         
         Wang&#39;s Space
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <link rel="shortcut icon" href="/images/logo2.png">
-    
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
-    let ILS = window.ILS || {};
-    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 
 <body>
-<div class="page-container">
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-    <header class="page-header">
-        <div class="header-progress"></div>
-    </header>
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
 
-    <main class="page-main">
 
-        <div class="page-main-content">
+<main class="page-container">
 
-            <div class="page-main-content-top">
-                <header class="header-wrapper">
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
     <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Wang&#39;s Space
+            </a>
+        </div>
 
-        <a class="logo-title" href="/">
-            Wang&#39;s Space
-        </a>
-
-        <ul class="menu-list">
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/"
-                    >
-                        首页
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/archives"
-                    >
-                        归档
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/categories"
-                    >
-                        分类
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/tags"
-                    >
-                        标签
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/about"
-                    >
-                        关于
-                    </a>
-                </li>
-            
-        </ul>
-
-        <div class="menu-bar">
-            <div class="menu-bar-middle"></div>
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="header-drawer">
         <ul class="drawer-menu-list">
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/">首页</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/archives">归档</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/categories">分类</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/tags">标签</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/about">关于</a>
                 </li>
@@ -127,32 +156,42 @@
 </header>
 
 
-            </div>
+        </div>
 
-            <div class="page-main-content-middle">
+        <div class="page-main-content-middle">
 
-                <main class="main-content normal-code-theme">
+            <div class="main-content">
 
-                    
-                        <div class="fade-in-down-animation">
+                
+                    <div class="fade-in-down-animation">
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">Radar Camera Fusion via Representation Learning in Autonomous Driving | Pre-published</a></h3>
+            <span class="title-hover-animation">Radar Camera Fusion via Representation Learning in Autonomous Driving | Pre-published</span>
         </div>
 
-        <div class="meta-info">
-            <div class="article-meta-info">
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/touxiang.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Lyndon Wong</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2021-03-24 11:29:52
+        <i class="fas fa-edit"></i>&nbsp;2021-03-24 11:29:52
     </span>
     
         <span class="article-categories article-meta-item">
-            <i class="fa fa-folder"></i>
+            <i class="fas fa-folder"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/categories/Paper-Reading/">Paper Reading</a>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
                     </li>
                 
             </ul>
@@ -160,30 +199,47 @@
     
     
         <span class="article-tags article-meta-item">
-            <i class="fa fa-tags"></i>
+            <i class="fas fa-tags"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/tags/sensor-fusion/">sensor fusion</a>
+                        <a href="/tags/sensor-fusion/">sensor fusion</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/radar/">radar</a>
+                        | <a href="/tags/radar/">radar</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/representation-learning/">representation learning</a>
+                        | <a href="/tags/representation-learning/">representation learning</a>&nbsp;
                     </li>
                 
             </ul>
         </span>
     
+
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
+                    </div>
+                </div>
+            </div>
+        
 
         <div class="article-content markdown-body">
             <blockquote>
@@ -285,7 +341,12 @@
 <p>雷达：输出的是一系列经过后处理的点，这些点据有一些属性，也叫做雷达针（radar pins）。这些雷达针是在目标级上的。每帧输出都可能有几十个雷达针。</p>
 <ul>
 <li>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328192921912.png" alt="image-20210328192921912" style="zoom:50%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328192921912.png"
+                      alt="image-20210328192921912" style="zoom:50%;" /
+                >
 </li>
 </ul>
 </li>
@@ -309,7 +370,12 @@
 </li>
 <li>
 <p>后处理：表征提取和关联</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328194038332.png" alt="image-20210328194038332"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328194038332.png"
+                      alt="image-20210328194038332"
+                ></p>
 </li>
 </ul>
 <h2 id="4-1-Radar-and-Camera-Data-Preprocessing">4.1 Radar and Camera Data Preprocessing</h2>
@@ -319,7 +385,12 @@
 <li>空间配准：利用已知信息将雷达针从雷达坐标进一步转换到相机坐标。雷达针的所有属性将在AssociationNet中使用。</li>
 </ul>
 <p>相机的每帧图像都会先进行2D目标检测并输出检测框，检测框的属性见表2。虽然在本研究中，网络使用的是RetinaNet，其实任何2D检测网络都可。经过前处理，一系列时–空配准的雷达针和相机检测框就可以进行接下来的关联了。</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328204716586.png" alt="image-20210328204716586" style="zoom:50%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328204716586.png"
+                      alt="image-20210328204716586" style="zoom:50%;" /
+                >
 <h2 id="4-2-Deep-Association-by-Representation-Learning">4.2 Deep Association by Representation Learning</h2>
 <h3 id="P1-表征学习的原理">P1: 表征学习的原理</h3>
 <p>利用AssociationNet学习每个雷达针和每个检测框的语义表征信息。<strong>在这个表征下，一对匹配的雷达针和检测框将会”看上去“相似，即他们的学习表征距离比较接近。</strong> 这个过程的大致描述见图2.</p>
@@ -332,7 +403,12 @@
 </ul>
 <p>接下来，我们将原始RGB相机图像和相应的伪图像叠加以合并丰富的像素级信息。然后应用AssociationNet进行表征学习。</p>
 <h3 id="P3-AssociationNet的结构；process-c：提取表征向量">P3: AssociationNet的结构；process c：提取表征向量</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328205842596.png" alt="image-20210328205842596"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328205842596.png"
+                      alt="image-20210328205842596"
+                ></p>
 <ul>
 <li>Backbone：ResNet</li>
 <li>FPN：融合不同尺度的特征</li>
@@ -361,9 +437,19 @@ velocity-y, heatmap</li>
 </ul>
 <h3 id="P5：损失函数">P5：损失函数</h3>
 <p>我们所得到的表征向量代表了雷达针和检测框在高维空间中的语义含义。如果一个雷达对表示了现实世界中的同一个目标，我们就把它作为一个正样本，反之为负样本。我们尝试最小化所有的正样本的表征向量之间的距离，并且将负样本的表征向量之间的距离最大化。基于这个逻辑，我们设计了根据关联真值标签的损失函数。我们将这些正样本的表征向量加和到一起，得到吸引损失（pull loss）：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328215940440.png" alt="image-20210328215940440"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328215940440.png"
+                      alt="image-20210328215940440"
+                ></p>
 <p>我们将负样本的损失加和，得到排斥损失（push loss）：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328220059985.png" alt="image-20210328220059985"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328220059985.png"
+                      alt="image-20210328220059985"
+                ></p>
 <ul>
 <li>
 <p>POS,NEG:正样本集、负样本集</p>
@@ -391,9 +477,19 @@ velocity-y, heatmap</li>
 <h3 id="4-2-2-Ordinal-Loss">4.2.2 Ordinal Loss</h3>
 <p>AssociationNet 犯的一个特殊类型的错误是：它可能会违反简单顺序规则(simple ordinal rule),即这种现象：一个较远的雷达针关联到一个较近的检测框，一个较近的雷达针关联到了较远的检测框。为了解决这个情况，我们提出了顺序损失。</p>
 <p>将检测框i的底部的y坐标设为ymax_i，相应的3D世界的深度为d_i。对于任意两个在同一张图片上的检测框，我们有如下的性质：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328223627219.png" alt="image-20210328223627219"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328223627219.png"
+                      alt="image-20210328223627219"
+                ></p>
 <p>物体在3D世界中的顺序可以通过检测框底部的相对距离次序来推测。因此，我们设计了一个额外的顺序损失根据顺序规则来强化自身一致性（self-consistency ），这个损失是：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224040650.png" alt="image-20210328224040650"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224040650.png"
+                      alt="image-20210328224040650"
+                ></p>
 <ul>
 <li>^POS:预测的正关联集</li>
 <li>^n_pos:^POS的大小</li>
@@ -404,7 +500,12 @@ velocity-y, heatmap</li>
 <li>σ：激活函数，用来平滑损失值</li>
 </ul>
 <p>最后, 总损失为:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224525126.png" alt="image-20210328224525126"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224525126.png"
+                      alt="image-20210328224525126"
+                ></p>
 <p>其中w_ord是用来平衡损失的权重系数.</p>
 <h2 id="4-3-Training-and-Inference">4.3 Training and Inference</h2>
 <ul>
@@ -422,14 +523,24 @@ velocity-y, heatmap</li>
 <li>然后计算一个关系矩阵(affinity matrix)，其中每个矩阵元素对应于雷达引脚的表示和一个包围框之间的距离。在实际过程中,一个检测框可能和多个雷达针关联,但是每个雷达针只能和最近的检测框关联。因此，我们设计每个雷达针与关系矩阵中距离最小的检测框相关联。</li>
 <li>最后,距离大于阈值的不可能的关联被过滤掉，这通常包括来自干扰静态物体的雷达针。</li>
 <li>整个推理过程见图4<br>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328230729490.png" alt="image-20210328230729490"></li>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328230729490.png"
+                      alt="image-20210328230729490"
+                ></li>
 </ul>
 </li>
 </ul>
 <h2 id="4-4-Evaluation">4.4 Evaluation</h2>
 <p>在测试数据集中，将预测的关联与人为标注的关联进行比较。我们使用精度、回忆和F1分数作为评估性能的指标。</p>
 <p>在一些非常复杂的场景中，即使是人类的注释员，正确地将所有雷达针和检测框联系起来是非常具有挑战性的。因此，在评估过程中，我们将这些看似可信但不确定的关联标记为“不确定”。示例如图5所示。对于那些“不确定”的关联，它们既不被视为积极的联想，也不被视为消极的联想，这将被排除在正确和错误的正面预测之外。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328231638271.png" alt="image-20210328231638271"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328231638271.png"
+                      alt="image-20210328231638271"
+                ></p>
 <h1>Experiments and Discussion</h1>
 <h2 id="5-1-Dataset">5.1 Dataset</h2>
 <h2 id="5-2-Effect-of-Loss-Sampling">5.2 Effect of Loss Sampling</h2>
@@ -437,28 +548,38 @@ velocity-y, heatmap</li>
         </div>
 
         
+
+        
             <div class="article-nav">
                 
                     <div class="article-prev">
-                        <a class="prev btn"
+                        <a class="prev"
                            rel="prev"
                            href="/2021/03/25/%E6%AF%8F%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%B1%87%E6%8A%A5/"
                         >
-                            <i class="fa fa-chevron-left"></i>
-                            <span class="post-nav-title-item">2021 - 组会汇报记录</span>
-                            <span class="post-nav-item">上一篇</span>
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">2021 - 组会汇报记录</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
                         </a>
                     </div>
                 
                 
                     <div class="article-next">
-                        <a class="next btn"
+                        <a class="next"
                            rel="next"
                            href="/2021/03/18/CenterFusion/"
                         >
-                            <span class="post-nav-title-item">CenterFusion:Center-based Radar and Camera Fusion for 3D Object Detection | WACV 2021</span>
-                            <span class="post-nav-item">下一篇</span>
-                            <i class="fa fa-chevron-right"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CenterFusion:Center-based Radar and Camera Fusion for 3D Object Detection | WACV 2021</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
                         </a>
                     </div>
                 
@@ -466,116 +587,217 @@ velocity-y, heatmap</li>
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'hnFBe1r9GzXW5L5mp7p5xxRd-MdYXbMMI',
+                    appKey: 'e3d8gXfeUxAgXvphPa28bFjm',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Lyndon Wong';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
 
-                    
-
-                </main>
-
+                
             </div>
 
-            <div class="page-main-content-bottom">
-                <footer class="footer">
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
-            &copy; 2021 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+            &copy;
+            
+              <span>2019</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
-            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
                 
                 
                     <span id="busuanzi_container_site_pv">
-                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
-                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
+        
     </div>
 </footer>
 
-            </div>
         </div>
-    </main>
+    </div>
 
-    <div class="sidebar-tools">
-        <div class="tools-container">
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
     <ul class="tools-list">
-        
-
-        
-
         <!-- TOC aside toggle -->
         
             <li class="tools-item page-aside-toggle">
-                <i class="fa fa-outdent"></i>
+                <i class="fas fa-outdent"></i>
             </li>
         
 
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
     </ul>
 </div>
 
-    </div>
+        </div>
+    
 
-    <div class="sidebar-tools-2">
-        <div class="tools2-container">
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-    <button class="tools-button">
-        <i class="fa fa-plus"></i>
-    </button>
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-    <ul class="tools-wrapper">
-        <!-- back2top -->
-        
-            <li class="tools-item scroll-to-bottom">
-                <i class="fa fa-arrow-down"></i>
-            </li>
-            <li class="tools-item scroll-to-top">
-                <i class="fa fa-arrow-up"></i>
-            </li>
-        
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-        <!-- mode toggle -->
-        <li class="tools-item mode-toggle">
-            <i class="fa fa-moon-o"></i>
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
         </li>
 
         <!-- rss -->
         
 
+        
 
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
     </ul>
 </div>
 
     </div>
 
-
-    <!-- page aside -->
-    <aside class="page-aside">
-        
+    
+        <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1-2-Lidar%E7%9A%84%E7%BC%BA%E7%82%B9-radar%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">P1-2: Lidar的缺点&amp;radar的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3-%E4%BC%A0%E7%BB%9Fradar%E8%9E%8D%E5%90%88"><span class="nav-number">2.2.</span> <span class="nav-text">P3:传统radar融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P4%EF%BC%9A%E6%88%91%E4%BB%AC%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">P4：我们的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P5%EF%BC%9A%E6%88%91%E4%BB%AC%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">2.4.</span> <span class="nav-text">P5：我们的主要贡献</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Sensor-Fusion"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 Sensor Fusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Learning-Based-Radar-Camera-Fusion"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 Learning-Based Radar-Camera Fusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-CNN-for-Heterogeneous-Data"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 CNN for Heterogeneous Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Representation-Learning"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 Representation Learning</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Problem Formulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Radar-and-Camera-Data-Preprocessing"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 Radar and Camera Data Preprocessing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Deep-Association-by-Representation-Learning"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 Deep Association by Representation Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1-%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">5.2.1.</span> <span class="nav-text">P1: 表征学习的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9AProcess-a%EF%BC%9A%E5%BE%97%E5%88%B0%E4%BC%AA%E5%9B%BE%E5%83%8F%EF%BC%9BProcess-b%EF%BC%9A%E5%8F%A0%E5%8A%A0%E5%8E%9F%E5%9B%BE"><span class="nav-number">5.2.2.</span> <span class="nav-text">P2：Process a：得到伪图像；Process b：叠加原图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3-AssociationNet%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%9Bprocess-c%EF%BC%9A%E6%8F%90%E5%8F%96%E8%A1%A8%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">5.2.3.</span> <span class="nav-text">P3: AssociationNet的结构；process c：提取表征向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4-%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BE%93%E5%85%A5%E5%8F%8A%E8%BE%93%E5%87%BA"><span class="nav-number">5.2.4.</span> <span class="nav-text">P4: 网络的输入及输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5%EF%BC%9A%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">5.2.5.</span> <span class="nav-text">P5：损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-Loss-Sampling"><span class="nav-number">5.2.6.</span> <span class="nav-text">4.2.1 Loss Sampling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Ordinal-Loss"><span class="nav-number">5.2.7.</span> <span class="nav-text">4.2.2 Ordinal Loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Training-and-Inference"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 Training and Inference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Evaluation"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 Evaluation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">Experiments and Discussion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Dataset"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 Dataset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-Effect-of-Loss-Sampling"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 Effect of Loss Sampling</span></a></li></ol></li></ol>
     </div>
 </div>
-        
-    </aside>
+        </aside>
+    
 
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
-
-    <div class="search-pop-overlay">
+    
+        <div class="search-pop-overlay">
     <div class="popup search-popup">
         <div class="search-header">
-          <span class="search-icon">
-            <i class="fa fa-search"></i>
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
           </span>
             <div class="search-input-container">
                 <input autocomplete="off"
@@ -588,51 +810,75 @@ velocity-y, heatmap</li>
                 >
             </div>
             <span class="popup-btn-close">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </span>
         </div>
         <div id="search-result">
             <div id="no-result">
-                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<script src="/js/utils.js"></script>
-<script src="/js/header-shrink.js"></script>
-<script src="/js/dark-light-toggle.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-
-
-    
-<script src="/js/back2top.js"></script>
-
-
-
-
-
-    
-<script src="/js/left-side-toggle.js"></script>
-
-
-    
-        
-<script src="/js/code-copy.js"></script>
-
     
 
-    
-        
-<script src="/lib/anime.min.js"></script>
-<script src="/js/toc.js"></script>
+</main>
 
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
     
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
 
 
 </body>

@@ -1,31 +1,28 @@
-window.addEventListener('DOMContentLoaded', () => {
+/* global KEEP */
+function initTOC() {
+  KEEP.utils.navItems = document.querySelectorAll('.post-toc-wrap .post-toc li');
 
-  ILS.utils.navItems = document.querySelectorAll('.post-toc-wrap .post-toc li');
-  ILS.utils.articleToc_dom = document.querySelector('.article-toc');
-  ILS.utils.postTocWrap_dom = document.querySelector('.post-toc-wrap');
-  ILS.utils.headerWrapper_dom = document.querySelector('.header-wrapper');
+  if (KEEP.utils.navItems.length > 0) {
 
-  if (ILS.utils.navItems.length > 0) {
+    KEEP.utils = {
 
-    ILS.utils = {
-
-      ...ILS.utils,
+      ...KEEP.utils,
 
       findActiveIndexByTOC() {
-        if (!Array.isArray(ILS.utils.sections)) return;
-        let index = ILS.utils.sections.findIndex(element => {
+        if (!Array.isArray(KEEP.utils.sections)) return;
+        let index = KEEP.utils.sections.findIndex(element => {
           return element && element.getBoundingClientRect().top - 20 > 0;
         });
         if (index === -1) {
-          index = ILS.utils.sections.length - 1;
+          index = KEEP.utils.sections.length - 1;
         } else if (index > 0) {
           index--;
         }
-        ILS.utils.activateNavByIndex(index);
+        this.activateNavByIndex(index);
       },
 
       registerSidebarTOC() {
-        ILS.utils.sections = [...document.querySelectorAll('.post-toc li a.nav-link')].map(element => {
+        KEEP.utils.sections = [...document.querySelectorAll('.post-toc li a.nav-link')].map(element => {
           const target = document.getElementById(decodeURI(element.getAttribute('href')).replace('#', ''));
           element.addEventListener('click', event => {
             event.preventDefault();
@@ -37,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
               scrollTop: offset - 10,
               complete: function () {
                 setTimeout(() => {
-                  if (ILS.utils.headerWrapper_dom.style.opacity !== '0') ILS.utils.headerWrapper_dom.style.opacity = '0'
+                  KEEP.utils.pageTop_dom.classList.add('hide');
                 }, 100)
               }
             });
@@ -46,7 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       },
 
-      activateNavByIndex: function (index) {
+      activateNavByIndex(index) {
         const target = document.querySelectorAll('.post-toc li a.nav-link')[index];
         if (!target || target.classList.contains('active-current')) return;
 
@@ -70,26 +67,39 @@ window.addEventListener('DOMContentLoaded', () => {
       },
 
       showPageAsideWhenHasTOC() {
-        ILS.utils.leftSideToggle.toggleBar.style.display = 'flex';
-        ILS.utils.leftSideToggle.isOpenPageAside = true;
-        ILS.utils.leftSideToggle.changePageLayoutWhenOpenToggle(ILS.utils.leftSideToggle.isOpenPageAside);
+
+        const openHandle = () => {
+          const styleStatus = KEEP.getStyleStatus();
+          const key = 'isOpenPageAside';
+          if (styleStatus && styleStatus.hasOwnProperty(key)) {
+            KEEP.utils.leftSideToggle.pageAsideHandleOfTOC(styleStatus[key]);
+          } else {
+            KEEP.utils.leftSideToggle.pageAsideHandleOfTOC(true);
+          }
+        }
+
+        const initOpenKey = 'init_open';
+
+        if (KEEP.theme_config.toc.hasOwnProperty(initOpenKey)) {
+          KEEP.theme_config.toc[initOpenKey] ? openHandle() : KEEP.utils.leftSideToggle.pageAsideHandleOfTOC(false);
+
+        } else {
+          openHandle();
+        }
+
       }
     }
 
-    ILS.utils.showPageAsideWhenHasTOC();
-    ILS.utils.registerSidebarTOC();
-
+    KEEP.utils.showPageAsideWhenHasTOC();
+    KEEP.utils.registerSidebarTOC();
 
   } else {
-
-    if (ILS.utils.postTocWrap_dom) {
-      ILS.utils.postTocWrap_dom.innerHTML = '';
-      ILS.utils.postTocWrap_dom.style.display = 'none';
-    }
-
-    if (ILS.utils.articleToc_dom) {
-      ILS.utils.articleToc_dom.style.display = 'none';
-    }
+    KEEP.utils.pageContainer_dom.removeChild(document.querySelector('.page-aside'));
   }
-});
+}
 
+if (KEEP.theme_config.pjax.enable === true && KEEP.utils) {
+  initTOC();
+} else {
+  window.addEventListener('DOMContentLoaded', initTOC);
+}

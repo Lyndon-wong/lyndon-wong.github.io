@@ -2,119 +2,148 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="我的个人网站">
+    <meta name="author" content="Lyndon Wong">
     
     <title>
-        Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles |
+        
+            Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles |
         
         Wang&#39;s Space
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <link rel="shortcut icon" href="/images/logo2.png">
-    
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
-    let ILS = window.ILS || {};
-    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 
 <body>
-<div class="page-container">
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-    <header class="page-header">
-        <div class="header-progress"></div>
-    </header>
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
 
-    <main class="page-main">
 
-        <div class="page-main-content">
+<main class="page-container">
 
-            <div class="page-main-content-top">
-                <header class="header-wrapper">
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
     <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Wang&#39;s Space
+            </a>
+        </div>
 
-        <a class="logo-title" href="/">
-            Wang&#39;s Space
-        </a>
-
-        <ul class="menu-list">
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/"
-                    >
-                        首页
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/archives"
-                    >
-                        归档
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/categories"
-                    >
-                        分类
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/tags"
-                    >
-                        标签
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/about"
-                    >
-                        关于
-                    </a>
-                </li>
-            
-        </ul>
-
-        <div class="menu-bar">
-            <div class="menu-bar-middle"></div>
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="header-drawer">
         <ul class="drawer-menu-list">
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/">首页</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/archives">归档</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/categories">分类</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/tags">标签</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/about">关于</a>
                 </li>
@@ -127,32 +156,42 @@
 </header>
 
 
-            </div>
+        </div>
 
-            <div class="page-main-content-middle">
+        <div class="page-main-content-middle">
 
-                <main class="main-content normal-code-theme">
+            <div class="main-content">
 
-                    
-                        <div class="fade-in-down-animation">
+                
+                    <div class="fade-in-down-animation">
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles</a></h3>
+            <span class="title-hover-animation">Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles</span>
         </div>
 
-        <div class="meta-info">
-            <div class="article-meta-info">
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/touxiang.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Lyndon Wong</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-11-05 18:00:05
+        <i class="fas fa-edit"></i>&nbsp;2020-11-05 18:00:05
     </span>
     
         <span class="article-categories article-meta-item">
-            <i class="fa fa-folder"></i>
+            <i class="fas fa-folder"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/categories/Paper-Reading/">Paper Reading</a>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
                     </li>
                 
             </ul>
@@ -160,42 +199,59 @@
     
     
         <span class="article-tags article-meta-item">
-            <i class="fa fa-tags"></i>
+            <i class="fas fa-tags"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/tags/sensor-fusion/">sensor fusion</a>
+                        <a href="/tags/sensor-fusion/">sensor fusion</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/object-detection/">object detection</a>
+                        | <a href="/tags/object-detection/">object detection</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/LiDAR/">LiDAR</a>
+                        | <a href="/tags/LiDAR/">LiDAR</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/lidar-fusion/">lidar fusion</a>
+                        | <a href="/tags/lidar-fusion/">lidar fusion</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/EKF/">EKF</a>
+                        | <a href="/tags/EKF/">EKF</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/Babak-Shahian-Jahromi/">Babak Shahian Jahromi</a>
+                        | <a href="/tags/Babak-Shahian-Jahromi/">Babak Shahian Jahromi</a>&nbsp;
                     </li>
                 
             </ul>
         </span>
     
+
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>23 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
+                    </div>
+                </div>
+            </div>
+        
 
         <div class="article-content markdown-body">
             <blockquote>
@@ -214,7 +270,12 @@
 <li><strong>环境感知</strong>——我旁边有些什么？:LiDAR, camera，radar</li>
 </ul>
 <p>定位和感知的结果被送到AV的路径规划算法中来决定下一步的动作。这些动作进一步送到电机控制器上来控制车辆运动。图1显示了这个工作流程：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201106002443544.png" alt="image-20201106002443544"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201106002443544.png"
+                      alt="image-20201106002443544"
+                ></p>
 <center>图1 自动驾驶车辆结构。该论文关注于感知</center>
 <h2 id="P2：问题引入">P2：问题引入</h2>
 <p>当前环境感知的研究主要包括传感器信号处理和各种融合算法</p>
@@ -349,7 +410,12 @@ classifier)融合激光雷达和相机数据，进行道路检测</p>
 </ul>
 </blockquote>
 <p>使用三种传感器并采用合适的传感器融合算法有助于确定各种传感器的失效情况。同时提高了整体的误差容限和精度。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107142333380.png" alt="image-20201107142333380"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107142333380.png"
+                      alt="image-20201107142333380"
+                ></p>
 <center>传感器的位置和探测范围</center>
 <h2 id="相机">相机</h2>
 <h3 id="P1：相机的工作原理">P1：相机的工作原理</h3>
@@ -364,7 +430,12 @@ classifier)融合激光雷达和相机数据，进行道路检测</p>
 <p>物体位置[x,y,z] → （透镜）→ 像平面[x’, y’]</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107143844155.png" alt="image-20201107143844155"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107143844155.png"
+                      alt="image-20201107143844155"
+                ></p>
 <center>相机工作流程</center>
 <h3 id="P2：相机的校准，两种感光元件">P2：相机的校准，两种感光元件</h3>
 <ul>
@@ -407,7 +478,12 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107145328636.png" alt="image-20201107145328636"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107145328636.png"
+                      alt="image-20201107145328636"
+                ></p>
 <center>FMCW雷达工作流程</center>
 <h3 id="P2：FMCW雷达工作流程">P2：FMCW雷达工作流程</h3>
 <p>有关雷达工作的主要流程,主要理解下列元件的作用即可，这部分略</p>
@@ -442,7 +518,12 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 <p><strong>人体危害</strong>：LiDAR输出的是最弱的1类激光，对人体无害</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107173442868.png" alt="image-20201107173442868"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107173442868.png"
+                      alt="image-20201107173442868"
+                ></p>
 <center>激光雷达的工作流程</center>
 <h3 id="P2：激光雷达的工作流程">P2：激光雷达的工作流程</h3>
 <ul>
@@ -560,7 +641,12 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109135624774.png" alt="image-20201109135624774"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109135624774.png"
+                      alt="image-20201109135624774"
+                ></p>
 <center>相机-激光雷达融合流程图</center>
 <h3 id="全卷积神经网络结构FCNx">全卷积神经网络结构FCNx</h3>
 <p>结构包括两个主要部分：编码器和解码器</p>
@@ -582,7 +668,12 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109144221655.png" alt="image-20201109144221655"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109144221655.png"
+                      alt="image-20201109144221655"
+                ></p>
 <center>网络结构</center>
 <p>网络结构介绍：</p>
 <ul>
@@ -607,7 +698,12 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 <p>在本节中，我们利用雷达和激光雷达数据来检测障碍物和测量他们的状态。我们进行了后数据融合或者说是目标级的融合。然后，利用非线性卡尔曼滤波方法，利用这些噪声传感器来估计和跟踪障碍物状态，其精度比单个传感器都要高。</p>
 <h3 id="雷达拍频信号（beat-signal）处理">雷达拍频信号（beat signal）处理</h3>
 <p>雷达传感器可以探测到障碍物和他们的状态，通过图9的过程：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109182826661.png" alt="image-20201109182826661"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109182826661.png"
+                      alt="image-20201109182826661"
+                ></p>
 <ul>
 <li>
 <p><strong>第一步：带噪声信号 → (雷达内部ADC) → 数字信号</strong></p>
@@ -659,7 +755,12 @@ $$</p>
 <p>这个3D图也叫做**(Range Doppler Map, RDM)**。RDM给出了我们目标的距离和速度的概览</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109181512103.png" alt="image-20201109181512103"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109181512103.png"
+                      alt="image-20201109181512103"
+                ></p>
 <ul>
 <li>
 <p><strong>第四步：过滤RDM的噪声和杂波</strong></p>
@@ -697,7 +798,12 @@ $$</p>
 <li>PCD分割在点级别上进行，十分耗费计算资源，所以我们需要进行处理</li>
 <li>类似于雷达数据，我们将障碍物和它们附近的点（欧式距离）集群，并且给每个群一个新的位置坐标（x,y,z），这个坐标是群内所有点的坐标的平均值。最后，我们定义群大小的bounding box的尺寸，并且利用这个box来将障碍物进一步可视化。</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109201856819.png" alt="image-20201109201856819"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109201856819.png"
+                      alt="image-20201109201856819"
+                ></p>
 <p>为了将PCD分割为道路和障碍物，我们需要找到道路平面，我们利用随机取样共识<strong>Random Sample Consensus</strong>(RANSAC)[39]。在每一步，RANSAC都会从我们的点云中选取一个样本，然后用一个平面穿过它。我们认为道路点是inliers和障碍点是outliers。它测量inliers(属于道路平面的点)并返回该平面，即具有最高inliers数量或最低离群值(障碍)数量的道路平面。</p>
 </li>
 </ul>
@@ -738,12 +844,12 @@ $$</p>
 <h1>其他参考内容</h1>
 <ul>
 <li>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/128514763?utm_source=ZHShareTargetIDMore">自动驾驶毫米波雷达物体检测技术-算法</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/128514763?utm_source=ZHShareTargetIDMore" >自动驾驶毫米波雷达物体检测技术-算法<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 <li>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/128514055">自动驾驶毫米波雷达物体检测技术-硬件</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/128514055" >自动驾驶毫米波雷达物体检测技术-硬件<i class="fas fa-external-link-alt"></i></a></p>
 <blockquote>
-<p>介绍了有关毫米波雷达测距测速的相关基础知识原理，和本论文所讲的这方面内容比较重合,作者<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/william.hyin">william</a>是一名自动驾驶全栈工程师</p>
+<p>介绍了有关毫米波雷达测距测速的相关基础知识原理，和本论文所讲的这方面内容比较重合,作者<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/people/william.hyin" >william<i class="fas fa-external-link-alt"></i></a>是一名自动驾驶全栈工程师</p>
 </blockquote>
 </li>
 </ul>
@@ -751,28 +857,38 @@ $$</p>
         </div>
 
         
+
+        
             <div class="article-nav">
                 
                     <div class="article-prev">
-                        <a class="prev btn"
+                        <a class="prev"
                            rel="prev"
                            href="/2020/11/16/IVFuseNet%20Fusion%20of%20infrared%20and%20visible%20light%20images%20for%20depth%20prediction/"
                         >
-                            <i class="fa fa-chevron-left"></i>
-                            <span class="post-nav-title-item">IVFuseNet Fusion of infrared and visible light images for depth prediction</span>
-                            <span class="post-nav-item">上一篇</span>
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">IVFuseNet Fusion of infrared and visible light images for depth prediction</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
                         </a>
                     </div>
                 
                 
                     <div class="article-next">
-                        <a class="next btn"
+                        <a class="next"
                            rel="next"
                            href="/2020/10/30/%E5%8D%81%E5%88%86%E9%92%9F%E9%A3%9E%E7%BF%BC%E8%AE%BE%E8%AE%A1/"
                         >
-                            <span class="post-nav-title-item">十分钟飞翼设计要点</span>
-                            <span class="post-nav-item">下一篇</span>
-                            <i class="fa fa-chevron-right"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">十分钟飞翼设计要点</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
                         </a>
                     </div>
                 
@@ -780,116 +896,217 @@ $$</p>
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'hnFBe1r9GzXW5L5mp7p5xxRd-MdYXbMMI',
+                    appKey: 'e3d8gXfeUxAgXvphPa28bFjm',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Lyndon Wong';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
 
-                    
-
-                </main>
-
+                
             </div>
 
-            <div class="page-main-content-bottom">
-                <footer class="footer">
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
-            &copy; 2021 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+            &copy;
+            
+              <span>2019</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
-            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
                 
                 
                     <span id="busuanzi_container_site_pv">
-                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
-                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
+        
     </div>
 </footer>
 
-            </div>
         </div>
-    </main>
+    </div>
 
-    <div class="sidebar-tools">
-        <div class="tools-container">
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
     <ul class="tools-list">
-        
-
-        
-
         <!-- TOC aside toggle -->
         
             <li class="tools-item page-aside-toggle">
-                <i class="fa fa-outdent"></i>
+                <i class="fas fa-outdent"></i>
             </li>
         
 
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
     </ul>
 </div>
 
-    </div>
+        </div>
+    
 
-    <div class="sidebar-tools-2">
-        <div class="tools2-container">
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-    <button class="tools-button">
-        <i class="fa fa-plus"></i>
-    </button>
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-    <ul class="tools-wrapper">
-        <!-- back2top -->
-        
-            <li class="tools-item scroll-to-bottom">
-                <i class="fa fa-arrow-down"></i>
-            </li>
-            <li class="tools-item scroll-to-top">
-                <i class="fa fa-arrow-up"></i>
-            </li>
-        
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-        <!-- mode toggle -->
-        <li class="tools-item mode-toggle">
-            <i class="fa fa-moon-o"></i>
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
         </li>
 
         <!-- rss -->
         
 
+        
 
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
     </ul>
 </div>
 
     </div>
 
-
-    <!-- page aside -->
-    <aside class="page-aside">
-        
+    
+        <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E8%BD%A6%E8%BE%86%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">P1：自动驾驶车辆的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">P2：问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%9C%AC%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">P3：本文结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Fusion Systems Literature Review</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%B3%BB%E7%BB%9F%E6%96%87%E7%8C%AE%E5%9B%9E%E9%A1%BE"><span class="nav-number">3.1.</span> <span class="nav-text">融合系统文献回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Autonomous Vehicle Perception Sensors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">本文使用的传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">相机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">P1：相机的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E7%9B%B8%E6%9C%BA%E7%9A%84%E6%A0%A1%E5%87%86%EF%BC%8C%E4%B8%A4%E7%A7%8D%E6%84%9F%E5%85%89%E5%85%83%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">P2：相机的校准，两种感光元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.3.</span> <span class="nav-text">雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.3.1.</span> <span class="nav-text">P1：雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9AFMCW%E9%9B%B7%E8%BE%BE%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.3.2.</span> <span class="nav-text">P2：FMCW雷达工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE"><span class="nav-number">4.4.</span> <span class="nav-text">激光雷达</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">4.4.1.</span> <span class="nav-text">P1：激光雷达的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.4.2.</span> <span class="nav-text">P2：激光雷达的工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3%EF%BC%9A%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">4.4.3.</span> <span class="nav-text">P3：激光雷达的特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Hybrid Sensor Fusion Algorithm Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">混合传感器融合算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9ALiDAR-camera"><span class="nav-number">5.1.1.</span> <span class="nav-text">算法第一部分：LiDAR + camera</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9ALiDAR-radar"><span class="nav-number">5.1.2.</span> <span class="nav-text">算法第二部分：LiDAR + radar</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E7%9B%AE%E6%A0%87%E5%88%86%E7%B1%BB%E5%92%8C%E9%81%93%E8%B7%AF%E5%88%86%E5%89%B2"><span class="nav-number">5.2.</span> <span class="nav-text">利用深度学习进行目标分类和道路分割</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA-%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BERaw-Data%E8%9E%8D%E5%90%88"><span class="nav-number">5.2.1.</span> <span class="nav-text">相机-激光雷达Raw Data融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84FCNx"><span class="nav-number">5.2.2.</span> <span class="nav-text">全卷积神经网络结构FCNx</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8kalman%E6%BB%A4%E6%B3%A2%E8%BF%9B%E8%A1%8C%E9%9A%9C%E7%A2%8D%E7%89%A9%E6%A3%80%E6%B5%8B%E5%92%8C%E8%B7%9F%E8%B8%AA%E5%AE%9E%E9%AA%8C"><span class="nav-number">5.3.</span> <span class="nav-text">利用kalman滤波进行障碍物检测和跟踪实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B7%E8%BE%BE%E6%8B%8D%E9%A2%91%E4%BF%A1%E5%8F%B7%EF%BC%88beat-signal%EF%BC%89%E5%A4%84%E7%90%86"><span class="nav-number">5.3.1.</span> <span class="nav-text">雷达拍频信号（beat signal）处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E7%82%B9%E4%BA%91%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="nav-number">5.3.2.</span> <span class="nav-text">激光雷达点云数据处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95kalman%E6%BB%A4%E6%B3%A2"><span class="nav-number">5.3.3.</span> <span class="nav-text">拓展kalman滤波</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">Experiments Procedure Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">Experimental Results and Discussion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">Conclusions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">9.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">10.</span> <span class="nav-text">其他参考内容</span></a></li></ol>
     </div>
 </div>
-        
-    </aside>
+        </aside>
+    
 
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
-
-    <div class="search-pop-overlay">
+    
+        <div class="search-pop-overlay">
     <div class="popup search-popup">
         <div class="search-header">
-          <span class="search-icon">
-            <i class="fa fa-search"></i>
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
           </span>
             <div class="search-input-container">
                 <input autocomplete="off"
@@ -902,51 +1119,75 @@ $$</p>
                 >
             </div>
             <span class="popup-btn-close">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </span>
         </div>
         <div id="search-result">
             <div id="no-result">
-                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<script src="/js/utils.js"></script>
-<script src="/js/header-shrink.js"></script>
-<script src="/js/dark-light-toggle.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-
-
-    
-<script src="/js/back2top.js"></script>
-
-
-
-
-
-    
-<script src="/js/left-side-toggle.js"></script>
-
-
-    
-        
-<script src="/js/code-copy.js"></script>
-
     
 
-    
-        
-<script src="/lib/anime.min.js"></script>
-<script src="/js/toc.js"></script>
+</main>
 
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
     
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
 
 
 </body>

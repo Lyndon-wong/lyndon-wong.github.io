@@ -2,119 +2,148 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="我的个人网站">
+    <meta name="author" content="Lyndon Wong">
     
     <title>
-        2020新冠居家记 |
+        
+            2020新冠居家记 |
         
         Wang&#39;s Space
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <link rel="shortcut icon" href="/images/logo2.png">
-    
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
-    let ILS = window.ILS || {};
-    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 
 <body>
-<div class="page-container">
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-    <header class="page-header">
-        <div class="header-progress"></div>
-    </header>
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
 
-    <main class="page-main">
 
-        <div class="page-main-content">
+<main class="page-container">
 
-            <div class="page-main-content-top">
-                <header class="header-wrapper">
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
     <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Wang&#39;s Space
+            </a>
+        </div>
 
-        <a class="logo-title" href="/">
-            Wang&#39;s Space
-        </a>
-
-        <ul class="menu-list">
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/"
-                    >
-                        首页
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/archives"
-                    >
-                        归档
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/categories"
-                    >
-                        分类
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/tags"
-                    >
-                        标签
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/about"
-                    >
-                        关于
-                    </a>
-                </li>
-            
-        </ul>
-
-        <div class="menu-bar">
-            <div class="menu-bar-middle"></div>
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="header-drawer">
         <ul class="drawer-menu-list">
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/">首页</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/archives">归档</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/categories">分类</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/tags">标签</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/about">关于</a>
                 </li>
@@ -127,32 +156,42 @@
 </header>
 
 
-            </div>
+        </div>
 
-            <div class="page-main-content-middle">
+        <div class="page-main-content-middle">
 
-                <main class="main-content normal-code-theme">
+            <div class="main-content">
 
-                    
-                        <div class="fade-in-down-animation">
+                
+                    <div class="fade-in-down-animation">
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">2020新冠居家记</a></h3>
+            <span class="title-hover-animation">2020新冠居家记</span>
         </div>
 
-        <div class="meta-info">
-            <div class="article-meta-info">
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/touxiang.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Lyndon Wong</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-06-30 12:30:00
+        <i class="fas fa-edit"></i>&nbsp;2020-06-30 12:30:00
     </span>
     
         <span class="article-categories article-meta-item">
-            <i class="fa fa-folder"></i>
+            <i class="fas fa-folder"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/categories/Life/">Life</a>
+                        <a href="/categories/Life/">Life</a>&nbsp;
                     </li>
                 
             </ul>
@@ -160,53 +199,95 @@
     
     
         <span class="article-tags article-meta-item">
-            <i class="fa fa-tags"></i>
+            <i class="fas fa-tags"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/tags/life/">life</a>
+                        <a href="/tags/life/">life</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/COVID-19/">COVID-19</a>
+                        | <a href="/tags/COVID-19/">COVID-19</a>&nbsp;
                     </li>
                 
             </ul>
         </span>
     
+
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
+                    </div>
+                </div>
+            </div>
+        
 
         <div class="article-content markdown-body">
             <p>2月份新冠的爆发改变了很多人原来的打算，也彻底改变了我的原计划。这可能是我大学之后最长的一段在家的时光了，所以我觉得有必要记录一下这段独特的经历。</p>
 <h1>在家学习</h1>
 <p>利用这个大段时间补足我认为本科需要学习但是培养体系没有的课程。遗憾是时间还是太短只补了几门，408没学完，挺可惜。</p>
 <h2 id="多旋翼无人机设计与控制">多旋翼无人机设计与控制</h2>
-<p>简单学习了有关多旋翼无人机设计与控制的知识，课程来自<a target="_blank" rel="noopener" href="http://rfly.buaa.edu.cn/resources.html">北航可靠飞行控制研究组</a>。课程讲的非常好，可惜的是后续章节我没完全学完。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025174004905.png" alt="image-20201025174004905"></p>
+<p>简单学习了有关多旋翼无人机设计与控制的知识，课程来自<a class="link"   target="_blank" rel="noopener" href="http://rfly.buaa.edu.cn/resources.html" >北航可靠飞行控制研究组<i class="fas fa-external-link-alt"></i></a>。课程讲的非常好，可惜的是后续章节我没完全学完。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025174004905.png"
+                      alt="image-20201025174004905"
+                ></p>
 <h2 id="计算机组成原理">计算机组成原理</h2>
-<p>课程来自<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XE411E7ac/?spm_id_from=333.788.videocard.0">计算机组成原理-哈工大精品课程-刘宏伟</a>，跟着b站学习了一遍，同时学着利用onenote记了笔记，然后找了两套试卷简单测试了一下自己学习的效果。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025174757488.png" alt="image-20201025174757488"></p>
+<p>课程来自<a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XE411E7ac/?spm_id_from=333.788.videocard.0" >计算机组成原理-哈工大精品课程-刘宏伟<i class="fas fa-external-link-alt"></i></a>，跟着b站学习了一遍，同时学着利用onenote记了笔记，然后找了两套试卷简单测试了一下自己学习的效果。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025174757488.png"
+                      alt="image-20201025174757488"
+                ></p>
 <h2 id="C语言">C语言</h2>
-<p>感觉自己c之前自学的很不扎实就又系统地学了一遍。课程来自<a target="_blank" rel="noopener" href="https://fishc.com.cn/forum-329-1.html">小甲鱼C语言课程</a>，课程讲的很基础，感觉学起来还是挺好的。让我好好打了一下c语言的基础。每讲听完后跟着做课后习题，挺充实。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025175040204.png" alt="image-20201025175040204"></p>
+<p>感觉自己c之前自学的很不扎实就又系统地学了一遍。课程来自<a class="link"   target="_blank" rel="noopener" href="https://fishc.com.cn/forum-329-1.html" >小甲鱼C语言课程<i class="fas fa-external-link-alt"></i></a>，课程讲的很基础，感觉学起来还是挺好的。让我好好打了一下c语言的基础。每讲听完后跟着做课后习题，挺充实。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025175040204.png"
+                      alt="image-20201025175040204"
+                ></p>
 <h2 id="OneNote-Xmind">OneNote &amp; Xmind</h2>
 <p>OneNote和Xmind作用不必多说，乘着在家大段的时间利用这两个工具结合了一下自己的学习，熟悉了一下快捷键后发现很好用。（可惜当时接触markdown没去细看，不然用markdown更爽）</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/becodin/">OneNote快捷键</a></p>
-<p><a target="_blank" rel="noopener" href="http://cn.onenotegem.com/">OneNote Gem</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.xmind.cn/xmind2020/">Xmind</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/becodin/" >OneNote快捷键<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://cn.onenotegem.com/" >OneNote Gem<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.xmind.cn/xmind2020/" >Xmind<i class="fas fa-external-link-alt"></i></a></p>
 <p>Xmind 我现在用的不多了，因为基于OneNote的标题体系记录的笔记我感觉已经可以代替思维导图了，例如下图</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025180153153.png" alt="image-20201025180153153"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025180153153.png"
+                      alt="image-20201025180153153"
+                ></p>
 <h1>毕业设计</h1>
 <p>毕业设计是有关多无人机协同目标跟踪的，比较偏算法。我用matlab编写了一个仿真程序，然后比较了各种融合算法在仿真中的效果。受到疫情影响无法进行实际平台实验，所以后来又增加了有关基于student-t分布的融合算法的内容。</p>
 <h2 id="分布式多无人机系统目标跟踪技术">分布式多无人机系统目标跟踪技术</h2>
 <h3 id="仿真程序">仿真程序</h3>
 <p>结构其实很简单，主要是先前对模块化和接口这些我了解比较少，所以改了两三版使得它更加模块化了。我列了一个简单的程序结构图</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025181536109.png" alt="image-20201025181536109"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025181536109.png"
+                      alt="image-20201025181536109"
+                ></p>
 <h3 id="基于高斯分布的融合">基于高斯分布的融合</h3>
 <p>这个也是非常基础的内容了，对比了几种滤波方法+分布式信息融合方法在该仿真程序上的效果</p>
 <ul>
@@ -218,7 +299,12 @@
 <h3 id="基于student-t分布的融合">基于student-t分布的融合</h3>
 <p>哈工程的黄玉龙博士（后来被破格录用副教授了）在16年提出了一种<strong>鲁棒性容积学生t滤波器</strong>（其实就是把CKF的分布换成了学生t分布），这种滤波器在传感器具有野值下相比于传统的卡尔曼滤波器具有更好的滤波效果（主要原因是学生t分布能比高斯分布更好地刻画具有野值噪声的<strong>重尾特性</strong>）</p>
 <p>所以我毕设的后期就是将重尾噪声考虑了进来，利用该滤波器和简单凸融合算法又得到一种分布式信息融合算法CST-CC，然后把它和CKF-CC进行了对比。效果在追踪直线运动目标时其实显得也不是很突出。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025190829502.png" alt="image-20201025190829502"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025190829502.png"
+                      alt="image-20201025190829502"
+                ></p>
 <h2 id="毕设的总结">毕设的总结</h2>
 <p>感觉这个毕设还是比较简单的，实际上我也没花太多时间，代码量也不是很大。主要的意义在于了解了一些有关滤波的背景知识，也有了一个比较好的问题切入点。后续把毕设的主要内容投稿到了成都航电所搞的高端航电论坛上被接收了，虽然是中文水会，第一次被接收还是有点小触动的。</p>
 <h1>课程项目</h1>
@@ -232,7 +318,12 @@
 </ul>
 <h1>玩耍</h1>
 <p>四月份之后我的心仿佛也随着春天温度的升高和疫情形式的逐渐好转好起来了一点，所以和朋友们愉快地玩耍起了<strong>王者荣耀</strong>、<strong>炉石传说</strong>。王者打到星耀王者去了，炉石的话好像只是钻石，不过后来酒馆战旗玩起了整活鱼人和养蜥流真是十分的有意思。</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/Screenshot_20200615-115143.jpg" alt="Screenshot_20200615-115143" style="zoom: 67%;" />
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/Screenshot_20200615-115143.jpg"
+                      alt="Screenshot_20200615-115143" style="zoom: 67%;" /
+                >
 <center>养蜥流</center>
 <img src = "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/15ad269b-458b-49c4-b353-049f3824bbc6.jpg"/>
 <center>整活鱼人</center>
@@ -242,16 +333,22 @@
         </div>
 
         
+
+        
             <div class="article-nav">
                 
                     <div class="article-prev">
-                        <a class="prev btn"
+                        <a class="prev"
                            rel="prev"
-                           href="/2020/10/23/%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE%E8%AE%B0%E5%BD%95/"
+                           href="/2020/09/12/test_mathpix/"
                         >
-                            <i class="fa fa-chevron-left"></i>
-                            <span class="post-nav-title-item">网站建设记录</span>
-                            <span class="post-nav-item">上一篇</span>
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MathJax Test</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
                         </a>
                     </div>
                 
@@ -260,116 +357,217 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'hnFBe1r9GzXW5L5mp7p5xxRd-MdYXbMMI',
+                    appKey: 'e3d8gXfeUxAgXvphPa28bFjm',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Lyndon Wong';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
 
-                    
-
-                </main>
-
+                
             </div>
 
-            <div class="page-main-content-bottom">
-                <footer class="footer">
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
-            &copy; 2021 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+            &copy;
+            
+              <span>2019</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
-            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
                 
                 
                     <span id="busuanzi_container_site_pv">
-                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
-                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
+        
     </div>
 </footer>
 
-            </div>
         </div>
-    </main>
+    </div>
 
-    <div class="sidebar-tools">
-        <div class="tools-container">
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
     <ul class="tools-list">
-        
-
-        
-
         <!-- TOC aside toggle -->
         
             <li class="tools-item page-aside-toggle">
-                <i class="fa fa-outdent"></i>
+                <i class="fas fa-outdent"></i>
             </li>
         
 
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
     </ul>
 </div>
 
-    </div>
+        </div>
+    
 
-    <div class="sidebar-tools-2">
-        <div class="tools2-container">
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-    <button class="tools-button">
-        <i class="fa fa-plus"></i>
-    </button>
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-    <ul class="tools-wrapper">
-        <!-- back2top -->
-        
-            <li class="tools-item scroll-to-bottom">
-                <i class="fa fa-arrow-down"></i>
-            </li>
-            <li class="tools-item scroll-to-top">
-                <i class="fa fa-arrow-up"></i>
-            </li>
-        
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-        <!-- mode toggle -->
-        <li class="tools-item mode-toggle">
-            <i class="fa fa-moon-o"></i>
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
         </li>
 
         <!-- rss -->
         
 
+        
 
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
     </ul>
 </div>
 
     </div>
 
-
-    <!-- page aside -->
-    <aside class="page-aside">
-        
+    
+        <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">在家学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%97%8B%E7%BF%BC%E6%97%A0%E4%BA%BA%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%8E%A7%E5%88%B6"><span class="nav-number">1.1.</span> <span class="nav-text">多旋翼无人机设计与控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">计算机组成原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.</span> <span class="nav-text">C语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OneNote-Xmind"><span class="nav-number">1.4.</span> <span class="nav-text">OneNote &amp; Xmind</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">毕业设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%A4%9A%E6%97%A0%E4%BA%BA%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA%E6%8A%80%E6%9C%AF"><span class="nav-number">2.1.</span> <span class="nav-text">分布式多无人机系统目标跟踪技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BF%E7%9C%9F%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.1.1.</span> <span class="nav-text">仿真程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E7%9A%84%E8%9E%8D%E5%90%88"><span class="nav-number">2.1.2.</span> <span class="nav-text">基于高斯分布的融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Estudent-t%E5%88%86%E5%B8%83%E7%9A%84%E8%9E%8D%E5%90%88"><span class="nav-number">2.1.3.</span> <span class="nav-text">基于student-t分布的融合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%95%E8%AE%BE%E7%9A%84%E6%80%BB%E7%BB%93"><span class="nav-number">2.2.</span> <span class="nav-text">毕设的总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">课程项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">玩耍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">社区疫情志愿者</span></a></li></ol>
     </div>
 </div>
-        
-    </aside>
+        </aside>
+    
 
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
-
-    <div class="search-pop-overlay">
+    
+        <div class="search-pop-overlay">
     <div class="popup search-popup">
         <div class="search-header">
-          <span class="search-icon">
-            <i class="fa fa-search"></i>
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
           </span>
             <div class="search-input-container">
                 <input autocomplete="off"
@@ -382,51 +580,75 @@
                 >
             </div>
             <span class="popup-btn-close">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </span>
         </div>
         <div id="search-result">
             <div id="no-result">
-                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<script src="/js/utils.js"></script>
-<script src="/js/header-shrink.js"></script>
-<script src="/js/dark-light-toggle.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-
-
-    
-<script src="/js/back2top.js"></script>
-
-
-
-
-
-    
-<script src="/js/left-side-toggle.js"></script>
-
-
-    
-        
-<script src="/js/code-copy.js"></script>
-
     
 
-    
-        
-<script src="/lib/anime.min.js"></script>
-<script src="/js/toc.js"></script>
+</main>
 
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
     
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
 
 
 </body>

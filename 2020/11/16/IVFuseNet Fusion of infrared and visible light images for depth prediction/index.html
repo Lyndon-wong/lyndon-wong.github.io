@@ -2,119 +2,148 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="我的个人网站">
+    <meta name="author" content="Lyndon Wong">
     
     <title>
-        IVFuseNet Fusion of infrared and visible light images for depth prediction |
+        
+            IVFuseNet Fusion of infrared and visible light images for depth prediction |
         
         Wang&#39;s Space
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-        <link rel="shortcut icon" href="/images/logo2.png">
-    
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
-    let ILS = window.ILS || {};
-    let CONFIG = {"hostname":"example.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":true,"preload":true},"themeInfo":{"name":"ILS","version":"2.0.3","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"toc":{"enable":true,"number":true,"expand_all":true},"back2top":{"enable":true}};
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 
 <body>
-<div class="page-container">
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-    <header class="page-header">
-        <div class="header-progress"></div>
-    </header>
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
 
-    <main class="page-main">
 
-        <div class="page-main-content">
+<main class="page-container">
 
-            <div class="page-main-content-top">
-                <header class="header-wrapper">
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
     <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Wang&#39;s Space
+            </a>
+        </div>
 
-        <a class="logo-title" href="/">
-            Wang&#39;s Space
-        </a>
-
-        <ul class="menu-list">
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/"
-                    >
-                        首页
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/archives"
-                    >
-                        归档
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/categories"
-                    >
-                        分类
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/tags"
-                    >
-                        标签
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/about"
-                    >
-                        关于
-                    </a>
-                </li>
-            
-        </ul>
-
-        <div class="menu-bar">
-            <div class="menu-bar-middle"></div>
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="header-drawer">
         <ul class="drawer-menu-list">
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/">首页</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/archives">归档</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/categories">分类</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/tags">标签</a>
                 </li>
             
-                <li class="drawer-menu-item">
+                <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/about">关于</a>
                 </li>
@@ -127,32 +156,42 @@
 </header>
 
 
-            </div>
+        </div>
 
-            <div class="page-main-content-middle">
+        <div class="page-main-content-middle">
 
-                <main class="main-content normal-code-theme">
+            <div class="main-content">
 
-                    
-                        <div class="fade-in-down-animation">
+                
+                    <div class="fade-in-down-animation">
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">IVFuseNet Fusion of infrared and visible light images for depth prediction</a></h3>
+            <span class="title-hover-animation">IVFuseNet Fusion of infrared and visible light images for depth prediction</span>
         </div>
 
-        <div class="meta-info">
-            <div class="article-meta-info">
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/touxiang.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Lyndon Wong</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-11-16 15:12:09
+        <i class="fas fa-edit"></i>&nbsp;2020-11-16 15:12:09
     </span>
     
         <span class="article-categories article-meta-item">
-            <i class="fa fa-folder"></i>
+            <i class="fas fa-folder"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/categories/Paper-Reading/">Paper Reading</a>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
                     </li>
                 
             </ul>
@@ -160,41 +199,58 @@
     
     
         <span class="article-tags article-meta-item">
-            <i class="fa fa-tags"></i>
+            <i class="fas fa-tags"></i>&nbsp;
             <ul>
                 
                     <li>
-                        <a href="/tags/infrared-light/">infrared light</a>
+                        <a href="/tags/infrared-light/">infrared light</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/visible-light/">visible light</a>
+                        | <a href="/tags/visible-light/">visible light</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/information-fusion/">information fusion</a>
+                        | <a href="/tags/information-fusion/">information fusion</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/depth-prediction/">depth prediction</a>
+                        | <a href="/tags/depth-prediction/">depth prediction</a>&nbsp;
                     </li>
                 
             </ul>
         </span>
     
+
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>24 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
+                    </div>
+                </div>
+            </div>
+        
 
         <div class="article-content markdown-body">
             <blockquote>
 <p>论文笔记，原创内容；未经许可，请勿转载</p>
 </blockquote>
 <h1>Abstract</h1>
-<p>深度预测是无人驾驶研究的重要组成部分。现有的研究工作大多仅基于可见光图像或红外图像来预测深度。然而，可见光图像和红外图像都有各自的优势和劣势，在同一场景拍摄的图像中，这两种图像包含互补的信息。为了融合互补信息，预测不同条件下的深度，本文提出了一种基于卷积神经网络的深度预测体系结构，即红外和可见光图像融合网络<strong>IVFuseNet</strong>。具体而言，我们构建l <strong>共同特征融合子网络</strong>、<strong>全特征融合子网络</strong>和<strong>高分辨率重建子网络</strong>，以充分利用这两种图像的互补性。<strong>共特征融合子网络</strong>采用双流(two stream)多层卷积结构，每层过滤器部分耦合，以融合红外图像和可见光图像提取的共同特征。<strong>全特征融合子网络</strong>通过自适应融合权值来融合共特征融合子网络生成的双流特征，而不是采用预设的融合权值。此外，<strong>高分辨率重建子网络</strong>采用残差密集卷积，将融合后的低分辨率特征精确映射到对应的高分辨率特征，增强深度预测细节的重建。所有三个子网协同进行深度预测任务。我们的NUST-SR数据集由无人驾驶车辆驾驶时捕获的实际道路场景组成。提出的IVFuseNet在该数据集上的性能最好。IVFuseNet将均方根误差减小到3.4513，平均相对误差减小到0.1651，优于其他方法。这个模型和数据集可以在这个找到：<a target="_blank" rel="noopener" href="https://github.com/liyuqi1234/IVFN">https://github.com/liyuqi1234/IVFN</a></p>
+<p>深度预测是无人驾驶研究的重要组成部分。现有的研究工作大多仅基于可见光图像或红外图像来预测深度。然而，可见光图像和红外图像都有各自的优势和劣势，在同一场景拍摄的图像中，这两种图像包含互补的信息。为了融合互补信息，预测不同条件下的深度，本文提出了一种基于卷积神经网络的深度预测体系结构，即红外和可见光图像融合网络<strong>IVFuseNet</strong>。具体而言，我们构建l <strong>共同特征融合子网络</strong>、<strong>全特征融合子网络</strong>和<strong>高分辨率重建子网络</strong>，以充分利用这两种图像的互补性。<strong>共特征融合子网络</strong>采用双流(two stream)多层卷积结构，每层过滤器部分耦合，以融合红外图像和可见光图像提取的共同特征。<strong>全特征融合子网络</strong>通过自适应融合权值来融合共特征融合子网络生成的双流特征，而不是采用预设的融合权值。此外，<strong>高分辨率重建子网络</strong>采用残差密集卷积，将融合后的低分辨率特征精确映射到对应的高分辨率特征，增强深度预测细节的重建。所有三个子网协同进行深度预测任务。我们的NUST-SR数据集由无人驾驶车辆驾驶时捕获的实际道路场景组成。提出的IVFuseNet在该数据集上的性能最好。IVFuseNet将均方根误差减小到3.4513，平均相对误差减小到0.1651，优于其他方法。这个模型和数据集可以在这个找到：<a class="link"   target="_blank" rel="noopener" href="https://github.com/liyuqi1234/IVFN" >https://github.com/liyuqi1234/IVFN<i class="fas fa-external-link-alt"></i></a></p>
 <p>Why？：目前的深度预测大多只基于红外或只基于可见光，融合这两者的互补信息能有效提高深度预测的精度</p>
 <p>How？：共同特征子网络 + 全特征融合子网络 + 高分辨率重建子网络</p>
 <p>What？：在NUST-SR数据集上比其他方法都好</p>
@@ -263,7 +319,12 @@
 </ul>
 <h2 id="P8-9-：本文的主要工作工作及章节介绍">P8-9 ：本文的主要工作工作及章节介绍</h2>
 <p>在本文中，我们提出了一种基于CNN的架构，称为IVFuseNet(图1)，自适应融合红外和可见光图像的互补信息，进行深度预测，它具有：<strong>共特征融合子网络</strong>、<strong>全特征融合子网络</strong>和<strong>高分辨率重建子网络</strong>3个子网络。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201116171952710.png" alt="image-20201116171952710"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201116171952710.png"
+                      alt="image-20201116171952710"
+                ></p>
 <p><strong>共特征融合子网络</strong>：</p>
 <blockquote>
 <ul>
@@ -336,12 +397,32 @@
 <li><strong>双流程结构</strong>：我们的共同特征融合子网络的详细机制如图2中的红色点框所示。我们采用的是双流程结构。</li>
 <li><strong>AlexNet为每个流的基础</strong>：对于每个流，我们使用AlexNet[33]作为基础，因为AlexNet的参数数量相对较小。共特征融合子网络的具体内容如表1所示。此外，我们还可以选择其他网络作为基准，如VggNet[34]。该子网以256×512分辨率的红外图像及其对应的可见光图像作为子网的输入。</li>
 <li><strong>部分耦合过滤器</strong>：与传统的双流CNN不同，我们在每个卷积层中设计部分耦合过滤器来学习红外和可见光图像之间的可转移特征。耦合比率如表2所示。<br>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024345405.png" alt="image-20201117024345405"></li>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024345405.png"
+                      alt="image-20201117024345405"
+                ></li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024537691.png" alt="image-20201117024537691"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024558702.png" alt="image-20201117024558702"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024537691.png"
+                      alt="image-20201117024537691"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024558702.png"
+                      alt="image-20201117024558702"
+                ></p>
 <h3 id="P3：过滤器">P3：过滤器</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024747169.png" alt="image-20201117024747169"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024747169.png"
+                      alt="image-20201117024747169"
+                ></p>
 <ul>
 <li>
 <p>如图3所示，共特征融合子网络的过滤器可以分为三类:</p>
@@ -367,7 +448,12 @@
 <p>部分耦合过滤器数目与过滤器总数之比称为耦合比</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025130443.png" alt="image-20201117025130443"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025130443.png"
+                      alt="image-20201117025130443"
+                ></p>
 <p>其中Ri为第i层的耦合比，ki为第i卷积层部分耦合过滤器的个数，ni为第i卷积层全部过滤器的个数。在本文中，我们使用以下耦合比率:0,0.25,0.5,0.75。我们在第4节中通过粗网格搜索演示了这些耦合比率的性能</p>
 <h3 id="P4：耦合比">P4：耦合比</h3>
 <ul>
@@ -376,10 +462,25 @@
 </ul>
 <h3 id="P5：网络训练方法">P5：网络训练方法</h3>
 <p>在共特征融合网络中，利用BP算法更新滤波权值。可以发现，无论红外图像流还是可见光图像流，耦合过滤器的权值在每次训练迭代中更新两次，而非耦合过滤器的权值在每次迭代中更新一次。因此，假设我们先更新红外流的权值，再更新可见光流的权值，过滤器权值更新如下:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025536729.png" alt="image-20201117025536729"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025940889.png" alt="image-20201117025940889"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025536729.png"
+                      alt="image-20201117025536729"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117025940889.png"
+                      alt="image-20201117025940889"
+                ></p>
 <p>其中n为迭代次数，μ为学习率，L为损失函数。耦合过滤器的权值在每次迭代更新如下:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117030025450.png" alt="image-20201117030025450"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117030025450.png"
+                      alt="image-20201117030025450"
+                ></p>
 <h3 id="P6：特点和接下来的介绍">P6：特点和接下来的介绍</h3>
 <p>综上所述，在共特征融合子网络中设计部分耦合过滤器，学习红外和可见光图像共同特征间的非线性变换关系，相当于增强两种图像的特征，融合共同特征。</p>
 <p>从红外图像和可见光图像中提取的特征分为共同特征和个体特征。为了同时利用公共特征和个体特征进行深度预测，我们提出了全特征融合子网络来融合双流结构的所有特征。全特征融合子网络的效率将在第3.2节中进行分析。</p>
@@ -392,28 +493,58 @@
 <li>第二:将融合特征与核k∈2c×c×1×1进行卷积，其中2c为输入通道数，c为输出通道数，核大小为1×1。受[43]的启发，由于融合特征f_fusion同时考虑了红外和可见光图像的特征，因此该卷积运算的输出与这两种特征都有关。因此，这个程序学习了两种特征之间的相关性。在得到f_ir或f_vi的相同维数的初始系数矩阵M后，我们计算它们的点积，表示它们对不同场景深度预测的不同贡献。</li>
 <li>第三，我们设计了一个sigmoid层，将M中的每个元素转换成0到1之间的概率形式。经过这三个步骤，最终得到系数矩阵g。其过程如下:</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117031612216.png" alt="image-20201117031612216"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117031612216.png"
+                      alt="image-20201117031612216"
+                ></p>
 <p>其中b为批大小,n代表输出通道的数量.我们令红外图像的系数矩阵G_ir = G,可见光图像的系数矩阵为G_vi =1 - G, 其中G_ir和G_vi分别表示红外图像和可见光图像对深度预测的贡献水平。</p>
 <p>在不同的条件下，系数矩阵是不同的.例如,G_ir可能在暗光情况下比G_vi大而,G_vi可能在白天下比G_ir大.G_ir和G_vi分别表示红外图像和可见光图像特征的贡献，具体如下:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032109864.png" alt="image-20201117032109864"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032109864.png"
+                      alt="image-20201117032109864"
+                ></p>
 <p>其中’圈点’代表点积.全融合特征可以这样得到:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032217955.png" alt="image-20201117032217955"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032217955.png"
+                      alt="image-20201117032217955"
+                ></p>
 <p>全特征融合子网络决定了红外特征和可见光特征对深度预测的依赖程度。</p>
 <h2 id="高分辨率重建子网络">高分辨率重建子网络</h2>
 <h3 id="P1：网络结构">P1：网络结构</h3>
 <p>利用共特征融合子网络和全特征融合子网络，获得了分辨率为真值图1 / 16的融合特征。为了预测深度图，我们需要将低分辨率的深度图映射到与真值图具有相同分辨率的高分辨率深度图上。如果采用传统的反褶积方法进行深度预测，将会产生棋盘状伪影，并丢失详细信息。受[28,29]的启发，我们设计了一种基于残差密集卷积块的高分辨率重构子网络。图4为高分辨率重建子网图。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032348017.png" alt="image-20201117032348017"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032348017.png"
+                      alt="image-20201117032348017"
+                ></p>
 <h3 id="P2：原理">P2：原理</h3>
 <p>令f_fusion’为从全特征融合网络中得到的低分辨率特征.</p>
 <ul>
 <li>首先, 我们使用卷积层从红外和可见光图像的低分辨率融合特征中学习信息。</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033007450.png" alt="image-20201117033007450"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033007450.png"
+                      alt="image-20201117033007450"
+                ></p>
 <p>其中g()为3×3卷积与批处理归一化(BN)的复合函数。</p>
 <ul>
 <li>然后将F0作为残差密集卷积块的输入。在残差密集卷积块中，各层的输出直接与当前残差密集卷积块的后续各层相连。它还允许将前一残差密集卷积块的输出连接到当前残差密集卷积块的各层.</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033235433.png" alt="image-20201117033235433"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033235433.png"
+                      alt="image-20201117033235433"
+                ></p>
 <p>其中n为第n个残密卷积块，i为当前残密卷积块的第i层。如果每个剩余密度卷积的输出块N0特性和每一层的每一块有N个特性,我们连接的特性由前面的块和前层当前的块,导致𝑁0 +(𝑖−1)𝑁特征图的输入层。在这篇文章中,我们设置𝑁0 =𝑁= 32和每一块有三个复合操作的卷积,批量标准化和纠正线性单元</p>
 <p>与传统的卷积神经网络相比，残差密集卷积块可以利用原始低分辨率特征的层次特征增强细节特征。在得到拼接的特征图后，我们采用1×1卷积运算自适应地学习各层的特征，并使通道数与F0相同进行残差学习。通过3个残差密集卷积块，使层间信息最大，得到信息更详细的特征图。然后利用残差学习，加上F0和最后一个块的输出，进一步增强了网络的预测能力。最后，我们设计了一个上采样层而不是反卷积层，该层的输出大小为256×512，是我们预测的深度图。我们将在第4节演示高分辨率重建的有效性.</p>
 <h2 id="实施细节">实施细节</h2>
@@ -425,13 +556,23 @@
 <p>显卡:NVIDIA GTX 1080Ti, 11G显存</p>
 </li>
 <li>
-<p>初始参数:为了对不同方法进行比较，尽可能减少参数设置对最终深度预测的影响，本模型中各方法的初始参数设置相同。具体来说,权重都是初始化的截断正态分布的标准差σ= 2∕(𝑘×𝑘×𝑛_𝑖𝑛)<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033928011.png" alt="image-20201117033928011"></p>
+<p>初始参数:为了对不同方法进行比较，尽可能减少参数设置对最终深度预测的影响，本模型中各方法的初始参数设置相同。具体来说,权重都是初始化的截断正态分布的标准差σ= 2∕(𝑘×𝑘×𝑛_𝑖𝑛)<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117033928011.png"
+                      alt="image-20201117033928011"
+                ></p>
 </li>
 <li>
 <p>k是内核大小,外祖母是渠道的数量输入,𝜇是期望和截断范围(a, b)</p>
 </li>
 <li>
-<p>所有方法的学习率初始为1e−4，每20000次迭代降低0.9倍，所有方法的总迭代次数为80,000次。经过80000次迭代，所有方法都可以收敛;批量大小为4，每个卷积层后使用批量归一化处理。为了防止训练过程中出现过拟合，我们将每个激活函数层后的dropout操作设置为0.8。对于训练损失，选择交叉熵作为我们的损失，利用Adam优化器对网络进行优化。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034155029.png" alt="image-20201117034155029"></p>
+<p>所有方法的学习率初始为1e−4，每20000次迭代降低0.9倍，所有方法的总迭代次数为80,000次。经过80000次迭代，所有方法都可以收敛;批量大小为4，每个卷积层后使用批量归一化处理。为了防止训练过程中出现过拟合，我们将每个激活函数层后的dropout操作设置为0.8。对于训练损失，选择交叉熵作为我们的损失，利用Adam优化器对网络进行优化。<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034155029.png"
+                      alt="image-20201117034155029"
+                ></p>
 </li>
 </ul>
 <p>其中L是损失，y_predictedi是实际预测，y_i是预期预测.</p>
@@ -442,7 +583,12 @@
 <p>大多数基于视觉的无人驾驶深度预测研究仅关注白天可见光图像的情况。然而，无人驾驶车辆在低光照条件下行驶的情况也应予以考虑。既包含红外图像又包含可见光图像的开源数据集很少。</p>
 <p>本文使用的是NUST-SR数据集，该数据集由无人驾驶车辆在白天和黑夜行驶时拍摄的实际道路场景组成。车载远红外相机、车载RGB相机和Lidar采集的原始NUST-SR数据集，包含分辨率为768×576的红外和可见光图像以及深度雷达数据。在原始数据集中，并非每个点都有深度值，如图5(a)所示，我们首先在NYUDepth development kit[9]中使用Levin等人的着色方案填充不存在深度值的点，如图5(b)所示。</p>
 <h3 id="P3：使用分类方法预测深度">P3：使用分类方法预测深度</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034731422.png" alt="image-20201117034731422"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117034731422.png"
+                      alt="image-20201117034731422"
+                ></p>
 <p>此外，我们使用分类方法来预测深度，而不是以往的回归方法[19,38,39]。原因是真实场景比较复杂，预测每个像素的深度值要比预测深度范围困难得多，而且我们对远、近物体深度预测精度的要求也不一样。这种分类方法使得我们对近场景[38]有较高的准确率，而对远场景[38]有较低的准确率。对于不同的层数，如图5所示，级数越大，真值越详细，越接近原始深度图。我们可以发现，16级的深度图相对于32或64级的深度图来说是比较粗糙的，所以我们重点比较了32级和64级的深度图。64级的深度图接近比32层的深度图更接近真值,但获得的参数的数量和失败的训练次数,63级别分别比32级高7%和22%,但预测的深度地图两种方法之间的差别很小。因此，本文将深度图在对数空间划分为32个级别作为训练标签，如图6©所示。最后，我们将红外图像、可见光图像和深度图裁剪到256×512的分辨率。通过对原始数据进行预处理，得到了NUST-SR数据集，该数据集拥有标注红外图像、可见光图像和对应的真值图,白天6529幅, 夜间5612幅。</p>
 <h3 id="P4-P5：评价标准">P4-P5：评价标准</h3>
 <p>在NUST-SR数据集的测试图像上，我们使用四个指标对提出的IVFuseNet进行评估:</p>
@@ -453,15 +599,50 @@
 <li>识别准确率</li>
 </ul>
 <h2 id="红外与可见光融合的结果">红外与可见光融合的结果</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040236519.png" alt="image-20201117040236519"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040319129.png" alt="image-20201117040319129"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040333233.png" alt="image-20201117040333233"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040236519.png"
+                      alt="image-20201117040236519"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040319129.png"
+                      alt="image-20201117040319129"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040333233.png"
+                      alt="image-20201117040333233"
+                ></p>
 <h2 id="密集卷积块的结果">密集卷积块的结果</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040356160.png" alt="image-20201117040356160"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040448970.png" alt="image-20201117040448970"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040356160.png"
+                      alt="image-20201117040356160"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040448970.png"
+                      alt="image-20201117040448970"
+                ></p>
 <h2 id="和相关方法的对比">和相关方法的对比</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040520466.png" alt="image-20201117040605941"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040624907.png" alt="image-20201117040624907"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040520466.png"
+                      alt="image-20201117040605941"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040624907.png"
+                      alt="image-20201117040624907"
+                ></p>
 <h1>Conclusion</h1>
 <h2 id="主要贡献">主要贡献</h2>
 <ul>
@@ -483,28 +664,38 @@
         </div>
 
         
+
+        
             <div class="article-nav">
                 
                     <div class="article-prev">
-                        <a class="prev btn"
+                        <a class="prev"
                            rel="prev"
                            href="/2020/11/22/%E4%B8%A4%E7%A7%8D%E5%89%8D%E6%B2%BF%E7%9A%84%E5%BC%82%E7%B1%BB%E4%BC%A0%E6%84%9F%E5%99%A8%E4%BF%A1%E6%81%AF%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/"
                         >
-                            <i class="fa fa-chevron-left"></i>
-                            <span class="post-nav-title-item">两种前沿的异类传感器信息融合方法</span>
-                            <span class="post-nav-item">上一篇</span>
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">两种前沿的异类传感器信息融合方法</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
                         </a>
                     </div>
                 
                 
                     <div class="article-next">
-                        <a class="next btn"
+                        <a class="next"
                            rel="next"
                            href="/2020/11/05/Real-Time-Hybrid-Multi-Sensor-Fusion-Framework-for-Perception-in-Autonomous-Vehicles/"
                         >
-                            <span class="post-nav-title-item">Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles</span>
-                            <span class="post-nav-item">下一篇</span>
-                            <i class="fa fa-chevron-right"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Real-Time Hybrid Multi-Sensor Fusion Framework for Perception in Autonomous Vehicles</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
                         </a>
                     </div>
                 
@@ -512,116 +703,217 @@
         
 
         
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'hnFBe1r9GzXW5L5mp7p5xxRd-MdYXbMMI',
+                    appKey: 'e3d8gXfeUxAgXvphPa28bFjm',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Lyndon Wong';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
 
 
-                    
-
-                </main>
-
+                
             </div>
 
-            <div class="page-main-content-bottom">
-                <footer class="footer">
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
-            &copy; 2021 <i class="fa fa-heart-o"></i> <a href="/">Lyndon Wong</a>
+            &copy;
+            
+              <span>2019</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
-            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
             <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
                 
                 
                     <span id="busuanzi_container_site_pv">
-                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
         <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
-                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v2.0.3</a>
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
         </div>
+        
     </div>
 </footer>
 
-            </div>
         </div>
-    </main>
+    </div>
 
-    <div class="sidebar-tools">
-        <div class="tools-container">
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
     <ul class="tools-list">
-        
-
-        
-
         <!-- TOC aside toggle -->
         
             <li class="tools-item page-aside-toggle">
-                <i class="fa fa-outdent"></i>
+                <i class="fas fa-outdent"></i>
             </li>
         
 
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
     </ul>
 </div>
 
-    </div>
+        </div>
+    
 
-    <div class="sidebar-tools-2">
-        <div class="tools2-container">
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-    <button class="tools-button">
-        <i class="fa fa-plus"></i>
-    </button>
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-    <ul class="tools-wrapper">
-        <!-- back2top -->
-        
-            <li class="tools-item scroll-to-bottom">
-                <i class="fa fa-arrow-down"></i>
-            </li>
-            <li class="tools-item scroll-to-top">
-                <i class="fa fa-arrow-up"></i>
-            </li>
-        
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-        <!-- mode toggle -->
-        <li class="tools-item mode-toggle">
-            <i class="fa fa-moon-o"></i>
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
         </li>
 
         <!-- rss -->
         
 
+        
 
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
     </ul>
 </div>
 
     </div>
 
-
-    <!-- page aside -->
-    <aside class="page-aside">
-        
+    
+        <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E5%9F%BA%E4%BA%8E%E8%A7%86%E8%A7%89%E7%9A%84%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">P1：基于视觉的自动驾驶简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E5%85%89%E7%9A%84%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B"><span class="nav-number">2.2.</span> <span class="nav-text">P2：基于可见光的深度预测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E7%BA%A2%E5%A4%96%E5%9B%BE%E5%83%8F%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.3.</span> <span class="nav-text">P3：红外图像的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P4%EF%BC%9A%E5%9F%BA%E4%BA%8E%E7%BA%A2%E5%A4%96%E7%9A%84%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B"><span class="nav-number">2.4.</span> <span class="nav-text">P4：基于红外的深度预测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P5%EF%BC%9A%E7%BA%A2%E5%A4%96%E5%9B%BE%E5%83%8F%E7%9A%84%E4%B8%8D%E8%B6%B3%E5%8F%8A%E8%9E%8D%E5%90%88%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">2.5.</span> <span class="nav-text">P5：红外图像的不足及融合的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P6%EF%BC%9A%E7%BA%A2%E5%A4%96%E4%B8%8E%E5%8F%AF%E8%A7%81%E5%85%89%E7%9A%84%E8%9E%8D%E5%90%88"><span class="nav-number">2.6.</span> <span class="nav-text">P6：红外与可见光的融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7-%E8%9E%8D%E5%90%88%E7%9A%84%E4%BC%98%E5%8A%BF%E5%8F%8A%E5%85%88%E5%89%8D%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.7.</span> <span class="nav-text">P7:融合的优势及先前融合方法的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P8-9-%EF%BC%9A%E6%9C%AC%E6%96%87%E7%9A%84%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E5%8F%8A%E7%AB%A0%E8%8A%82%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.8.</span> <span class="nav-text">P8-9 ：本文的主要工作工作及章节介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P1%EF%BC%9A%E5%9F%BA%E4%BA%8ECNN%E7%9A%84%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">P1：基于CNN的深度预测方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2%EF%BC%9A%E5%8F%AF%E8%A7%81%E5%85%89%E4%B8%8E%E7%BA%A2%E5%A4%96%E7%9A%84%E8%9E%8D%E5%90%88"><span class="nav-number">3.2.</span> <span class="nav-text">P2：可见光与红外的融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P3%EF%BC%9A%E6%88%91%E4%BB%AC%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">P3：我们的方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Technical approach</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E5%90%8C%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88%E5%AD%90%E7%BD%91%E7%BB%9C"><span class="nav-number">4.1.</span> <span class="nav-text">共同特征融合子网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1-%EF%BC%9A%E5%85%B1%E5%90%8C%E7%89%B9%E5%BE%81%E5%92%8C%E4%B8%AA%E4%BD%93%E7%89%B9%E5%BE%81"><span class="nav-number">4.1.1.</span> <span class="nav-text">P1 ：共同特征和个体特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2-%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.2.</span> <span class="nav-text">P2 ：网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3%EF%BC%9A%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">4.1.3.</span> <span class="nav-text">P3：过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4%EF%BC%9A%E8%80%A6%E5%90%88%E6%AF%94"><span class="nav-number">4.1.4.</span> <span class="nav-text">P4：耦合比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5%EF%BC%9A%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.5.</span> <span class="nav-text">P5：网络训练方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P6%EF%BC%9A%E7%89%B9%E7%82%B9%E5%92%8C%E6%8E%A5%E4%B8%8B%E6%9D%A5%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.6.</span> <span class="nav-text">P6：特点和接下来的介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88%E5%AD%90%E7%BD%91%E7%BB%9C"><span class="nav-number">4.2.</span> <span class="nav-text">全特征融合子网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.1.</span> <span class="nav-text">自适应特征融合结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87%E9%87%8D%E5%BB%BA%E5%AD%90%E7%BD%91%E7%BB%9C"><span class="nav-number">4.3.</span> <span class="nav-text">高分辨率重建子网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">4.3.1.</span> <span class="nav-text">P1：网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2%EF%BC%9A%E5%8E%9F%E7%90%86"><span class="nav-number">4.3.2.</span> <span class="nav-text">P2：原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%96%BD%E7%BB%86%E8%8A%82"><span class="nav-number">4.4.</span> <span class="nav-text">实施细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Experiments and results</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%84%E4%BC%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">5.1.</span> <span class="nav-text">数据集和评估方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1-P2%EF%BC%9A%E6%9C%AC%E6%96%87%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86NUST-SR"><span class="nav-number">5.1.1.</span> <span class="nav-text">P1-P2：本文的数据集NUST-SR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95%E9%A2%84%E6%B5%8B%E6%B7%B1%E5%BA%A6"><span class="nav-number">5.1.2.</span> <span class="nav-text">P3：使用分类方法预测深度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4-P5%EF%BC%9A%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86"><span class="nav-number">5.1.3.</span> <span class="nav-text">P4-P5：评价标准</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A2%E5%A4%96%E4%B8%8E%E5%8F%AF%E8%A7%81%E5%85%89%E8%9E%8D%E5%90%88%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="nav-number">5.2.</span> <span class="nav-text">红外与可见光融合的结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E9%9B%86%E5%8D%B7%E7%A7%AF%E5%9D%97%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="nav-number">5.3.</span> <span class="nav-text">密集卷积块的结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%8C%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">5.4.</span> <span class="nav-text">和相关方法的对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">Conclusion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">6.1.</span> <span class="nav-text">主要贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C"><span class="nav-number">6.2.</span> <span class="nav-text">未来工作</span></a></li></ol></li></ol>
     </div>
 </div>
-        
-    </aside>
+        </aside>
+    
 
+    <div class="image-viewer-container">
+    <img src="">
 </div>
 
 
-
-    <div class="search-pop-overlay">
+    
+        <div class="search-pop-overlay">
     <div class="popup search-popup">
         <div class="search-header">
-          <span class="search-icon">
-            <i class="fa fa-search"></i>
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
           </span>
             <div class="search-input-container">
                 <input autocomplete="off"
@@ -634,51 +926,75 @@
                 >
             </div>
             <span class="popup-btn-close">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </span>
         </div>
         <div id="search-result">
             <div id="no-result">
-                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<script src="/js/utils.js"></script>
-<script src="/js/header-shrink.js"></script>
-<script src="/js/dark-light-toggle.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-
-
-    
-<script src="/js/back2top.js"></script>
-
-
-
-
-
-    
-<script src="/js/left-side-toggle.js"></script>
-
-
-    
-        
-<script src="/js/code-copy.js"></script>
-
     
 
-    
-        
-<script src="/lib/anime.min.js"></script>
-<script src="/js/toc.js"></script>
+</main>
 
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
     
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
 
 
 </body>
