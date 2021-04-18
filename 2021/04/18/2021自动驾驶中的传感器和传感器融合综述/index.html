@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="我的个人网站">
+    <meta name="author" content="Lyndon Wong">
+    
+    <title>
+        
+            Sensor and Sensor Fusion Technology in Autonomous Vehicles:  A Review | Sensors |
+        
+        Wang&#39;s Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Wang&#39;s Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Sensor and Sensor Fusion Technology in Autonomous Vehicles:  A Review | Sensors</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/touxiang.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Lyndon Wong</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-04-18 14:40:19
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Review/">Review</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/sensor-fusion/">sensor fusion</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1>sensor fusion</h1>
+<p>这篇主要还是总结了一下关于异类融合的方法、算法。</p>
+<h2 id="相机、激光雷达、雷达传感器的特点对比">相机、激光雷达、雷达传感器的特点对比</h2>
+<p>这张表清晰地给出了他们的优劣势，有力地回答了一个问题：我们为什么要研究异类信息融合？</p>
+<p>说白了就是：取长补短，得到总体更好的感知效果。</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210418150112412.png" alt="image-20210418150112412"></p>
+<h2 id="三种主要的传感器融合">三种主要的传感器融合</h2>
+<ul>
+<li>CL (camera-LiDAR)</li>
+<li>CR (camera-radar)：CR是目前应用最广泛的，CLR次之，然后是CL.[21]；Tesla还利用CR和其他传感器例如超声波传感器融合来得到车辆的环境。[8]</li>
+<li>CLR (camera-LiDAR-radar)：通过激光雷达得到精度更高，范围更大的结果。Waymo and Navya[179]等人就利用了这种融合</li>
+</ul>
+<h2 id="传感器融合的方法对比">传感器融合的方法对比</h2>
+<p>目前还是按照融合框架分为三种：</p>
+<h3 id="HLF-high-level-fusion">HLF (high-level fusion)</h3>
+<p>​	在HLF方法中，每个传感器独立进行目标检测或跟踪算法，然后进行融合。</p>
+<blockquote>
+<p>例子：参考文献[30]利用HLF方法将处理后的数据，即雷达信号与激光雷达点云独立融合，然后使用非线性卡尔曼滤波方法检测障碍物和状态跟踪。</p>
+</blockquote>
+<p>​	通常采用HLF方法是因为相对的复杂度比LLF和MLF方法要低。然而，HLF提供的信息不充分，例如，如果存在若干重叠障碍，则丢弃具有较低置信值的分类。</p>
+<h3 id="LLF-low-level-fusion">LLF (low-level fusion)</h3>
+<p>​	相反，在LLF方法中，来自每个传感器的数据在最低抽象级别(原始数据)进行融合。因此，所有的信息都被保留下来，可以潜在地提高障碍物检测的准确性。</p>
+<blockquote>
+<p>例子：文献[181]提出了一种两阶段的3D障碍物检测体系结构，命名为3D-cross view fusion(3D- CVF)。在第二阶段，他们利用LLF方法，利用基于3D感兴趣区域(RoI)的池化方法(3D region of interest(ROI)-based pooling)，将第一阶段获得的相机-激光雷达联合特征图(camera-LiDAR joint feature map)与低级相机和激光雷达特征(low-level camera and LiDAR feature)融合。他们在KITTI和nuScenes数据集上评估了所提出的方法，并报告称，物体检测结果优于KITTI排行榜上最先进的3D物体检测器(更全面的总结见参考文献[181])。</p>
+</blockquote>
+<p>​	在实践中，LLF方法带来了许多挑战，尤其是在其实现方面。它需要精确的外部校准传感器，以准确地融合其对环境的感知。传感器还必须补偿自我运动，并进行时间校准[180]。</p>
+<h3 id="MLF-middle-level-fusion">MLF (middle-level fusion)</h3>
+<p>MLF，也称为特征级融合，是LLF和HLF之间的一个抽象级别。它将从相应的传感器数据(原始测量值)中提取的多目标特征进行融合，如图像中的颜色信息或雷达和激光雷达的位置特征，然后对融合后的多传感器特征进行识别和分类。</p>
+<blockquote>
+<p>例子：文献[182]提出了一种特征级传感器融合框架，用于在通信能力有限的动态背景环境中检测目标。他们利用符号动态滤波(Symbolic Dynamic Filtering, SDF)算法，在环境光强变化的情况下，从多个红外传感器中提取不同方向的低维特征，然后将提取的特征与运动目标的凝聚层次聚类算法融合成簇检测。</p>
+</blockquote>
+<p>​	然而，由于MLF对环境的感知有限并丢失了上下文信息，似乎不足以实现SAE 4级或5级的自动驾驶系统[183]。</p>
+<p>下表清晰地展示了各种融合方法的描述和优劣势：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210418153706092.png" alt="image-20210418153706092"></p>
+<h2 id="融合算法（工具）">融合算法（工具）</h2>
+<p>​	上一部分讲解的是一些抽象的融合架构，这一部分更加关注于具体的算法，或者说：<strong>工具</strong>。这些经典的目标检测和分类算法可以作为我们的网络的主干结构。下面介绍几种常用的。</p>
+<h3 id="YOLO">YOLO</h3>
+<p>用于二维图片目标检测</p>
+<p>You only look once(YOLO)在2016年被提出，成为了目标检测算法的一个重要的里程碑事件[188]。</p>
+<blockquote>
+<p>例子：文献[187]提出了一种先进的加权平均YOLO算法来融合RGB相机和激光雷达点云数据，以提高目标检测的实时性能。</p>
+</blockquote>
+<blockquote>
+<p>文献[190]中，作者提出了一种基于cnn的方法，利用近红外光和热感摄像机通过情绪来检测攻击性驾驶行为。他们利用CNN输出的近红外光图像和热图像的分数进行分数级融合，以提高检测精度。他们提出的方法获得了较高的情绪分类精度，并证明了他们提出的技术比传统的情绪检测方法取得了更好的性能。</p>
+</blockquote>
+<h3 id="VoxelNet">VoxelNet</h3>
+<p>用于三维目标检测，处理3D点云数据</p>
+<blockquote>
+<p>文献[191]VoxelFusion: 利用了他们之前在[192]中提出的VoxelNet框架，提出了两种特征级融合方法，即PointFusion和VoxelFusion，将RGB和点云数据结合起来进行3D对象检测。VoxelFusion方法将VoxelNet创建的非空3D体素投影到图像上，并在2D的ROI区域中提取特征，从而在像素水平上能和之前的图像特征进行叠加(concatenate)融合</p>
+</blockquote>
+<blockquote>
+<p>文献[193]PointFusion: 提出了一个点融合框架，利用图像数据和原始点云数据进行3D对象检测。他们利用CNN和PointNet[194]架构分别对图像和点云进行处理，然后将结果输出组合起来以预测多个3D检测框的假设位置及其置信度。PointNet体系结构是一种新颖的神经网络，为处理原始点云数据的3D分类和场景语义解析等应用提供了统一的体系结构。</p>
+</blockquote>
+<p>其他基于深度学习的传感器融合算法包括:</p>
+<ul>
+<li>[195]：ResNet，或残差网络，是一种残差学习框架，有助于深度网络的训练。</li>
+<li>[196]：SSD (Single-Shot Multibox Detector)是一种将包围盒离散为一组不同尺寸和长宽比的盒子，以检测不同尺寸的物体的方法[196]，它克服了YOLO小尺度和变化尺度的物体检测精度的限制</li>
+<li>[197]：CenterNet代表了最先进的单目摄像机三维物体检测算法，该算法利用关键点估计来找到包围盒的中心点，并将中心点回归到所有其他物体属性，包括尺寸、3D位置、方向和姿态。</li>
+</ul>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210418162057677.png" alt="image-20210418162057677"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210418162123132.png" alt="image-20210418162123132"></p>
+<h2 id="参考阅读资料">参考阅读资料</h2>
+<ul>
+<li>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40805392/article/details/99549300" >VoxelNet论文阅读<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/79854543" >【SSD算法】史上最全代码解析-核心篇<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39749553/article/details/88086486" >深度学习 – SSD 算法流程详解<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/66048276" >扔掉anchor！真正的CenterNet——Objects as Points论文解读<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/04/09/%E7%A9%BA%E7%A9%BA%E6%88%98%E5%9C%BA%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5-%E6%84%8F%E5%9B%BE%E4%B8%8E%E5%A8%81%E8%83%81%E5%88%A4%E5%AE%9A/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">空空战场态势感知-意图与威胁判定</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'hnFBe1r9GzXW5L5mp7p5xxRd-MdYXbMMI',
+                    appKey: 'e3d8gXfeUxAgXvphPa28bFjm',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Lyndon Wong';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2019</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">sensor fusion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA%E3%80%81%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E3%80%81%E9%9B%B7%E8%BE%BE%E4%BC%A0%E6%84%9F%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94"><span class="nav-number">1.1.</span> <span class="nav-text">相机、激光雷达、雷达传感器的特点对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E4%B8%BB%E8%A6%81%E7%9A%84%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88"><span class="nav-number">1.2.</span> <span class="nav-text">三种主要的传感器融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="nav-number">1.3.</span> <span class="nav-text">传感器融合的方法对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HLF-high-level-fusion"><span class="nav-number">1.3.1.</span> <span class="nav-text">HLF (high-level fusion)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LLF-low-level-fusion"><span class="nav-number">1.3.2.</span> <span class="nav-text">LLF (low-level fusion)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MLF-middle-level-fusion"><span class="nav-number">1.3.3.</span> <span class="nav-text">MLF (middle-level fusion)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%AE%97%E6%B3%95%EF%BC%88%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">融合算法（工具）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#YOLO"><span class="nav-number">1.4.1.</span> <span class="nav-text">YOLO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VoxelNet"><span class="nav-number">1.4.2.</span> <span class="nav-text">VoxelNet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%98%85%E8%AF%BB%E8%B5%84%E6%96%99"><span class="nav-number">1.5.</span> <span class="nav-text">参考阅读资料</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
