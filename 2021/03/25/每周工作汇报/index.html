@@ -213,12 +213,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>501 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>776 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -323,7 +323,7 @@ RODNet: Radar Object Detection using Cross-Modal Supervision</p>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/qq.png" alt="qq"></p>
 </li>
 </ul>
-<h2 id="4-8-4-17">4.8-4.17</h2>
+<h2 id="4-8-4-15">4.8-4.15</h2>
 <ol>
 <li>
 <p>课程学习</p>
@@ -333,14 +333,70 @@ RODNet: Radar Object Detection using Cross-Modal Supervision</p>
 </li>
 </ol>
 <ul>
+<li>H863：制作演示程序QT软件界面（目前正在解决实时视频流播放问题）</li>
+<li>十所：和齐宇轩确定了空空目标所需属性，调查了目标机动与意图的对应关系、基于目标机动的态势计算。</li>
+<li>学习了一下simulink的基于flightgear的可视化。</li>
+</ul>
+<h2 id="4-15-4-22">4.15-4.22</h2>
+<ol>
+<li>项目：</li>
+</ol>
+<ul>
 <li>
-<p>H863：制作演示程序QT软件界面（目前正在解决实时视频流播放问题）</p>
+<p>十所：</p>
+<ul>
+<li>
+<p>和齐宇轩确定贝叶斯网络的训练数据</p>
 </li>
 <li>
-<p>十所：和齐宇轩确定了空空目标所需属性，调查了目标机动与意图的对应关系、基于目标机动的态势计算。</p>
+<p>使用unity进行态势威胁仿真（宋义仁协助），目前实现了</p>
 </li>
 <li>
-<p>学习了一下simulink的基于flightgear的可视化。</p>
+<p>目标欧拉角、位置的输出</p>
+</li>
+<li>
+<p>威胁系数模型的计算（目前还只考虑了角度优势和攻击有效性）</p>
+</li>
+<li>
+<p>目标的框选显示</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/clip_image002-1619155639013.jpg" alt="img" style="zoom:50%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/clip_image004.jpg" alt="img" style="zoom:50%;" />
+<ul>
+<li>
+<p>截图画面解释：</p>
+<ul>
+<li>
+<p>绿色框中的是敌人，第一排数字（敌人位置）；第二排数字（敌人欧拉角）第三排数字：威胁指数。</p>
+</li>
+<li>
+<p>红色三角：高威胁目标（目前设置为威胁指数&gt;0.05）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>后续要进行的改进</p>
+<ul>
+<li>进一步优化威胁模型（距离，速度优势模型）</li>
+<li>更改飞机和战场模型（换为现代飞机和我们所需战场）</li>
+<li>敌机的运动状态设置</li>
+<li>整合入意图推断模型</li>
+<li>设置灵活的scene视角机制</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>科研，精读了两篇论文(雷达，相机异类特征级融合)</li>
+</ol>
+<ul>
+<li>
+<p>RRPN: Radar region Proposal network for object detection in autonomous vehicles(IEEE ICIP)</p>
+</li>
+<li>
+<p>Research of Target Detection and Classification Techniques Using Millimeter-Wave Radar and Vision Sensors(Remote Sensoring)</p>
 </li>
 </ul>
 
@@ -580,7 +636,7 @@ RODNet: Radar Object Detection using Cross-Modal Supervision</p>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">3月</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-3-11"><span class="nav-number">1.1.</span> <span class="nav-text">3.4-3.11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-11-3-18"><span class="nav-number">1.2.</span> <span class="nav-text">3.11-3.18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-18-3-25"><span class="nav-number">1.3.</span> <span class="nav-text">3.18-3.25</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-25-4-1"><span class="nav-number">1.4.</span> <span class="nav-text">3.25-4.1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">4月</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-4-8"><span class="nav-number">2.1.</span> <span class="nav-text">4.1-4.8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-4-17"><span class="nav-number">2.2.</span> <span class="nav-text">4.8-4.17</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">3月</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-3-11"><span class="nav-number">1.1.</span> <span class="nav-text">3.4-3.11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-11-3-18"><span class="nav-number">1.2.</span> <span class="nav-text">3.11-3.18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-18-3-25"><span class="nav-number">1.3.</span> <span class="nav-text">3.18-3.25</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-25-4-1"><span class="nav-number">1.4.</span> <span class="nav-text">3.25-4.1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">4月</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-4-8"><span class="nav-number">2.1.</span> <span class="nav-text">4.1-4.8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-4-15"><span class="nav-number">2.2.</span> <span class="nav-text">4.8-4.15</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-15-4-22"><span class="nav-number">2.3.</span> <span class="nav-text">4.15-4.22</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
