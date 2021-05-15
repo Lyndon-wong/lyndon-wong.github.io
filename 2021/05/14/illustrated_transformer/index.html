@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="我的个人网站">
+    <meta name="author" content="Lyndon Wong">
+    
+    <title>
+        
+            The Illustrated Transformer | Jay Alammar |
+        
+        Wang&#39;s Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0099FF","avatar":"/images/touxiang.jpg","favicon":"/images/logo2.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Wang&#39;s Space
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">The Illustrated Transformer | Jay Alammar</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/touxiang.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Lyndon Wong</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-14 20:17:37
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Transformer-NLP/">Transformer - NLP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>5.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>20 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1>介绍</h1>
+<ul>
+<li>
+<p>翻译自illustrated transformer， 原作者为Jay Alammar,</p>
+</li>
+<li>
+<p>原文地址：<a class="link"   target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/" >http://jalammar.github.io/illustrated-transformer/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li>
+<p>主要介绍了Transformer的结构，自注意力机制计算过程，帮助初学者第一次了解Transformer。</p>
+</li>
+</ul>
+<h1>The Illustrated Transformer</h1>
+<p>​	在先前的推送中，我们考察了注意力——这是一种现代深度学习模型中常用的方法。注意力是能帮助提升神经网络翻译应用的效果的概念。在本篇推送中，我们将会考察<strong>The Transformer</strong>——一个使用注意力机制的模型，这些模型是可以被训练的。Tranformer在特定任务中优于谷歌神经机器翻译模型。然而，这个优点主要来自它的并行化。Google Cloud推荐使用The Transformer作为参考模型来使用他们的Cloud TPU  (<a class="link"   target="_blank" rel="noopener" href="https://cloud.google.com/tpu/" >https://cloud.google.com/tpu/<i class="fas fa-external-link-alt"></i></a>)产品。让我们试着把这个模型拆开，看看它是如何工作的。</p>
+<ul>
+<li>
+<p><strong>起源</strong>：The Transformer最早在文章 Attention is All You Need (<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762" >https://arxiv.org/abs/1706.03762<i class="fas fa-external-link-alt"></i></a>)中被提出。</p>
+</li>
+<li>
+<p><strong>Tensorflow实现</strong>：它的TensorFlow实现可以作为Tensor2Tensor  (<a class="link"   target="_blank" rel="noopener" href="https://github.com/tensorflow/tensor2tensor" >https://github.com/tensorflow/tensor2tensor<i class="fas fa-external-link-alt"></i></a>)包的一部分。</p>
+</li>
+<li>
+<p><strong>PyTorch实现</strong>：哈佛大学的NLP小组创建了一个指南，用PyTorch实现对论文进行了注释(<a class="link"   target="_blank" rel="noopener" href="http://nlp.seas.harvard.edu/2018/04/03/attention.html" >http://nlp.seas.harvard.edu/2018/04/03/attention.html<i class="fas fa-external-link-alt"></i></a>)。</p>
+</li>
+</ul>
+<p>​	在这篇文章中，我们将尝试把事情简单化一点，逐个介绍这些概念，希望能让那些对主题没有深入了解的人更容易理解</p>
+<h1>A High-Level Look</h1>
+<p>我们首先将模型看作一个黑盒。在机器翻译应用程序中，它会用一种语言获取一个句子，然后用另一种语言输出翻译结果。</p>
+<p><img src="http://jalammar.github.io/images/t/the_transformer_3.png" alt="the_transformer_3"></p>
+<p>让我们一下子打开这个黑盒子（原作者用了一种风趣的表达，把这个黑盒子比喻为擎天柱Optimus Prime）。我们将会看到一个编码器和一个解码器，他们之间还有一个连接。</p>
+<p><img src="http://jalammar.github.io/images/t/The_transformer_encoders_decoders.png" alt="trans2"></p>
+<p>编码器是由六个编码器堆组成（在原论文中是六个且每个都在另外一个上面）—六个这个个数其实没有什么神奇的，你可以根据实验需要设置为其他数字。解码器是一个由具有相同个数的堆组成。</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/The_transformer_encoder_decoder_stack.png" alt="trans3"></p>
+<p>每个编码器内部的结构都完全一样（目前他们还不会共享权重），每一个都被分为两个子层：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/Transformer_encoder.png" alt="trans4"></p>
+<p>编码器的输入首先经过自注意层——这个层的作用是：在编码一个特定的单词时，帮助编码器查看输入句子中的其他单词。我们将在后面进一步了解自注意层。</p>
+<p>自注意层的输出送入到前馈神经网络。每个位置的前馈神经网络都是完全相同的。</p>
+<p>解码器也具有这些层，但是在他们之间有一个注意力层帮助解码器关注于输入句子中的相关部分（和在<a class="link"   target="_blank" rel="noopener" href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/" >seq2seq models<i class="fas fa-external-link-alt"></i></a>中的attention的作用类似）</p>
+<h1>Bringing The Tensors Into The Picture</h1>
+<p>现在我们已经查看了模型的主要部分，接下来让我们看看向量/张量是如何经过这些部分，最终将输入结果变为输出的。</p>
+<p>因为NLP应用是常见的，我们先采用<a class="link"   target="_blank" rel="noopener" href="https://medium.com/deeper-learning/glossary-of-deep-learning-word-embedding-f90c3cec34ca" >embedding algorithm嵌入算法<i class="fas fa-external-link-alt"></i></a>将每一个单词都转化为一个向量</p>
+<p><img src="http://jalammar.github.io/images/t/embeddings.png" alt="trans5"></p>
+<p>现在每个单词都变为了512维的向量，我们用相同的长度表示他们。embedding只在最下层的编码器中发生。但是这个抽象的过程对于每个编码器都一样，他们都接受512维的向量——也就是说，在最底层的编码器，它接收的是512维的单词embedding，在其他编码器中，它直接接收下层的编码器的输出。这个列表的大小是我们可以设置的超参数——基本上就是我们训练数据集中最长的句子的长度。</p>
+<p>在我们对单词进行过嵌入之后，每个单词都会流经编码器的两层。</p>
+<p><img src="http://jalammar.github.io/images/t/encoder_with_tensors.png" alt="trans6"></p>
+<p>现在我们开始考察Transformer的关键性质：每个单词在它的位置都只从它自己的路径通过。在自注意层具有这些路径间的相关性（依赖度），前馈层没有那些依赖度，所以，这些不同的路径在流经前馈层的时候可以并行处理。</p>
+<p>接下来，我们将会将例子变为一个短句子，我们看看在每个子层发生了什么。</p>
+<h2 id="Now-We’re-Encoding">Now We’re Encoding!</h2>
+<p>如同我们上面所介绍的，一个编码器接收一系列向量作为输入。它通过将这些向量传递到自注意层来处理，然后进入前馈神经网络，然后将输出发送到下一个编码器。</p>
+<p><img src="http://jalammar.github.io/images/t/encoder_with_tensors_2.png" alt="trans7"></p>
+<h1>Self-Attention at a High Level</h1>
+<p>不要被我抛出的“自注意”这个词所愚弄了，好像这是一个每个人都应该熟悉的概念一样。实际上我个人在阅读<em>Attention is All You Need</em>一文之前从未接触过这个概念。让我们来总结一下它是如何工作的。</p>
+<p>假设下面的句子是我们想要翻译的输入句子:</p>
+<p><em>” The animal didn’t cross the street because it was too tired ”</em></p>
+<p>这个句子中的“it”指的是什么?是指街道还是指动物?这对人类来说是个简单的问题，但对算法来说就没那么简单了。</p>
+<p>当模型在处理“it”这个词时，自注意机制让它把“it”和“animal”联系起来。</p>
+<p>当模型处理每个单词(输入序列中的每个位置)时，自注意机制允许它查看输入序列中的其他位置，以寻找有助于更好地编码这个单词的线索。</p>
+<p>如果你熟悉RNN，想想看如何保持一个隐藏状态使得RNN将它处理过的前一个单词/向量的表示与它正在处理的当前单词/向量结合起来的。Self-attention是Transformer用来将其他相关词汇的“理解”转化为我们当前正在处理的词汇的方法。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_self-attention_visualization.png" alt="trans7"></p>
+<p>当我们在编码器#5中编码单词“it”(堆栈中的顶部编码器)时，注意力机制的一部分关注于“the Animal”，并将其表现形式的一部分整合到“it”的编码中。</p>
+<p>一定要去查查 <a class="link"   target="_blank" rel="noopener" href="https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb" >Tensor2Tensor notebook<i class="fas fa-external-link-alt"></i></a> 看看你如何能加载一个Transformer模型，并且利用这个交互式可视化来检验一下它。</p>
+<h2 id="Self-Attention-in-Detail">Self-Attention in Detail</h2>
+<p>让我们先看看如何使用向量来计算自我注意力，然后继续看看它是如何实际实现的——使用矩阵。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_self_attention_vectors.png" alt="trans8"></p>
+<ol>
+<li><strong>第一步</strong>：对于每一个输入的单词嵌入向量，都生成三个向量，分别是<strong>队列向量，键向量和值向量</strong>。这三个向量是根据对应的矩阵生成的（这些矩阵在训练过程中经过训练得到）</li>
+</ol>
+<p>注意：这些生成的向量的维度比输入的嵌入向量要小，维度是64维，然而编码器和解码器的输入向量的维度是512维。<strong>它们不必更小</strong>，这只是一种结构选择，可以使多线程注意力(大部分)的计算保持不变。</p>
+<p>​	<strong>那么究竟什么是“队列”，“键”，和“值”呢？</strong>：它们是对计算和思考注意力有用的抽象概念。一旦你继续阅读下面的注意力是如何计算的，你就会知道所有你需要知道的关于这些向量所扮演的角色。</p>
+<ol start="2">
+<li><strong>第二步</strong>：计算分数。我们在计算这个例子中的第一个词“Think”的Self-Attention。我们需要将输入句子中的每个单词与这个单词进行评分。当我们在某个位置编码一个单词时，分数决定了对输入句子的其他部分的关注程度。</li>
+</ol>
+<p><img src="http://jalammar.github.io/images/t/transformer_self_attention_score.png" alt="trans9"></p>
+<p>分数是通过取查询向量与我们评分的各个单词的键向量的点积来计算的。如果我们在处理1号位置的单词的Self-Attention，第一个分数是q1和k1的点积。第二个分数是q1和k2的点积。</p>
+<ol start="3">
+<li><strong>第三、第四步</strong>：将得分除以8(论文中使用的关键向量维数64的平方根)。这就产生了更稳定的梯度。这里可能有其他可能的值，但这是默认值)，然后通过一个softmax操作传递结果。Softmax将分数标准化，所以它们都是正的，加起来等于1。</li>
+</ol>
+<p><img src="http://jalammar.github.io/images/t/self-attention_softmax.png" alt="trans10"></p>
+<p>这个softmax分数决定了在这个位置上每个单词将表达多少。显然，在这个位置的单词将有最高的softmax分数，但有时关注与当前单词相关的另一个单词是有用的。</p>
+<ol start="4">
+<li><strong>第五步</strong>：将softmax分数和对应的值向量相乘（为了之后对他们进行求和）。直觉上来讲，这里是为了保持我们关注的单词的值向量不变，而忽略掉不相干的单词（通过给他们乘上很小的数字比如0.001）</li>
+<li><strong>第六步</strong>：将这些加权之后的值向量进行求和。这便产生了这个位置的自注意层的输出（对于第一个单词的）</li>
+</ol>
+<p>这就是自注意计算的结论。这里得到的向量是我们可以发送给前馈神经网络的向量。然而，在实际实现中，这种计算以矩阵形式进行，以获得更快的处理速度。现在我们已经直观地理解了单词层面上的计算，接下来来看一下矩阵层面的计算。</p>
+<h2 id="Matrix-Calculation-of-Self-Attention">Matrix Calculation of Self-Attention</h2>
+<ul>
+<li><strong>第一步</strong>：计算队列矩阵，键矩阵和值矩阵，我们的方法是将嵌入向量打包到一个矩阵X中，然后将其乘以我们训练的权重矩阵(WQ, WK, WV)。</li>
+</ul>
+<p><img src="http://jalammar.github.io/images/t/self-attention-matrix-calculation.png" alt="trans11"></p>
+<ul>
+<li><strong>最后一步</strong>：因为我们处理的是矩阵，所以我们可以把第2步到第6步压缩到一个公式中，来计算自注意层的输出。</li>
+</ul>
+<p><img src="http://jalammar.github.io/images/t/self-attention-matrix-calculation-2.png" alt="tran12"></p>
+<h2 id="The-Beast-With-Many-Heads">The Beast With Many Heads</h2>
+<blockquote>
+<p>（The Beast With Many Heads是指具有很多个头的野兽，这里也是作者的一个有趣的比喻)</p>
+</blockquote>
+<p>这篇文章进一步细化了自注意层，增加了一个“多头”（multi-head）注意机制。这从两个方面提高了注意层的性能:</p>
+<ol>
+<li>它提升了模型关注不同位置的能力。是的，在上面的例子中，z1只包含了其他所有编码的一小部分，但是它可能只是被自己自身完全决定。如果我们要翻译像“The animal didn’t cross the street because it was too tired”这样的句子，它会很有用，因为我们想知道“it”指的是哪个词。</li>
+<li>它给了注意层多个“表征子空间”。如我们接下来想看到的一样，在多头注意力机制下，我们不仅具有一个，而是具有多个队列/键/值的权重矩阵（the Transformer使用了8个注意力头，所以我们最后对于每个编码器/解码器都具有8组）。每一组都将随机初始化。然后，在训练之后，每一组都被用来将初始输入的嵌入向量（或者是来自更低一层的编码器/解码器）投影到一个不同的表征子空间</li>
+</ol>
+<p><img src="http://jalammar.github.io/images/t/transformer_attention_heads_qkv.png" alt="trans12"></p>
+<blockquote>
+<p>在多头注意力机制下，我们对于每一个head保持完全分离的Q/K/V权重矩阵，最后得到完全不同的Q/K/V矩阵。如我们之前所述，我们通过对X乘以WQ/WK/WV来产生Q/K/V矩阵</p>
+</blockquote>
+<p>如果我们做如上所述的同样的自注意计算，只是用不同的权重矩阵进行8次不同的计算，我们最终得到8个不同的Z矩阵</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_attention_heads_z.png" alt="trans13"></p>
+<p>这给我们造成了一点挑战。前馈层不需要8个矩阵——它只需要1个矩阵（也就是每个词一个向量）。所以我们需要一个将8个矩阵变为一个的方式。</p>
+<p>我们怎么办呢？我们将这8个矩阵叠放，然后用一个额外的权重矩阵WO来乘以他们</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_attention_heads_weight_matrix_o.png" alt="trans14"></p>
+<p>以上全部就是多头注意力机制的全部内容了。我承认，这里面由很多很多的矩阵，我们把他们放在一张图上面在这些我们就可以一次看清了。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_multi-headed_self-attention-recap.png" alt="trans15"></p>
+<p>现在我们已经接触了多头注意力，我们重新回顾一下我们之前的例子来看看不同的注意力头关注着什么（当我们编码句子中it的时候）</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_self-attention_visualization_2.png" alt="trans16"></p>
+<blockquote>
+<p>当我们编码&quot;it&quot;的时候，一个注意力头最关注于“the animal”，然而另外一个关注于“tired”——某种意义上来讲，模型对单词“it”的表征同时体了“animal”和“tired”。</p>
+</blockquote>
+<p>如果我们继续增加注意力头，额，这就很难解释了。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_self-attention_visualization_3.png" alt="trans17"></p>
+<h1>Representing The Order of The Sequence Using Positional Encoding</h1>
+<p>到目前为止，我们所描述的模型还缺少一种解释输入序列中单词顺序的方法。</p>
+<p>为了编码这个，the transformer为每一个输入的嵌入向量增加了一个向量。这些向量遵循着一种模型学习到的特定的模式，这有助于它确定每一个单词的位置，以及他们在句子之间的远近。这里的直觉是通过给嵌入向量增加这些向量，在计算Q/K/V向量和点乘注意力机制过程中，提供了有意义的嵌入向量的距离。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_positional_encoding_vectors.png" alt="trans18"></p>
+<p>如果我们假设嵌入向量有4维，那么实际的位置向量会是这个样子</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_positional_encoding_example.png" alt="trans18"></p>
+<p>那么它的模式看上去是什么样的呢？</p>
+<p>在下面的图中，每一行对应向量的位置编码。所以第一行是我们要添加到输入序列中嵌入第一个单词的向量。每行包含512个值—每个值的范围是1到-1。我们用不同的颜色进行了标记，这样图案就清晰可见了。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_positional_encoding_large_example.png" alt="trans18"></p>
+<blockquote>
+<p>这是一个实际的位置编码示例，用于20个单词(行)，嵌入大小为512(列)。你可以看到它从中间一分为二。这是因为左半部分的值由一个函数(使用正弦)生成，而右半部分的值由另一个函数(使用余弦)生成。然后将它们连接起来形成每个位置编码向量。</p>
+</blockquote>
+<p>本文(第3.5节)描述了位置编码的公式。您可以在<a target="_blank" rel="noopener" href="https://github.com/tensorflow/tensor2tensor/blob/23bd23b9830059fbc349381b70d9429b5c40a139/tensor2tensor/layers/common_attention.py"><code>get_timing_signal_1d()</code></a>中看到生成位置编码的代码。这并不是位置编码的唯一可能方法。然而，它的优势在于能够扩展到看不见的序列长度(例如，如果我们的训练模型被要求翻译一个比训练集中任何一个句子都长的句子)。</p>
+<p><strong>2020.7更新</strong>：上面显示的位置编码来自Transformer的transformer2transformer实现。本文给出的方法略有不同，它不是直接连接两个信号，而是将两个信号交织在一起。下图显示了它的外观。</p>
+<p><img src="http://jalammar.github.io/images/t/attention-is-all-you-need-positional-encoding.png" alt="trans19"></p>
+<h1>The Residuals</h1>
+<p>在我们继续之前，编码器结构的一个细节我们需要注意的是，对于每个编码器中的每一个子层(self-attention,ffnn)都具有一个残差连接，这一步是通过 <a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1607.06450" >layer-normalization<i class="fas fa-external-link-alt"></i></a>步骤实现的</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_resideual_layer_norm.png" alt="trans20"></p>
+<p>如果我们可视化向量在正则化层的操作，它会是这样的：</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_resideual_layer_norm_2.png" alt="trans21"></p>
+<p>这也适用于解码器的子层。如果我们考虑一个包含2个堆叠的编码器和解码器的Transformer，它看起来应该是这样的:</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_resideual_layer_norm_3.png" alt="trans22"></p>
+<h1>The Decoder Side</h1>
+<p>既然我们已经介绍了编码器方面的大部分概念，我们基本上也知道了解码器的组件是如何工作的。但让我们看看它们是如何一起工作的。</p>
+<p>编码器首先处理输入序列。然后，顶部编码器的输出被转换为一组注意向量K和V，这些将被每个解码器在其“编码器-解码器注意”层中使用，帮助解码器关注输入序列中的适当位置:</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_decoding_1.gif" alt="trans23"></p>
+<p>下面的步骤重复这个过程，直到到达一个特殊的符号，表示Transformer解码器已经完成了它的输出。每个步骤的输出在下一个时间步骤中被提供给底部解码器，解码器冒泡他们的解码结果，就像编码器所做的。就像我们对编码器输入所做的那样，我们在这些解码器输入中嵌入并添加位置编码，以表示每个单词的位置。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_decoding_2.gif" alt="trans24"></p>
+<p>解码器中的自注意层与编码器中的自注意层的操作方式略有不同:</p>
+<p>在解码器中，自注意层只允许关注输出序列中较早的位置。这是通过在self-attention计算的softmax步骤之前屏蔽未来的位置(将它们设置为-inf)来实现的。</p>
+<p>“编码器-解码器注意”层的工作方式就像多头自注意一样，除了它从下面的层创建队列矩阵，并从编码器堆栈的输出中获取键和值矩阵。</p>
+<h1>The Final Linear and Softmax Layer</h1>
+<p>解码器堆栈输出一个浮点数向量。我们怎么把它变成一个单词呢?这是最后一个线性层的工作，后面是一个Softmax层。</p>
+<p>线性层是一个简单的完全连接的神经网络，它将解码器堆栈产生的向量投射到一个更大的向量，称为logits向量。</p>
+<p>让我们假设我们的模型知道10,000个唯一的英语单词(我们的模型的“输出词汇表”)，这些单词是从它的训练数据集中学习的。这将使logits向量有10,000个单元格宽——每个单元格对应一个唯一单词的分数。这就是我们如何解释线性层之后的模型输出。</p>
+<p>然后softmax层将这些分数转化为概率(所有分数都是正的，加起来都是1.0)。选择概率最高的单元格，并生成与之相关的单词作为这个时间步长的输出。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_decoder_output_softmax.png" alt="trans25"></p>
+<h1>Recap Of Training</h1>
+<p>既然我们已经通过一个经过训练的Transformer介绍了整个前向传递过程，那么接下来我们看看如何对这个模型进行训练</p>
+<p>在训练期间，未经训练的模型将经历完全相同的向前传递。但是因为我们是在一个标记的训练数据集上训练它，所以我们可以将它的输出与实际正确的输出进行比较。</p>
+<p>为了将这个过程可视化，我们假设输出词汇只包含六个词(“a”, “am”, “i”, “thanks”, “student”, and “<eos>” (short for ‘end of sentence’)))</p>
+<p><img src="http://jalammar.github.io/images/t/vocabulary.png" alt="trans26"></p>
+<p>一旦定义了输出词汇表，就可以使用相同宽度的向量来表示词汇表中的每个单词。这也被称为一次性编码（one-hot encoding）。例如，我们可以用下面的向量来表示单词“am”:</p>
+<p><img src="http://jalammar.github.io/images/t/one-hot-vocabulary-example.png" alt="trans27"></p>
+<p>接下来，让我们讨论模型的损失函数——我们在训练阶段优化的度量，以形成一个经过训练的、希望非常精确的模型。</p>
+<h1>The Loss Function</h1>
+<p>假设我们正在训练模型。说这是我们训练阶段的第一步，我们用一个简单的例子来训练——把“merci”翻译成“thanks”。</p>
+<p>这意味着，我们希望输出是一个表示“谢谢”这个词的概率分布。但由于这种模式尚未经过训练，目前还不太可能实现。</p>
+<p><img src="http://jalammar.github.io/images/t/transformer_logits_output_and_label.png" alt="trans28"></p>
+<blockquote>
+<p>由于模型的参数(权重)都是随机初始化的，(未经训练的)模型为每个单元格/字生成一个具有任意值的概率分布。我们可以将其与实际输出进行比较，然后使用反向传播调整所有模型的权重，使输出更接近期望的输出。</p>
+</blockquote>
+<p>如何比较两种概率分布?我们只需要把一个和另一个相减。要了解更多细节，请查看交叉熵 <a class="link"   target="_blank" rel="noopener" href="https://colah.github.io/posts/2015-09-Visual-Information/" >cross-entropy<i class="fas fa-external-link-alt"></i></a>和Kullback-Leibler散度<a class="link"   target="_blank" rel="noopener" href="https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained" >Kullback–Leibler divergence<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>但请注意，这是一个过于简化的示例。更实际的是，我们会使用比一个词更长的句子。例如-输入:&quot; je suis étudiant “，期望输出:” i am a student &quot;。这真正的意思是，我们想要我们的模型连续输出概率分布如下:</p>
+<ul>
+<li>每个概率分布都由一个宽度为vocab_size的向量表示(在我们的简单示例中是6，但更实际的数字是30,000或50,000)</li>
+<li>第一个概率分布在与单词“i”相关的细胞中具有最高的概率</li>
+<li>第二个概率分布在细胞中与&quot; am &quot;相关的概率最高</li>
+<li>以此类推，直到第5个输出分布表示“&lt;句子结束&gt;”符号，该符号还具有10,000个元素词汇表中与之相关联的单元格。</li>
+</ul>
+<p><img src="http://jalammar.github.io/images/t/output_target_probability_distributions.png" alt="trans29"></p>
+<blockquote>
+<p>目标概率分布，我们将针对例句训练我们的模型。</p>
+</blockquote>
+<p>在一个足够大的数据集上训练模型足够长的时间后，我们希望产生的概率分布会像这样</p>
+<p><img src="http://jalammar.github.io/images/t/output_trained_model_probability_distributions.png" alt="trans30"></p>
+<blockquote>
+<p>希望在训练之后，模型能够输出我们所期望的正确翻译。当然，这并不能真正说明这个短语是否是训练数据集的一部分(见:交叉验证)。注意，每个位置都还有一点概率，即使它不太可能是那个时间步长的输出——这是softmax的一个非常有用的特性，它有助于训练过程。</p>
+</blockquote>
+<p>现在，因为模型每次产生一个输出，我们可以假设模型从概率分布中选择概率最高的单词，然后扔掉其他的。这是一种方法(称为贪婪解码greedy decoding)。另一种方法是保留最上面的两个单词(例如，‘I’和‘a’)，然后在下一步中，运行模型两次:一次假设第一个输出位置是单词“I”，另一次假设第一个输出位置是单词“a”，考虑到位置#1和#2，哪个版本产生的误差较小就保留哪个版本。我们对第2和第3个位置重复这一点。这种方法称为“beam search”，在我们的示例中，beam_size是2(意味着在内存中始终保存两个部分假设(未完成的翻译))，top_beams也是2(意味着我们将返回两个翻译)。这些都是你可以实验的超参数。</p>
+<h1>Go Forth And Transform</h1>
+<p>我希望你已经发现这里是一个有用的地方，并且开始了解Transformer的主要概念了。如果你想要更深入，我建议以下步骤:</p>
+<ul>
+<li>Read the <a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762" >Attention Is All You Need<i class="fas fa-external-link-alt"></i></a> paper, the Transformer blog post (<a class="link"   target="_blank" rel="noopener" href="https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html" >Transformer: A Novel Neural Network Architecture for Language Understanding<i class="fas fa-external-link-alt"></i></a>), and the <a class="link"   target="_blank" rel="noopener" href="https://ai.googleblog.com/2017/06/accelerating-deep-learning-research.html" >Tensor2Tensor announcement<i class="fas fa-external-link-alt"></i></a>.</li>
+<li>Watch <a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rBCqOTEfxvg" >Łukasz Kaiser’s talk<i class="fas fa-external-link-alt"></i></a> walking through the model and its details</li>
+<li>Play with the <a class="link"   target="_blank" rel="noopener" href="https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb" >Jupyter Notebook provided as part of the Tensor2Tensor repo<i class="fas fa-external-link-alt"></i></a></li>
+<li>Explore the <a class="link"   target="_blank" rel="noopener" href="https://github.com/tensorflow/tensor2tensor" >Tensor2Tensor repo<i class="fas fa-external-link-alt"></i></a>.</li>
+</ul>
+<p>Follow-up works:</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03059" >Depthwise Separable Convolutions for Neural Machine Translation<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.05137" >One Model To Learn Them All<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.09797" >Discrete Autoencoders for Sequence Models<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.10198" >Generating Wikipedia by Summarizing Long Sequences<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1802.05751" >Image Transformer<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1804.00247" >Training Tips for the Transformer Model<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1803.02155" >Self-Attention with Relative Position Representations<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1803.03382" >Fast Decoding in Sequence Models using Discrete Latent Variables<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1804.04235" >Adafactor: Adaptive Learning Rates with Sublinear Memory Cost<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/04/28/%E5%BC%82%E7%B1%BB%E4%BC%A0%E6%84%9F%E5%99%A8%E4%BF%A1%E6%81%AF%E8%9E%8D%E5%90%88%E6%80%BB%E7%BB%93/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">雷达-相机信息融合的一些问题及解决方法（2019-2020.4）</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'hnFBe1r9GzXW5L5mp7p5xxRd-MdYXbMMI',
+                    appKey: 'e3d8gXfeUxAgXvphPa28bFjm',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜 尽情吐槽吧~',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Lyndon Wong';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2019</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">The Illustrated Transformer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">A High-Level Look</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Bringing The Tensors Into The Picture</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Now-We%E2%80%99re-Encoding"><span class="nav-number">4.1.</span> <span class="nav-text">Now We’re Encoding!</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Self-Attention at a High Level</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention-in-Detail"><span class="nav-number">5.1.</span> <span class="nav-text">Self-Attention in Detail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-Calculation-of-Self-Attention"><span class="nav-number">5.2.</span> <span class="nav-text">Matrix Calculation of Self-Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Beast-With-Many-Heads"><span class="nav-number">5.3.</span> <span class="nav-text">The Beast With Many Heads</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">Representing The Order of The Sequence Using Positional Encoding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">The Residuals</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">The Decoder Side</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">9.</span> <span class="nav-text">The Final Linear and Softmax Layer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">10.</span> <span class="nav-text">Recap Of Training</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">11.</span> <span class="nav-text">The Loss Function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">12.</span> <span class="nav-text">Go Forth And Transform</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.2/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
