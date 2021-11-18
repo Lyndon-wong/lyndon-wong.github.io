@@ -333,7 +333,7 @@
 <h3 id="在连续的block间进行偏移窗口分区">在连续的block间进行偏移窗口分区</h3>
 <p>仅仅基于窗口的自注意力没有窗口之间的信息交流，限制了其能力。所以增加偏移窗口。那么怎么偏移呢？</p>
 <p>其实它的做法也不复杂，通速地说，从当前的windows的中心点作为分割点，这里我画了一个草图：</p>
-<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118213833290.png" alt="image-20211118213833290" style="zoom: 25%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118213833290.png" alt="image-20211118213833290" style="zoom: 25%;" />
 <h3 id="对于偏移参数的高效batch设置">对于偏移参数的高效batch设置</h3>
 <p>偏移窗口的一个问题就是增加了窗口的数量，并且会产生一些小于M×M尺寸的窗口，一种比较原始的方法就是把这些小的窗口填充（pad）到M×M。</p>
 <p>这样做带来的计算量提升是很大的，比方说上面的例子中，相当于我们从2×2个窗口变成了3×3，计算量增大了2.25倍</p>
@@ -342,7 +342,7 @@
 <p>这里还是比较巧妙的，具体步骤看<strong>附录</strong>，借用了<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360513527" >陀飞轮<i class="fas fa-external-link-alt"></i></a>画的图和解释，感谢！</p>
 <h3 id="相对位置偏差">相对位置偏差</h3>
 <p>在计算注意力时，我们参考其他人的工作，增加了一个相对位置偏差项B：</p>
-<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118220635227.png" alt="image-20211118220635227" style="zoom: 50%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118220635227.png" alt="image-20211118220635227" style="zoom: 50%;" />
 <p>我们也尝试了绝对位置编码，效果较差一点点，我们没有采用</p>
 <h2 id="模型参数设置">模型参数设置</h2>
 <ul>
@@ -370,16 +370,16 @@
 <p>每层MLP的膨胀度：α=4</p>
 </li>
 </ul>
-<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118221600257.png" alt="image-20211118221600257" style="zoom:45%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221600257.png" alt="image-20211118221600257" style="zoom:45%;" />
 <h1>实验</h1>
 <h2 id="分类">分类</h2>
-<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118221728889.png" alt="image-20211118221728889" style="zoom:50%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221728889.png" alt="image-20211118221728889" style="zoom:50%;" />
 <h2 id="目标检测">目标检测</h2>
 <img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221822787.png" alt="image-20211118221822787" style="zoom:50%;" />
 <h2 id="语义分割">语义分割</h2>
-<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118221905457.png" alt="image-20211118221905457" style="zoom: 67%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221905457.png" alt="image-20211118221905457" style="zoom: 67%;" />
 <h2 id="shift-window和位置编码的影响">shift window和位置编码的影响</h2>
-<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118222030934.png" alt="image-20211118222030934" style="zoom:67%;" />
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118222030934.png" alt="image-20211118222030934" style="zoom:67%;" />
 <h1>总结</h1>
 <p>主要的两个思想：</p>
 <ul>
