@@ -9,7 +9,7 @@
     
     <title>
         
-            许志钦：理解神经网络训练过程 |
+            Swin Transformer: Hierarchical Vision Transformer using Shifted Windows |
         
         Wang&#39;s Space
     </title>
@@ -167,7 +167,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">许志钦：理解神经网络训练过程</span>
+            <span class="title-hover-animation">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</span>
         </div>
 
         
@@ -183,7 +183,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-16 22:38:47
+        <i class="fas fa-edit"></i>&nbsp;2021-11-18 16:19:06
     </span>
     
         <span class="article-categories article-meta-item">
@@ -191,7 +191,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Summary/">Summary</a>&nbsp;
+                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
                     </li>
                 
             </ul>
@@ -203,7 +203,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/F-Principle-deep-learning/">F-Principle - deep learning</a>&nbsp;
+                        <a href="/tags/transformer-deep-learning/">transformer - deep learning</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,12 +213,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>386 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
         </span>
     
     
@@ -234,46 +234,161 @@
         
 
         <div class="article-content markdown-body">
-            <h1>作者</h1>
-<p>上海交通大学，许志钦：<a class="link"   target="_blank" rel="noopener" href="https://ins.sjtu.edu.cn/people/xuzhiqin/pub.html" >https://ins.sjtu.edu.cn/people/xuzhiqin/pub.html<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="F-Principle">F-Principle</h2>
-<p><strong>频率原则可以用一句话概括：深度学习倾向于优先拟合目标函数的低频部分</strong></p>
-<p>神经网络的特点：</p>
+            <h1>论文信息</h1>
 <ul>
-<li>OverParameter：参数富集,能力上限很强，理论上可以拟合任何分布，也意味着它可以使用很多种参数组合来拟合相同的分布</li>
-<li>但是在它的能力中，具有较好泛化性能的参数组合只是一小部分</li>
-<li>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210517212410178.png" alt="image-20210517212410178" style="zoom:50%;" />
-</li>
+<li><strong>2021 ICCV bestpaper</strong></li>
+<li>微软亚洲研究院</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.14030v2.pdf" >论文地址<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/microsoft/Swin-Transformer" >项目地址<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
-<h2 id="为什么神经网络的学习效果比传统方法好？">为什么神经网络的学习效果比传统方法好？</h2>
-<ul>
-<li>神经网络从低频开始匹配，传统方法从高频开始匹配</li>
-</ul>
-<p><img src="https://ins.sjtu.edu.cn/people/xuzhiqin/F-Principle_one_dim.gif" alt="f-princinple"></p>
+<h1>摘要</h1>
 <ul>
 <li>
-<p>输入数据的噪声同时存在于高、低频，但是数据的低频能量往往会比较大，所以在低频神经网络学习到了更多有用的信息，效果更好。</p>
-</li>
-<li>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211117164340486.png" alt="image-20211117164340486"></p>
-<blockquote>
-<p>高斯白噪声功率谱</p>
-</blockquote>
-</li>
-<li>
-<p><strong>过拟合现象的解释</strong>：当不停地训练网络，它会开始倾向于学习一些高频信息，这时噪声的影响更大，神经网络的性能开始变差</p>
-</li>
-</ul>
-<h2 id="深度加速效应">深度加速效应</h2>
+<p>Vision Transformer的两个问题：</p>
 <ul>
-<li>人们在运用中发现，更深层的神经网络往往比隐藏层较少的神经网络训练得快，也有更好的泛化性能</li>
+<li>
+<p>两个领域涉及的scale不同，NLP的scale是标准固定的，而CV的scale变化范围非常大。</p>
+</li>
+<li>
+<p>CV比起NLP需要更大的分辨率，而且CV中使用Transformer的计算复杂度是图像尺度的平方，这会导致计算量过于庞大</p>
+</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211117165115834.png" alt="image-20211117165115834"></p>
-<blockquote>
-<p>越深的网络，达到某个固定精度的速度往往越快</p>
-</blockquote>
-<p><strong>Deep Frequency Principle——更深层神经网络的有效目标函数在训练的过程中会更趋近于低频。</strong></p>
+</li>
+<li>
+<p>作者的解决方案：</p>
+<ul>
+<li>
+<p>引入CNN中常用的层次化构建方式构建层次化Transformer</p>
+</li>
+<li>
+<p>引入locality思想，对无重合的window区域内进行self-attention计算</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1>介绍</h1>
+<h2 id="Windows">Windows</h2>
+<p>首先看看Windows到底是怎么做的？</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118165753490.png" alt="image-20211118165753490"></p>
+<p><strong>右侧：ViT的做法</strong>：</p>
+<ul>
+<li>先来看看经典的做法，ViT把图片分成一个一个16*16的像素小块，我们常叫做patch。然后对每个patch拉成“向量”后，经过一个线性层变成Transformer网络需要的维度（还需要加入位置编码）。之后就是传统的Transformer计算了</li>
+<li>这样就使得，每个patch代表一部分图片的信息，并且每层小encoder都有全局的感受野。但是这样带来的问题是图片尺寸大了的话，还用小的patch块就会导致patch的数量很多，计算量平方倍的增长。</li>
+</ul>
+<p><strong>左侧：Swin T的做法</strong>：</p>
+<ul>
+<li>简单来说，重要的就两点：
+<ul>
+<li><strong>每一层的patches分割是不一样的</strong>，浅层分割的patch更小，随着网络加深，慢慢合并（类似cnn的思想）</li>
+<li><strong>每一层都只计算局部自注意力</strong>（在红色框框即Windows内进行自注意力计算），这样计算量随输入图片尺寸线性增长，可以接收了，所以可以做一些场景分割等对高分辨率有较高要求的工作</li>
+</ul>
+</li>
+</ul>
+<h2 id="Shifted-Windows">Shifted Windows</h2>
+<p>等等，以上好像只说了Windows，那Shifted又是什么呢？</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118171032078.png" alt="image-20211118171032078"></p>
+<p>可以看出，Shift的意思就是在下一层，窗口的分区会进行偏移，有些窗口会被生成在前一个窗口的边界上，以连接这些窗口。注意这和Sliding Windows的</p>
+<p>作者提出的Swin-Transformer在分类、检测、语义分割任务上都获得了SOTA。作者希望基于Transformer，并且能在多个图像相关的任务都达到SOTA的swin-transformer模型，能对未来人们发现更统一的模型做出贡献，真正打通我们对图像信息和文本信息的建模的认知。</p>
+<h1>相关工作</h1>
+<ul>
+<li>CNN：</li>
+<li>基于自注意力SA的框架</li>
+<li>给CNN增加自注意力、Transformer</li>
+<li>基于Transformer的视觉backbone
+<ul>
+<li>ViT：无重叠、中等尺度的patch、实现了速度-精度的完美平衡；需要大数据集预训练</li>
+<li>DeiT：利用几种训练方法使得ViT能在ImageNet-1K数据集上训练，但是还是不适合需要高分辨率的图像任务</li>
+<li>还有一些直接利用ViT，对其进行下采样或者反卷积后进行目标检测的方法，但是都没有获得特别好的结果</li>
+<li>在基于ViT结构的分类方法中，Swin-Transformer也是实现了最佳的“速度-精度平衡”，即使它是用来作为一个一般化的backbone，没有对该任务进行优化</li>
+<li>也有一些人尝试利用Transformer获得高分辨率的特征图，但是依然受限于随图片尺寸二次增长的计算复杂度，而我们的方法计算复杂度线性增长</li>
+<li>我们的方法是有效并且高效的，同时在COCO目标检测和ADE20K语义分割两个任务达到了SOTA。</li>
+</ul>
+</li>
+</ul>
+<h1>方法</h1>
+<h2 id="总体结构">总体结构</h2>
+<h3 id="概览">概览</h3>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118193243394.png" alt="image-20211118193243394"></p>
+<ul>
+<li>
+<p>首先，将图片分割为patches，patches的大小这里设置的是4×4，所以每个patch（token）的维度就是4×4×3=48，每个patch的特征的值就是原始的RGB数值。</p>
+</li>
+<li>
+<p>阶段1：对进行一个线性层，可以把每个token的维度降低到C，然后在阶段1后面的Swin Transformer Block中，使用Modified Self Attentio进行计算，保持tokens的数量不变。</p>
+</li>
+<li>
+<p>阶段2：为了进行分层表示，如之前所介绍的，开始合并patches。在这一层以2×2为一组对patches进行合并。所以每个patch的维度变为4C，总共的patches的数量缩小4倍（相当于原来patch的大小是4×4，现在是8×8）。然后再进行一次线性变换，使得输出的维度变为2C.</p>
+</li>
+<li>
+<p>阶段3、阶段4：类似于阶段2，</p>
+</li>
+</ul>
+<h3 id="Swin-Transformer-Block">Swin Transformer Block</h3>
+<p>将原来的Transformer Block的MSA替换为shifted windows multi-heads self attention，SW-MSA。其他结构保持不变</p>
+<h2 id="基于偏移窗口的自注意力机制">基于偏移窗口的自注意力机制</h2>
+<h3 id="基于无重叠窗口的自注意力机制">基于无重叠窗口的自注意力机制</h3>
+<p>不同于传统的全局的自注意力，我们的自注意力在不重叠窗口内部进行，假设总共有h×w个patches，每个窗口包括M×M个patches，那么两种机制的计算复杂度为</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118201551763.png" alt="image-20211118201551763"></p>
+<p>可见，MSA和patch数量hw成平方关系，而W-MSA在M固定的情况下，和hw只是线性关系。</p>
+<h3 id="在连续的block间进行偏移窗口分区">在连续的block间进行偏移窗口分区</h3>
+<p>仅仅基于窗口的自注意力没有窗口之间的信息交流，限制了其能力。所以增加偏移窗口。那么怎么偏移呢？</p>
+<p>其实它的做法也不复杂，通速地说，从当前的windows的中心点作为分割点，这里我画了一个草图：</p>
+<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118213833290.png" alt="image-20211118213833290" style="zoom: 25%;" />
+<h3 id="对于偏移参数的高效batch设置">对于偏移参数的高效batch设置</h3>
+<p>偏移窗口的一个问题就是增加了窗口的数量，并且会产生一些小于M×M尺寸的窗口，一种比较原始的方法就是把这些小的窗口填充（pad）到M×M。</p>
+<p>这样做带来的计算量提升是很大的，比方说上面的例子中，相当于我们从2×2个窗口变成了3×3，计算量增大了2.25倍</p>
+<p>为了解决这个问题，作者提出了cycle-shift方法，如下图所示：</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118214703393.png" alt="image-20211118214703393"></p>
+<p>这里还是比较巧妙的，具体步骤看<strong>附录</strong>，借用了<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360513527" >陀飞轮<i class="fas fa-external-link-alt"></i></a>画的图和解释，感谢！</p>
+<h3 id="相对位置偏差">相对位置偏差</h3>
+<p>在计算注意力时，我们参考其他人的工作，增加了一个相对位置偏差项B：</p>
+<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118220635227.png" alt="image-20211118220635227" style="zoom: 50%;" />
+<p>我们也尝试了绝对位置编码，效果较差一点点，我们没有采用</p>
+<h2 id="模型参数设置">模型参数设置</h2>
+<ul>
+<li>
+<p>四种模型</p>
+<ul>
+<li>
+<p>B：Base，计算复杂度和ViT/DeiT相当</p>
+</li>
+<li>
+<p>T/S/L: Tiny/Small/Large，基础模型0.25，0.5，2倍的模型大小和计算复杂度</p>
+</li>
+<li>
+<p>T、S模型的复杂度分别和ResNet-50 (DeiT-S) and ResNet-101相当</p>
+</li>
+</ul>
+</li>
+<li>
+<p>windows size：M=7</p>
+</li>
+<li>
+<p>query dimension of each head：d=32</p>
+</li>
+<li>
+<p>每层MLP的膨胀度：α=4</p>
+</li>
+</ul>
+<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118221600257.png" alt="image-20211118221600257" style="zoom:45%;" />
+<h1>实验</h1>
+<h2 id="分类">分类</h2>
+<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118221728889.png" alt="image-20211118221728889" style="zoom:50%;" />
+<h2 id="目标检测">目标检测</h2>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221822787.png" alt="image-20211118221822787" style="zoom:50%;" />
+<h2 id="语义分割">语义分割</h2>
+<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118221905457.png" alt="image-20211118221905457" style="zoom: 67%;" />
+<h2 id="shift-window和位置编码的影响">shift window和位置编码的影响</h2>
+<img src="C:\Users\搞事boy\Desktop\SwinTransformer\image-20211118222030934.png" alt="image-20211118222030934" style="zoom:67%;" />
+<h1>总结</h1>
+<p>主要的两个思想：</p>
+<ul>
+<li><strong>Windows尺度变化</strong>：随着网络变深，将原来细分的patches不断合并，借鉴了CNN的尺度变化。把前面层的patches分割的十分小，从而支持高分辨率的任务；而后面不断合并，汇总patch的信息。</li>
+<li><strong>偏移窗口自注意力</strong>：采用窗口机制来进行局部自注意力，并且利用shifted机制来进行窗口之间的信息交流。成功把自注意力的计算量需求降低到线性增加。</li>
+</ul>
+<h1>附录</h1>
+<h2 id="cycle-shift">cycle shift</h2>
+<p><img src="https://pic2.zhimg.com/80/v2-0fc6b9b6753a5416f6cf3d7361c967d1_1440w.jpg" alt="img_cycle_shift"></p>
 
         </div>
 
@@ -282,29 +397,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/11/18/SwinTransformer/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/11/16/Convmixer/"
+                           href="/2021/11/16/%E9%A2%91%E7%8E%87%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Patches Are All You Need?</span>
+                                <span class="post-nav-title-item">许志钦：理解神经网络训练过程</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -511,7 +611,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">作者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#F-Principle"><span class="nav-number">1.1.</span> <span class="nav-text">F-Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%95%88%E6%9E%9C%E6%AF%94%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95%E5%A5%BD%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">为什么神经网络的学习效果比传统方法好？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%8A%A0%E9%80%9F%E6%95%88%E5%BA%94"><span class="nav-number">1.3.</span> <span class="nav-text">深度加速效应</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows"><span class="nav-number">3.1.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shifted-Windows"><span class="nav-number">3.2.</span> <span class="nav-text">Shifted Windows</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">总体结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A7%88"><span class="nav-number">5.1.1.</span> <span class="nav-text">概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swin-Transformer-Block"><span class="nav-number">5.1.2.</span> <span class="nav-text">Swin Transformer Block</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%81%8F%E7%A7%BB%E7%AA%97%E5%8F%A3%E7%9A%84%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">5.2.</span> <span class="nav-text">基于偏移窗口的自注意力机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%97%A0%E9%87%8D%E5%8F%A0%E7%AA%97%E5%8F%A3%E7%9A%84%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">5.2.1.</span> <span class="nav-text">基于无重叠窗口的自注意力机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E8%BF%9E%E7%BB%AD%E7%9A%84block%E9%97%B4%E8%BF%9B%E8%A1%8C%E5%81%8F%E7%A7%BB%E7%AA%97%E5%8F%A3%E5%88%86%E5%8C%BA"><span class="nav-number">5.2.2.</span> <span class="nav-text">在连续的block间进行偏移窗口分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%81%8F%E7%A7%BB%E5%8F%82%E6%95%B0%E7%9A%84%E9%AB%98%E6%95%88batch%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.2.3.</span> <span class="nav-text">对于偏移参数的高效batch设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E4%BD%8D%E7%BD%AE%E5%81%8F%E5%B7%AE"><span class="nav-number">5.2.4.</span> <span class="nav-text">相对位置偏差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.3.</span> <span class="nav-text">模型参数设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">6.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="nav-number">6.2.</span> <span class="nav-text">目标检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2"><span class="nav-number">6.3.</span> <span class="nav-text">语义分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shift-window%E5%92%8C%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">6.4.</span> <span class="nav-text">shift window和位置编码的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cycle-shift"><span class="nav-number">8.1.</span> <span class="nav-text">cycle shift</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
