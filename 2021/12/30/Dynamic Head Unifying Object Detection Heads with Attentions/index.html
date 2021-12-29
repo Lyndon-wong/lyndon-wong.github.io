@@ -329,31 +329,31 @@
 <h2 id="Dynamic-head">Dynamic head</h2>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211229235150957.png" alt="image-20211229235150957"></p>
 <p>注意力作用的表示</p>
-<p>\begin{equation}<br>
+<p>$$<br>
 W(\mathcal{F})=\pi(\mathcal{F}) \cdot \mathcal{F}<br>
-\end{equation}</p>
-<p>对特征F分别在三个维度使用注意力变换</p>
-<p>\begin{equation}<br>
+$$<br>
+对特征F分别在三个维度使用注意力变换</p>
+<p>$$<br>
 W(\mathcal{F})=\pi_{C}\left(\pi_{S}\left(\pi_{L}(\mathcal{F}) \cdot \mathcal{F}\right) \cdot \mathcal{F}\right) \cdot \mathcal{F}<br>
-\end{equation}</p>
+$$</p>
 <ul>
 <li>尺度注意力：1×1卷积，强sigmoid激活函数</li>
 </ul>
-<p>\begin{equation}<br>
+<p>$$<br>
 \pi_{L}(\mathcal{F}) \cdot \mathcal{F}=\sigma\left(f\left(\frac{1}{S C} \sum_{S, C} \mathcal{F}\right)\right) \cdot \mathcal{F}<br>
-\end{equation}</p>
+$$</p>
 <ul>
 <li>空间注意力：首先使用可变性卷积稀疏地学习注意力，然后在相同的空间位置聚合不同层次的特征，K是空间系数采样点，delta_pk是学习到的位置偏移，delta_pk关注差异区域，delta_mk是学习pk位置的尺度变化</li>
 </ul>
-<p>\begin{equation}<br>
+<p>$$<br>
 \pi_{S}(\mathcal{F}) \cdot \mathcal{F}=\frac{1}{L} \sum_{l=1}^{L} \sum_{k=1}^{K} w_{l, k} \cdot \mathcal{F}\left(l ; p_{k}+\Delta p_{k} ; c\right) \cdot \Delta m_{k}<br>
-\end{equation}</p>
+$$</p>
 <ul>
 <li>任务注意力：动态切换feature的通道来满足不同的任务。alpha、beta学习激活阈值。theta()函数首先使用GAP降低维度，然后使用两层FC和一个norm层，最后使用一个偏移的sigmoid函数将输出映射到[-1,1].</li>
 </ul>
-<p>\begin{equation}<br>
+<p>$$<br>
 \pi_{C}(\mathcal{F}) \cdot \mathcal{F}=\max \left(\alpha^{1}(\mathcal{F}) \cdot \mathcal{F}<em>{c}+\beta^{1}(\mathcal{F}), \alpha^{2}(\mathcal{F}) \cdot \mathcal{F}</em>{c}+\beta^{2}(\mathcal{F})\right)<br>
-\end{equation}</p>
+$$</p>
 <p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230000731601.png" alt="image-20211230000731601"></p>
 <p>多此使用dynamic head block进行增强。</p>
 <p>从图1可以看出，最初backbone输出的是充满噪声的，通过各个模块都显示了较好的注意力性能。</p>
