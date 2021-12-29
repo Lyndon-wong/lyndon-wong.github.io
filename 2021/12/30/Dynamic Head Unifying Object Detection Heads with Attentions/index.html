@@ -9,7 +9,7 @@
     
     <title>
         
-            Swin Transformer: Hierarchical Vision Transformer using Shifted Windows |
+            Dynamic Head: Unifying Object Detection Heads with Attentions |
         
         Wang&#39;s Space
     </title>
@@ -167,7 +167,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</span>
+            <span class="title-hover-animation">Dynamic Head: Unifying Object Detection Heads with Attentions</span>
         </div>
 
         
@@ -183,7 +183,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-11-18 16:19:06
+        <i class="fas fa-edit"></i>&nbsp;2021-12-30 00:39:28
     </span>
     
         <span class="article-categories article-meta-item">
@@ -191,7 +191,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Paper-Reading/">Paper Reading</a>&nbsp;
+                        <a href="/categories/Object-Detection/">Object Detection</a>&nbsp;
                     </li>
                 
             </ul>
@@ -203,7 +203,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/transformer-deep-learning/">transformer - deep learning</a>&nbsp;
+                        <a href="/tags/transformer-deep-learning-attention/">transformer - deep learning - attention</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,7 +213,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
         </span>
     
     
@@ -234,161 +234,157 @@
         
 
         <div class="article-content markdown-body">
-            <h1>论文信息</h1>
-<ul>
-<li><strong>2021 ICCV bestpaper</strong></li>
-<li>微软亚洲研究院</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.14030v2.pdf" >论文地址<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/microsoft/Swin-Transformer" >项目地址<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
+            <h1>介绍</h1>
+<p>本篇论文提出了一种基于注意力机制的动态head，配合最近大火的强大的swin transformer作为backbone，在coco上首次实现了AP突破60。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.08322" >论文地址<i class="fas fa-external-link-alt"></i></a></p>
 <h1>摘要</h1>
 <ul>
-<li>
-<p>Vision Transformer的两个问题：</p>
-<ul>
-<li>
-<p>两个领域涉及的scale不同，NLP的scale是标准固定的，而CV的scale变化范围非常大。</p>
-</li>
-<li>
-<p>CV比起NLP需要更大的分辨率，而且CV中使用Transformer的计算复杂度是图像尺度的平方，这会导致计算量过于庞大</p>
-</li>
-</ul>
-</li>
-<li>
-<p>作者的解决方案：</p>
-<ul>
-<li>
-<p>引入CNN中常用的层次化构建方式构建层次化Transformer</p>
-</li>
-<li>
-<p>引入locality思想，对无重合的window区域内进行self-attention计算</p>
-</li>
-</ul>
-</li>
+<li>问题：之前的一些关于head的工作，致力于提升性能表现而没有提出一个比较统一的视野</li>
+<li>通过将自注意力机制和谐地融入到 ： 特征维度用于尺度感知；空间位置用于位置感知； 通道维度用于任务感知 的理念中，该方法显著地提升了目标检测头的表征能力，并且没有额外计算量负担</li>
+<li>实验验证了该动态头的有效性和高效性，在COCO数据集上，ResNeXt-1010-DCN backbone达到54AP，使用最新的transformer backbone达到了60AP</li>
 </ul>
 <h1>介绍</h1>
-<h2 id="Windows">Windows</h2>
-<p>首先看看Windows到底是怎么做的？</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118165753490.png" alt="image-20211118165753490"></p>
-<p><strong>右侧：ViT的做法</strong>：</p>
+<h2 id="背景">背景</h2>
 <ul>
-<li>先来看看经典的做法，ViT把图片分成一个一个16*16的像素小块，我们常叫做patch。然后对每个patch拉成“向量”后，经过一个线性层变成Transformer网络需要的维度（还需要加入位置编码）。之后就是传统的Transformer计算了</li>
-<li>这样就使得，每个patch代表一部分图片的信息，并且每层小encoder都有全局的感受野。但是这样带来的问题是图片尺寸大了的话，还用小的patch块就会导致patch的数量很多，计算量平方倍的增长。</li>
-</ul>
-<p><strong>左侧：Swin T的做法</strong>：</p>
+<li>
+<p>背景：目标检测任务：“目标是什么，在哪？”</p>
+</li>
+<li>
+<p>几乎所有检测方法的结构都是：backbone  + head</p>
+</li>
+<li>
+<p>head如何设计成为一个有挑战的问题，难点有三：</p>
 <ul>
-<li>简单来说，重要的就两点：
-<ul>
-<li><strong>每一层的patches分割是不一样的</strong>，浅层分割的patch更小，随着网络加深，慢慢合并（类似cnn的思想）</li>
-<li><strong>每一层都只计算局部自注意力</strong>（在红色框框即Windows内进行自注意力计算），这样计算量随输入图片尺寸线性增长，可以接收了，所以可以做一些场景分割等对高分辨率有较高要求的工作</li>
+<li>scale-aware”：目标大小变化</li>
+<li>“spatial-aware”：目标位置、角度、形状变化</li>
+<li>“task-aware”：目标检测框，中心，角点</li>
 </ul>
 </li>
+<li>
+<p>目前的head还是只能解决这几个问题中的某一个，所以如何设计一个统一的检测头同时解决这些问题是有待研究的。</p>
+</li>
 </ul>
-<h2 id="Shifted-Windows">Shifted Windows</h2>
-<p>等等，以上好像只说了Windows，那Shifted又是什么呢？</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118171032078.png" alt="image-20211118171032078"></p>
-<p>可以看出，Shift的意思就是在下一层，窗口的分区会进行偏移，有些窗口会被生成在前一个窗口的边界上，以连接这些窗口。注意这和Sliding Windows的</p>
-<p>作者提出的Swin-Transformer在分类、检测、语义分割任务上都获得了SOTA。作者希望基于Transformer，并且能在多个图像相关的任务都达到SOTA的swin-transformer模型，能对未来人们发现更统一的模型做出贡献，真正打通我们对图像信息和文本信息的建模的认知。</p>
+<h2 id="方法">方法</h2>
+<p>如果我们考虑一个普通的backbone的输出，我们会得到一个<em>level×space×channel</em>的张量</p>
+<p>，所以我们发现设计一个统一的head实际上可以看作是一个注意力学习问题。一个初始的想法就是基于这个张量建立一个完全的自注意力机制。但是，这个优化问题会变得十分难以求解，并且计算量难以承担。</p>
+<p>然而，我们可以将注意力机制分解应用到各个维度上去，即：</p>
+<ul>
+<li>
+<p>尺度注意力模块 - level维度，用以学习对于对于某个目标的scale而言尺度合适的level</p>
+</li>
+<li>
+<p>空间注意力模块 - space（height×width）维度，用以学习表征在空间位置的差异</p>
+</li>
+<li>
+<p>任务注意力模块 - channel维度，用以将不同的特征通道分配到不同的认为回归中</p>
+</li>
+</ul>
+<p>我们发现，虽然这些注意力模块分别作用在feature的不同维度，但是他们之间的性能可以互补。在COCO数据集上这个方法可以几乎可以给各种目标检测方法提升1.2%~3.2%的AP。</p>
 <h1>相关工作</h1>
 <ul>
-<li>CNN：</li>
-<li>基于自注意力SA的框架</li>
-<li>给CNN增加自注意力、Transformer</li>
-<li>基于Transformer的视觉backbone
-<ul>
-<li>ViT：无重叠、中等尺度的patch、实现了速度-精度的完美平衡；需要大数据集预训练</li>
-<li>DeiT：利用几种训练方法使得ViT能在ImageNet-1K数据集上训练，但是还是不适合需要高分辨率的图像任务</li>
-<li>还有一些直接利用ViT，对其进行下采样或者反卷积后进行目标检测的方法，但是都没有获得特别好的结果</li>
-<li>在基于ViT结构的分类方法中，Swin-Transformer也是实现了最佳的“速度-精度平衡”，即使它是用来作为一个一般化的backbone，没有对该任务进行优化</li>
-<li>也有一些人尝试利用Transformer获得高分辨率的特征图，但是依然受限于随图片尺寸二次增长的计算复杂度，而我们的方法计算复杂度线性增长</li>
-<li>我们的方法是有效并且高效的，同时在COCO目标检测和ADE20K语义分割两个任务达到了SOTA。</li>
-</ul>
-</li>
-</ul>
-<h1>方法</h1>
-<h2 id="总体结构">总体结构</h2>
-<h3 id="概览">概览</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118193243394.png" alt="image-20211118193243394"></p>
+<li>
+<p>尺度感知：</p>
 <ul>
 <li>
-<p>首先，将图片分割为patches，patches的大小这里设置的是4×4，所以每个patch（token）的维度就是4×4×3=48，每个patch的特征的值就是原始的RGB数值。</p>
+<p>[6,24,25]：图像金字塔</p>
 </li>
 <li>
-<p>阶段1：对进行一个线性层，可以把每个token的维度降低到C，然后在阶段1后面的Swin Transformer Block中，使用Modified Self Attentio进行计算，保持tokens的数量不变。</p>
+<p>[15]：特征金字塔，问题：不同深度的特征可能存在明显的语义gap</p>
 </li>
 <li>
-<p>阶段2：为了进行分层表示，如之前所介绍的，开始合并patches。在这一层以2×2为一组对patches进行合并。所以每个patch的维度变为4C，总共的patches的数量缩小4倍（相当于原来patch的大小是4×4，现在是8×8）。然后再进行一次线性变换，使得输出的维度变为2C.</p>
+<p>[18]：通过自底向上路径增强底层特征</p>
 </li>
 <li>
-<p>阶段3、阶段4：类似于阶段2，</p>
+<p>[20]：平衡特征金字塔</p>
+</li>
+<li>
+<p>[31]：基于3D卷积统一提取尺度和空间特征</p>
 </li>
 </ul>
-<h3 id="Swin-Transformer-Block">Swin Transformer Block</h3>
-<p>将原来的Transformer Block的MSA替换为shifted windows multi-heads self attention，SW-MSA。其他结构保持不变</p>
-<h2 id="基于偏移窗口的自注意力机制">基于偏移窗口的自注意力机制</h2>
-<h3 id="基于无重叠窗口的自注意力机制">基于无重叠窗口的自注意力机制</h3>
-<p>不同于传统的全局的自注意力，我们的自注意力在不重叠窗口内部进行，假设总共有h×w个patches，每个窗口包括M×M个patches，那么两种机制的计算复杂度为</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118201551763.png" alt="image-20211118201551763"></p>
-<p>可见，MSA和patch数量hw成平方关系，而W-MSA在M固定的情况下，和hw只是线性关系。</p>
-<h3 id="在连续的block间进行偏移窗口分区">在连续的block间进行偏移窗口分区</h3>
-<p>仅仅基于窗口的自注意力没有窗口之间的信息交流，限制了其能力。所以增加偏移窗口。那么怎么偏移呢？</p>
-<p>其实它的做法也不复杂，通速地说，从当前的windows的中心点作为分割点，这里我画了一个草图：</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118213833290.png" alt="image-20211118213833290" style="zoom: 25%;" />
-<h3 id="对于偏移参数的高效batch设置">对于偏移参数的高效batch设置</h3>
-<p>偏移窗口的一个问题就是增加了窗口的数量，并且会产生一些小于M×M尺寸的窗口，一种比较原始的方法就是把这些小的窗口填充（pad）到M×M。</p>
-<p>这样做带来的计算量提升是很大的，比方说上面的例子中，相当于我们从2×2个窗口变成了3×3，计算量增大了2.25倍</p>
-<p>为了解决这个问题，作者提出了cycle-shift方法，如下图所示：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118214703393.png" alt="image-20211118214703393"></p>
-<p>这里还是比较巧妙的，具体步骤看<strong>附录</strong>，借用了<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360513527" >陀飞轮<i class="fas fa-external-link-alt"></i></a>画的图和解释，感谢！</p>
-<h3 id="相对位置偏差">相对位置偏差</h3>
-<p>在计算注意力时，我们参考其他人的工作，增加了一个相对位置偏差项B：</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118220635227.png" alt="image-20211118220635227" style="zoom: 50%;" />
-<p>我们也尝试了绝对位置编码，效果较差一点点，我们没有采用</p>
-<h2 id="模型参数设置">模型参数设置</h2>
+</li>
+<li>
+<p>空间感知：</p>
+<ul>
+<li>[41]：CNN学习空间变换是有局限性的</li>
+<li>[13,32]：通过增加模型size缓解这个问题</li>
+<li>[14]：通过数据增强缓解该问题</li>
+<li>[34]：使用扩展卷积从指数扩展的感受野聚合上下文信息。</li>
+<li>[7]：提出了一种可变形的卷积，通过附加的自学习偏移来采样空间位置。</li>
+<li>[37]：通过引入一个学习的特征幅值来重新表述偏移量，进一步提高了其能力。</li>
+</ul>
+</li>
+<li>
+<p>任务感知：</p>
+<ul>
+<li>[39,6]：最初提出的两阶段结构</li>
+<li>[23]：RPN</li>
+<li>[22]：单阶段</li>
+<li>[16]：任务特定分支</li>
+</ul>
+</li>
+</ul>
+<h1>我们的方法</h1>
+<h2 id="动机">动机</h2>
+<p>给定一个L层的特征，我们可以通过上采样或下采样的方法将不同level的特征变为中间level的特征尺寸，这样变形后的特征可以表示为一个4维特征张量：L×H×W×C，我们定义S = H×W,将该特征降低到3维：L×S×C，基于这个表征方法，我们探究各个维度的意义：</p>
+<h2 id="Dynamic-head">Dynamic head</h2>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211229235150957.png" alt="image-20211229235150957"></p>
+<p>注意力作用的表示</p>
+<p>\begin{equation}<br>
+W(\mathcal{F})=\pi(\mathcal{F}) \cdot \mathcal{F}<br>
+\end{equation}</p>
+<p>对特征F分别在三个维度使用注意力变换</p>
+<p>\begin{equation}<br>
+W(\mathcal{F})=\pi_{C}\left(\pi_{S}\left(\pi_{L}(\mathcal{F}) \cdot \mathcal{F}\right) \cdot \mathcal{F}\right) \cdot \mathcal{F}<br>
+\end{equation}</p>
+<ul>
+<li>尺度注意力：1×1卷积，强sigmoid激活函数</li>
+</ul>
+<p>\begin{equation}<br>
+\pi_{L}(\mathcal{F}) \cdot \mathcal{F}=\sigma\left(f\left(\frac{1}{S C} \sum_{S, C} \mathcal{F}\right)\right) \cdot \mathcal{F}<br>
+\end{equation}</p>
+<ul>
+<li>空间注意力：首先使用可变性卷积稀疏地学习注意力，然后在相同的空间位置聚合不同层次的特征，K是空间系数采样点，delta_pk是学习到的位置偏移，delta_pk关注差异区域，delta_mk是学习pk位置的尺度变化</li>
+</ul>
+<p>\begin{equation}<br>
+\pi_{S}(\mathcal{F}) \cdot \mathcal{F}=\frac{1}{L} \sum_{l=1}^{L} \sum_{k=1}^{K} w_{l, k} \cdot \mathcal{F}\left(l ; p_{k}+\Delta p_{k} ; c\right) \cdot \Delta m_{k}<br>
+\end{equation}</p>
+<ul>
+<li>任务注意力：动态切换feature的通道来满足不同的任务。alpha、beta学习激活阈值。theta()函数首先使用GAP降低维度，然后使用两层FC和一个norm层，最后使用一个偏移的sigmoid函数将输出映射到[-1,1].</li>
+</ul>
+<p>\begin{equation}<br>
+\pi_{C}(\mathcal{F}) \cdot \mathcal{F}=\max \left(\alpha^{1}(\mathcal{F}) \cdot \mathcal{F}<em>{c}+\beta^{1}(\mathcal{F}), \alpha^{2}(\mathcal{F}) \cdot \mathcal{F}</em>{c}+\beta^{2}(\mathcal{F})\right)<br>
+\end{equation}</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230000731601.png" alt="image-20211230000731601"></p>
+<p>多此使用dynamic head block进行增强。</p>
+<p>从图1可以看出，最初backbone输出的是充满噪声的，通过各个模块都显示了较好的注意力性能。</p>
+<h2 id="如何集成到其他目标检测方法中">如何集成到其他目标检测方法中</h2>
+<ul>
+<li>单阶段</li>
+<li>双阶段</li>
+</ul>
+<h2 id="和其他注意力机制的关系">和其他注意力机制的关系</h2>
 <ul>
 <li>
-<p>四种模型</p>
-<ul>
-<li>
-<p>B：Base，计算复杂度和ViT/DeiT相当</p>
+<p>可变性卷积：可变性卷积通过稀疏采样极大地提升了传统卷积的变换学习能力，虽然它很少用在head中，但是可以把它看作是在S维度上的一个单独的建模</p>
 </li>
 <li>
-<p>T/S/L: Tiny/Small/Large，基础模型0.25，0.5，2倍的模型大小和计算复杂度</p>
+<p>非局部：非局部网络[30]是利用注意力模块来提高目标检测性能的先驱，但它采用了一种简单的点积公式，通过融合来自不同空间位置的其他像素的特征来增强像素的特征。这种行为可以被视为只对表示中的L×S子维度进行建模</p>
 </li>
 <li>
-<p>T、S模型的复杂度分别和ResNet-50 (DeiT-S) and ResNet-101相当</p>
+<p>transformer：Transformer提供了一个简单的解决方案，通过应用多头全连接层，从不同的模式学习交叉注意力和融合特征。在我们的表示中，这种行为可以被视为只对S × C子维度建模。</p>
 </li>
 </ul>
-</li>
-<li>
-<p>windows size：M=7</p>
-</li>
-<li>
-<p>query dimension of each head：d=32</p>
-</li>
-<li>
-<p>每层MLP的膨胀度：α=4</p>
-</li>
-</ul>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221600257.png" alt="image-20211118221600257" style="zoom:45%;" />
 <h1>实验</h1>
-<h2 id="分类">分类</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221728889.png" alt="image-20211118221728889" style="zoom:50%;" />
-<h2 id="目标检测">目标检测</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221822787.png" alt="image-20211118221822787" style="zoom:50%;" />
-<h2 id="语义分割">语义分割</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221905457.png" alt="image-20211118221905457" style="zoom: 67%;" />
-<h2 id="shift-window和位置编码的影响">shift window和位置编码的影响</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118222030934.png" alt="image-20211118222030934" style="zoom:67%;" />
-<h1>总结</h1>
-<p>主要的两个思想：</p>
-<ul>
-<li><strong>Windows尺度变化</strong>：随着网络变深，将原来细分的patches不断合并，借鉴了CNN的尺度变化。把前面层的patches分割的十分小，从而支持高分辨率的任务；而后面不断合并，汇总patch的信息。</li>
-<li><strong>偏移窗口自注意力</strong>：采用窗口机制来进行局部自注意力，并且利用shifted机制来进行窗口之间的信息交流。成功把自注意力的计算量需求降低到线性增加。</li>
-</ul>
-<h1>附录</h1>
-<h2 id="cycle-shift">cycle shift</h2>
-<p><img src="https://pic2.zhimg.com/80/v2-0fc6b9b6753a5416f6cf3d7361c967d1_1440w.jpg" alt="img_cycle_shift"></p>
+<h2 id="实验设置（略）">实验设置（略）</h2>
+<h2 id="消融实验">消融实验</h2>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002241538.png" alt="image-20211230002241538"></p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002319092.png" alt="image-20211230002319092"></p>
+<p>高分辨率特征图（level5）变到低分辨率</p>
+<p>低分辨率特征图（level1）变到高分辨率</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002753752-16407957715231.png" alt="image-20211230002753752"></p>
+<p>进入和输出的特征图的对比</p>
+<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002915035.png" alt="img-123"><br>
+<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230003830845.png" alt="image-20211230003830845"></p>
 
         </div>
 
@@ -397,29 +393,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/12/30/Dynamic%20Head%20Unifying%20Object%20Detection%20Heads%20with%20Attentions/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Dynamic Head: Unifying Object Detection Heads with Attentions</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/11/16/%E9%A2%91%E7%8E%87%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"
+                           href="/2021/11/18/SwinTransformer/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">许志钦：理解神经网络训练过程</span>
+                                <span class="post-nav-title-item">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -626,7 +607,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows"><span class="nav-number">3.1.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shifted-Windows"><span class="nav-number">3.2.</span> <span class="nav-text">Shifted Windows</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">总体结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A7%88"><span class="nav-number">5.1.1.</span> <span class="nav-text">概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swin-Transformer-Block"><span class="nav-number">5.1.2.</span> <span class="nav-text">Swin Transformer Block</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%81%8F%E7%A7%BB%E7%AA%97%E5%8F%A3%E7%9A%84%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">5.2.</span> <span class="nav-text">基于偏移窗口的自注意力机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%97%A0%E9%87%8D%E5%8F%A0%E7%AA%97%E5%8F%A3%E7%9A%84%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">5.2.1.</span> <span class="nav-text">基于无重叠窗口的自注意力机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E8%BF%9E%E7%BB%AD%E7%9A%84block%E9%97%B4%E8%BF%9B%E8%A1%8C%E5%81%8F%E7%A7%BB%E7%AA%97%E5%8F%A3%E5%88%86%E5%8C%BA"><span class="nav-number">5.2.2.</span> <span class="nav-text">在连续的block间进行偏移窗口分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%81%8F%E7%A7%BB%E5%8F%82%E6%95%B0%E7%9A%84%E9%AB%98%E6%95%88batch%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.2.3.</span> <span class="nav-text">对于偏移参数的高效batch设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E4%BD%8D%E7%BD%AE%E5%81%8F%E5%B7%AE"><span class="nav-number">5.2.4.</span> <span class="nav-text">相对位置偏差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.3.</span> <span class="nav-text">模型参数设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">6.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="nav-number">6.2.</span> <span class="nav-text">目标检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2"><span class="nav-number">6.3.</span> <span class="nav-text">语义分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shift-window%E5%92%8C%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">6.4.</span> <span class="nav-text">shift window和位置编码的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cycle-shift"><span class="nav-number">8.1.</span> <span class="nav-text">cycle shift</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">我们的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">5.1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-head"><span class="nav-number">5.2.</span> <span class="nav-text">Dynamic head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%9B%86%E6%88%90%E5%88%B0%E5%85%B6%E4%BB%96%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E4%B8%AD"><span class="nav-number">5.3.</span> <span class="nav-text">如何集成到其他目标检测方法中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%8C%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.4.</span> <span class="nav-text">和其他注意力机制的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE%EF%BC%88%E7%95%A5%EF%BC%89"><span class="nav-number">6.1.</span> <span class="nav-text">实验设置（略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">6.2.</span> <span class="nav-text">消融实验</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
