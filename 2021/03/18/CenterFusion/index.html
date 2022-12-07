@@ -329,7 +329,7 @@
 4.最后融合的特征被用来精确地估计目标的3D特性，例如深度，角度和速度。</p>
 </blockquote>
 <p>网络的结构如图1所示</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210320230117198.png" alt="image-20210320230117198"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210320230117198.png" alt="image-20210320230117198"></p>
 <h1>2.Related Work</h1>
 <h2 id="2-1-单传感器的方法">2.1 单传感器的方法</h2>
 <h3 id="单目相机3D目标检测方法（Monocular-3D-object-detection）">单目相机3D目标检测方法（Monocular 3D object detection）:</h3>
@@ -371,7 +371,7 @@
 <h1>3.Preliminary</h1>
 <h2 id="3-1-雷达点云">3.1 雷达点云</h2>
 <p>主动雷达通常得到目标在BEV下的2D点云图，每次检测，雷达将会报告目标的径向瞬时速度。这个速度通常不是物体的实际速度，如图2所演示的。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210320232947682.png" alt="image-20210320232947682"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210320232947682.png" alt="image-20210320232947682"></p>
 <p>​	我们将目标作为中心坐标系下的一个3D点来处理，P = （x,y,z,vx,vy），vx，vy分别表示了径向速度在x，y方向上的分量。径向速度已经通过车辆自身运动进行了补偿</p>
 <p>​	对于每个场景，我们聚合了雷达点云的3次扫描(在过去0.25秒内的探测)。nuScenes数据集提供了从雷达坐标系统到自我中心和相机坐标系统映射雷达点云所需的校准参数。</p>
 <h2 id="3-2-CenterNet">3.2 CenterNet</h2>
@@ -380,7 +380,7 @@
 <li>输入：I:R(W×H×3)</li>
 <li>输出：关键点热图[0,1](W/R×H/R×C),R是下采样率，C为目标种类的个数，Y=1表示检测到在(x,y)处存在一个C类目标</li>
 <li>真值热图通过2D检测框真值通过高斯核生成</li>
-<li><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323235928853.png" alt="image-20210323235928853"></li>
+<li><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210323235928853.png" alt="image-20210323235928853"></li>
 <li>pi 是c类目标的真值中心，q是二维平面上的像素位置点，σi是尺寸自适应标准差，根据目标类别的大小控制热图的大小。然后一个全卷积编码-解码神经网络被用来预测Y。</li>
 <li>3D检测框生成：
 <ul>
@@ -393,7 +393,7 @@
 <li>对于每个中心点，也预测一个局部偏移量来补偿骨干网中输出跨步造成的离散化误差</li>
 <li>损失函数：
 <ul>
-<li><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210324002317872.png" alt="image-20210324002317872"></li>
+<li><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210324002317872.png" alt="image-20210324002317872"></li>
 </ul>
 </li>
 </ul>
@@ -414,7 +414,7 @@
 </ul>
 <h3 id="平截体视景关联机制">平截体视景关联机制</h3>
 <p>我们开发了一种使用目标的2D检测框以及它的估计深度和尺寸来创建3D的感兴趣平截体区域（Region of Interest ，RoI）  的方法。在拥有目标的2D检测框的情况下，我们为目标创建了一个类似图3的平截体。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210321161756484.png" alt="image-20210321161756484"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210321161756484.png" alt="image-20210321161756484"></p>
 <p>这大大缩小了需要检查关联的雷达探测范围，因为任何超出这个截锥的点都可以忽略。然后，我们使用估计的对象深度、尺寸和转角来创建对象周围的RoI，以进一步过滤出与该对象不相关的雷达检测。如果还是有多个雷达检测在RoI内，我们选择最近的点作为这个目标对应的雷达检测结果。</p>
 <p>​	在训练阶段中，我们使用目标的真实3D检测框来创建一个紧凑的ROI平截体并且将雷达检测和目标进行关联。在测试阶段中，ROI平截体通过上述的方法进行估计。在这个过程中，我们利用一个参数σ来控制RoI平截体的大小（如图3）这是为了考虑深度估计值的不准确性，因为在这一阶段，对象的深度完全是使用基于图像的特征来确定的.使用该参数扩大截锥，即使估计的深度稍有偏差，也会增加截锥内包含相应雷达探测的机会。σ的值应该谨慎选择，一个较大的RoI可能包含了其他临近目标的雷达检测结果。</p>
 <p>​	<strong>截锥体方法的优点</strong>：</p>
@@ -432,10 +432,10 @@
 </ul>
 <h3 id="柱体扩张">柱体扩张</h3>
 <p>为了解决高度信息不准确的问题，我们介绍了一种雷达信息预处理技术:柱体扩张，即每一个雷达检测点都被扩张为一个固定尺寸大小的柱体，如图4所示。柱体创造了雷达检测目标的一种良好的物理表现形式，拥有了这个形式，我们可以简单的认为如果一个雷达点的柱体都在截体内部，则认为这个雷达点在截体内部，如图1.</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210321170505547-1616317621976.png" alt="image-20210321170505547"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210321170505547-1616317621976.png" alt="image-20210321170505547"></p>
 <h3 id="雷达特征提取">雷达特征提取</h3>
 <p>​    当将目标对应雷达数据完成关联后，我们就可以使用雷达的深度和速度数据来补全图片数据的特征。特别的，对于每一个关联到目标的雷达检测，我们根据检测框的位置生成三张热图（中心在目标的2D检测框处并且大小成比例），我们利用参数α来控制heatmap的大小。heatmap的值是归一化后的目标深度(d),和径向速度的x、y方向的分量vx，vy。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210322184116311.png" alt="image-20210322184116311"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210322184116311.png" alt="image-20210322184116311"></p>
 <ul>
 <li>
 <p>特征图的编号：i = 1，2，3</p>
@@ -485,12 +485,12 @@
 </li>
 </ul>
 <h1>6.Results</h1>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234307136.png" alt="image-20210323234307136"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234412854.png" alt="image-20210323234412854"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210323234307136.png" alt="image-20210323234307136"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210323234412854.png" alt="image-20210323234412854"></p>
 <h1>7.Ablation Study</h1>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234524513.png" alt="image-20210323234524513"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234541014.png" alt="image-20210323234541014"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210323234814795-1616514624639.png" alt="image-20210323234814795"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210323234524513.png" alt="image-20210323234524513"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210323234541014.png" alt="image-20210323234541014"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210323234814795-1616514624639.png" alt="image-20210323234814795"></p>
 <h1>相关知识</h1>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/04c2a9ccaa75" >1*1卷积层的作用<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv4020256/" >神经网络可视化——heatmap<i class="fas fa-external-link-alt"></i></a></p>
@@ -633,7 +633,7 @@
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

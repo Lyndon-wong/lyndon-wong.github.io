@@ -327,7 +327,7 @@
 <h2 id="动机">动机</h2>
 <p>给定一个L层的特征，我们可以通过上采样或下采样的方法将不同level的特征变为中间level的特征尺寸，这样变形后的特征可以表示为一个4维特征张量：L×H×W×C，我们定义S = H×W,将该特征降低到3维：L×S×C，基于这个表征方法，我们探究各个维度的意义：</p>
 <h2 id="Dynamic-head">Dynamic head</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211229235150957.png" alt="image-20211229235150957"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211229235150957.png" alt="image-20211229235150957"></p>
 <p>注意力作用的表示</p>
 <p>$$<br>
 W(\mathcal{F})=\pi(\mathcal{F}) \cdot \mathcal{F}<br>
@@ -354,7 +354,7 @@ $$</p>
 <p>$$<br>
 \pi_{C}(\mathcal{F}) \cdot \mathcal{F}=\max \left(\alpha^{1}(\mathcal{F}) \cdot \mathcal{F}<em>{c}+\beta^{1}(\mathcal{F}), \alpha^{2}(\mathcal{F}) \cdot \mathcal{F}</em>{c}+\beta^{2}(\mathcal{F})\right)<br>
 $$</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230000731601.png" alt="image-20211230000731601"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230000731601.png" alt="image-20211230000731601"></p>
 <p>多此使用dynamic head block进行增强。</p>
 <p>从图1可以看出，最初backbone输出的是充满噪声的，通过各个模块都显示了较好的注意力性能。</p>
 <h2 id="如何集成到其他目标检测方法中">如何集成到其他目标检测方法中</h2>
@@ -377,14 +377,14 @@ $$</p>
 <h1>实验</h1>
 <h2 id="实验设置（略）">实验设置（略）</h2>
 <h2 id="消融实验">消融实验</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002241538.png" alt="image-20211230002241538"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002319092.png" alt="image-20211230002319092"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002241538.png" alt="image-20211230002241538"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002319092.png" alt="image-20211230002319092"></p>
 <p>高分辨率特征图（level5）变到低分辨率</p>
 <p>低分辨率特征图（level1）变到高分辨率</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002753752-16407957715231.png" alt="image-20211230002753752"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002753752-16407957715231.png" alt="image-20211230002753752"></p>
 <p>进入和输出的特征图的对比</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230002915035.png" alt="img-123"><br>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211230003830845.png" alt="image-20211230003830845"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002915035.png" alt="img-123"><br>
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230003830845.png" alt="image-20211230003830845"></p>
 
         </div>
 
@@ -509,7 +509,7 @@ $$</p>
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

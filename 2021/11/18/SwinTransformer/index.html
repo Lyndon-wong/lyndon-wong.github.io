@@ -269,7 +269,7 @@
 <h1>介绍</h1>
 <h2 id="Windows">Windows</h2>
 <p>首先看看Windows到底是怎么做的？</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118165753490.png" alt="image-20211118165753490"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118165753490.png" alt="image-20211118165753490"></p>
 <p><strong>右侧：ViT的做法</strong>：</p>
 <ul>
 <li>先来看看经典的做法，ViT把图片分成一个一个16*16的像素小块，我们常叫做patch。然后对每个patch拉成“向量”后，经过一个线性层变成Transformer网络需要的维度（还需要加入位置编码）。之后就是传统的Transformer计算了</li>
@@ -286,7 +286,7 @@
 </ul>
 <h2 id="Shifted-Windows">Shifted Windows</h2>
 <p>等等，以上好像只说了Windows，那Shifted又是什么呢？</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118171032078.png" alt="image-20211118171032078"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118171032078.png" alt="image-20211118171032078"></p>
 <p>可以看出，Shift的意思就是在下一层，窗口的分区会进行偏移，有些窗口会被生成在前一个窗口的边界上，以连接这些窗口。注意这和Sliding Windows的</p>
 <p>作者提出的Swin-Transformer在分类、检测、语义分割任务上都获得了SOTA。作者希望基于Transformer，并且能在多个图像相关的任务都达到SOTA的swin-transformer模型，能对未来人们发现更统一的模型做出贡献，真正打通我们对图像信息和文本信息的建模的认知。</p>
 <h1>相关工作</h1>
@@ -308,7 +308,7 @@
 <h1>方法</h1>
 <h2 id="总体结构">总体结构</h2>
 <h3 id="概览">概览</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118193243394.png" alt="image-20211118193243394"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118193243394.png" alt="image-20211118193243394"></p>
 <ul>
 <li>
 <p>首先，将图片分割为patches，patches的大小这里设置的是4×4，所以每个patch（token）的维度就是4×4×3=48，每个patch的特征的值就是原始的RGB数值。</p>
@@ -328,21 +328,21 @@
 <h2 id="基于偏移窗口的自注意力机制">基于偏移窗口的自注意力机制</h2>
 <h3 id="基于无重叠窗口的自注意力机制">基于无重叠窗口的自注意力机制</h3>
 <p>不同于传统的全局的自注意力，我们的自注意力在不重叠窗口内部进行，假设总共有h×w个patches，每个窗口包括M×M个patches，那么两种机制的计算复杂度为</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118201551763.png" alt="image-20211118201551763"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118201551763.png" alt="image-20211118201551763"></p>
 <p>可见，MSA和patch数量hw成平方关系，而W-MSA在M固定的情况下，和hw只是线性关系。</p>
 <h3 id="在连续的block间进行偏移窗口分区">在连续的block间进行偏移窗口分区</h3>
 <p>仅仅基于窗口的自注意力没有窗口之间的信息交流，限制了其能力。所以增加偏移窗口。那么怎么偏移呢？</p>
 <p>其实它的做法也不复杂，通速地说，从当前的windows的中心点作为分割点，这里我画了一个草图：</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118213833290.png" alt="image-20211118213833290" style="zoom: 25%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118213833290.png" alt="image-20211118213833290" style="zoom: 25%;" />
 <h3 id="对于偏移参数的高效batch设置">对于偏移参数的高效batch设置</h3>
 <p>偏移窗口的一个问题就是增加了窗口的数量，并且会产生一些小于M×M尺寸的窗口，一种比较原始的方法就是把这些小的窗口填充（pad）到M×M。</p>
 <p>这样做带来的计算量提升是很大的，比方说上面的例子中，相当于我们从2×2个窗口变成了3×3，计算量增大了2.25倍</p>
 <p>为了解决这个问题，作者提出了cycle-shift方法，如下图所示：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118214703393.png" alt="image-20211118214703393"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118214703393.png" alt="image-20211118214703393"></p>
 <p>这里还是比较巧妙的，具体步骤看<strong>附录</strong>，借用了<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/360513527" >陀飞轮<i class="fas fa-external-link-alt"></i></a>画的图和解释，感谢！</p>
 <h3 id="相对位置偏差">相对位置偏差</h3>
 <p>在计算注意力时，我们参考其他人的工作，增加了一个相对位置偏差项B：</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118220635227.png" alt="image-20211118220635227" style="zoom: 50%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118220635227.png" alt="image-20211118220635227" style="zoom: 50%;" />
 <p>我们也尝试了绝对位置编码，效果较差一点点，我们没有采用</p>
 <h2 id="模型参数设置">模型参数设置</h2>
 <ul>
@@ -370,16 +370,16 @@
 <p>每层MLP的膨胀度：α=4</p>
 </li>
 </ul>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221600257.png" alt="image-20211118221600257" style="zoom:45%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118221600257.png" alt="image-20211118221600257" style="zoom:45%;" />
 <h1>实验</h1>
 <h2 id="分类">分类</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221728889.png" alt="image-20211118221728889" style="zoom:50%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118221728889.png" alt="image-20211118221728889" style="zoom:50%;" />
 <h2 id="目标检测">目标检测</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221822787.png" alt="image-20211118221822787" style="zoom:50%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118221822787.png" alt="image-20211118221822787" style="zoom:50%;" />
 <h2 id="语义分割">语义分割</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118221905457.png" alt="image-20211118221905457" style="zoom: 67%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118221905457.png" alt="image-20211118221905457" style="zoom: 67%;" />
 <h2 id="shift-window和位置编码的影响">shift window和位置编码的影响</h2>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211118222030934.png" alt="image-20211118222030934" style="zoom:67%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211118222030934.png" alt="image-20211118222030934" style="zoom:67%;" />
 <h1>总结</h1>
 <p>主要的两个思想：</p>
 <ul>
@@ -528,7 +528,7 @@
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

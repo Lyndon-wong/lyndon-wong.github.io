@@ -264,7 +264,7 @@
 <h2 id="P1：问题引出">P1：问题引出</h2>
 <p>雨天相机遮挡、弱光、夜间环境会影响相机感知效果，从而影响自动驾驶的安全性。</p>
 <div style="align: right">
-<img src = "https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201026210621070.png">
+<img src = "https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201026210621070.png">
 </div>
 <h2 id="P2：本文解决问题的方法">P2：本文解决问题的方法</h2>
 <p>为了解决这个问题，本文研究了<strong>用神经网络融合雷达和摄像机传感器数据的方法</strong>。该方法能够更可靠地检测nuScenes数据集和为本研究创建的TUM数据集中的目标。此外，我们还展示了我们的融合网络的局限性和未来的发展方向。</p>
@@ -371,11 +371,11 @@
 <li>在这个方法中,我们<strong>补偿了自身运动</strong>(Ego-motion),但是<strong>目标车辆的运动无法补偿</strong></li>
 <li>这种方法也增加了噪声,因为前一时刻对移动目标的检测与当前目标物体的位置不一致.但是为了增加额外信息,这个缺点是可以忍受的.</li>
 <li>下图展示了神经网络的输入数据的形式,雷达数据(距离和RCS)被标记在相同位置所以这里有均匀的颜色<br>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027020717937.png" alt="image-20201027020717937"></li>
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027020717937.png" alt="image-20201027020717937"></li>
 </ul>
 <h2 id="P5-雷达数据的滤波">P5: 雷达数据的滤波</h2>
 <p>雷达回波会返回需要与目标无关的检测信息,例如幽灵目标,无关目标和地面检测. 这些检测信息就是所说的噪声或杂波。在评价中，我们比较了融合原始雷达数据和利用两种额外滤波方法的雷达数据融合的效果。首先在nuScene中，只有一些标记目标被雷达检测到。在训练和估计中，我们因此实施了一种<strong>注解标注滤波器</strong>（<strong>annotation  filter，AF</strong>），这样经过滤波后的真实标注信息只包含至少同时被雷达点检测到的目标。这种方法对于可能被两种模式检测到的目标能发挥它的潜力。第二，我们采用了真实标注信息滤波器ground-truth filter来移除3D真实标注信息边界外的雷达探测点。当然，这个步骤如果实际场景是无法进行的。本文的目的是在输入信号杂波较少的情况下，证明融合概念的普遍可行性。经过雷达滤波后的图像在图像2b中被展示。注意，**GRF（ground-truth radar filter）**并没有输出完美的雷达数据，其中滤掉了部分数据的相关检测，原因有四：…（总结中有）</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027022608947.png" alt="image-20201027022608947"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027022608947.png" alt="image-20201027022608947"></p>
 <p>总结：</p>
 <ul>
 <li>两种滤波器：
@@ -409,7 +409,7 @@
 <blockquote>
 <p>在神经网络的更深层，输入数据被压缩为更密的形式，这种形式理想上包含所有相关的输入信息。即然我们无法确定两种传感器类型的信息的抽象层次，我们将网络设计为自主学习在哪种层次进行融合最有利于减少全局损失的形式。</p>
 </blockquote>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027030428076.png" alt="image-20201027030428076"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027030428076.png" alt="image-20201027030428076"></p>
 <ul>
 <li><strong>网络介绍</strong>
 <ul>
@@ -438,12 +438,12 @@
 </ul>
 <h1>EXPERIMENTS AND RESULTS</h1>
 <h2 id="数据集">数据集</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032257258.png" alt="image-20201027032257258"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027032257258.png" alt="image-20201027032257258"></p>
 <h2 id="评价">评价</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032430797.png" alt="image-20201027032430797"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027032430797.png" alt="image-20201027032430797"></p>
 <h2 id="一个例子">一个例子</h2>
 <p>下图的对比能很好低表现CRF-Net的优势：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032539422.png" alt="image-20201027032539422"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027032539422.png" alt="image-20201027032539422"></p>
 <h1>CONCLUSIONS AND OUTLOOK</h1>
 <h2 id="P1：本文工作">P1：本文工作</h2>
 <ul>
@@ -514,9 +514,9 @@
 <p>参考内容：</p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/8e501a159b28" >RetinaNet: Focal loss在目标检测网络中的应用<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59910080" >RetinaNet(Focal Loss)<i class="fas fa-external-link-alt"></i></a></p>
-<p>[^VGG]:VGG16相比AlexNet的一个改进是<strong>采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核（11x11，7x7，5x5）</strong>。对于给定的感受野（与输出有关的输入图片的局部大小），采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）。下图是一个用3层3x3代替5x5的例子<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027082637014.png" alt="image-20201027082637014" style="zoom:50%;" /></p>
-<p>[^max-pooling]:max pooling 的操作如下图所示：整个图片被不重叠的分割成若干个同样大小的小块（pooling size）。每个小块内只取最大的数字，再舍弃其他节点后，保持原有的平面结构得出 output。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027083205749.png" alt="image-20201027083205749"></p>
-<p>[^IoU]:IoU 的全称为交并比（Intersection over Union），通过这个名称我们大概可以猜到 IoU 的计算方法。IoU 计算的是 “预测的边框” 和 “真实的边框” 的交集和并集的比值。<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027084858913.png" alt="image-20201027084858913" style="zoom:50%;" /></p>
+<p>[^VGG]:VGG16相比AlexNet的一个改进是<strong>采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核（11x11，7x7，5x5）</strong>。对于给定的感受野（与输出有关的输入图片的局部大小），采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）。下图是一个用3层3x3代替5x5的例子<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027082637014.png" alt="image-20201027082637014" style="zoom:50%;" /></p>
+<p>[^max-pooling]:max pooling 的操作如下图所示：整个图片被不重叠的分割成若干个同样大小的小块（pooling size）。每个小块内只取最大的数字，再舍弃其他节点后，保持原有的平面结构得出 output。<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027083205749.png" alt="image-20201027083205749"></p>
+<p>[^IoU]:IoU 的全称为交并比（Intersection over Union），通过这个名称我们大概可以猜到 IoU 的计算方法。IoU 计算的是 “预测的边框” 和 “真实的边框” 的交集和并集的比值。<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027084858913.png" alt="image-20201027084858913" style="zoom:50%;" /></p>
 
         </div>
 
@@ -656,7 +656,7 @@
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

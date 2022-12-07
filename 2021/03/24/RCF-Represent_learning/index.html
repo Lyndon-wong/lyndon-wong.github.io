@@ -341,7 +341,7 @@
 <p>雷达：输出的是一系列经过后处理的点，这些点据有一些属性，也叫做雷达针（radar pins）。这些雷达针是在目标级上的。每帧输出都可能有几十个雷达针。</p>
 <ul>
 <li>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328192921912.png" alt="image-20210328192921912" style="zoom:50%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328192921912.png" alt="image-20210328192921912" style="zoom:50%;" />
 </li>
 </ul>
 </li>
@@ -365,7 +365,7 @@
 </li>
 <li>
 <p>后处理：表征提取和关联</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328194038332.png" alt="image-20210328194038332"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328194038332.png" alt="image-20210328194038332"></p>
 </li>
 </ul>
 <h2 id="4-1-Radar-and-Camera-Data-Preprocessing">4.1 Radar and Camera Data Preprocessing</h2>
@@ -375,7 +375,7 @@
 <li>空间配准：利用已知信息将雷达针从雷达坐标进一步转换到相机坐标。雷达针的所有属性将在AssociationNet中使用。</li>
 </ul>
 <p>相机的每帧图像都会先进行2D目标检测并输出检测框，检测框的属性见表2。虽然在本研究中，网络使用的是RetinaNet，其实任何2D检测网络都可。经过前处理，一系列时–空配准的雷达针和相机检测框就可以进行接下来的关联了。</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328204716586.png" alt="image-20210328204716586" style="zoom:50%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328204716586.png" alt="image-20210328204716586" style="zoom:50%;" />
 <h2 id="4-2-Deep-Association-by-Representation-Learning">4.2 Deep Association by Representation Learning</h2>
 <h3 id="P1-表征学习的原理">P1: 表征学习的原理</h3>
 <p>利用AssociationNet学习每个雷达针和每个检测框的语义表征信息。<strong>在这个表征下，一对匹配的雷达针和检测框将会”看上去“相似，即他们的学习表征距离比较接近。</strong> 这个过程的大致描述见图2.</p>
@@ -388,7 +388,7 @@
 </ul>
 <p>接下来，我们将原始RGB相机图像和相应的伪图像叠加以合并丰富的像素级信息。然后应用AssociationNet进行表征学习。</p>
 <h3 id="P3-AssociationNet的结构；process-c：提取表征向量">P3: AssociationNet的结构；process c：提取表征向量</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328205842596.png" alt="image-20210328205842596"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328205842596.png" alt="image-20210328205842596"></p>
 <ul>
 <li>Backbone：ResNet</li>
 <li>FPN：融合不同尺度的特征</li>
@@ -417,9 +417,9 @@ velocity-y, heatmap</li>
 </ul>
 <h3 id="P5：损失函数">P5：损失函数</h3>
 <p>我们所得到的表征向量代表了雷达针和检测框在高维空间中的语义含义。如果一个雷达对表示了现实世界中的同一个目标，我们就把它作为一个正样本，反之为负样本。我们尝试最小化所有的正样本的表征向量之间的距离，并且将负样本的表征向量之间的距离最大化。基于这个逻辑，我们设计了根据关联真值标签的损失函数。我们将这些正样本的表征向量加和到一起，得到吸引损失（pull loss）：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328215940440.png" alt="image-20210328215940440"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328215940440.png" alt="image-20210328215940440"></p>
 <p>我们将负样本的损失加和，得到排斥损失（push loss）：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328220059985.png" alt="image-20210328220059985"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328220059985.png" alt="image-20210328220059985"></p>
 <ul>
 <li>
 <p>POS,NEG:正样本集、负样本集</p>
@@ -447,9 +447,9 @@ velocity-y, heatmap</li>
 <h3 id="4-2-2-Ordinal-Loss">4.2.2 Ordinal Loss</h3>
 <p>AssociationNet 犯的一个特殊类型的错误是：它可能会违反简单顺序规则(simple ordinal rule),即这种现象：一个较远的雷达针关联到一个较近的检测框，一个较近的雷达针关联到了较远的检测框。为了解决这个情况，我们提出了顺序损失。</p>
 <p>将检测框i的底部的y坐标设为ymax_i，相应的3D世界的深度为d_i。对于任意两个在同一张图片上的检测框，我们有如下的性质：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328223627219.png" alt="image-20210328223627219"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328223627219.png" alt="image-20210328223627219"></p>
 <p>物体在3D世界中的顺序可以通过检测框底部的相对距离次序来推测。因此，我们设计了一个额外的顺序损失根据顺序规则来强化自身一致性（self-consistency ），这个损失是：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224040650.png" alt="image-20210328224040650"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328224040650.png" alt="image-20210328224040650"></p>
 <ul>
 <li>^POS:预测的正关联集</li>
 <li>^n_pos:^POS的大小</li>
@@ -460,7 +460,7 @@ velocity-y, heatmap</li>
 <li>σ：激活函数，用来平滑损失值</li>
 </ul>
 <p>最后, 总损失为:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328224525126.png" alt="image-20210328224525126"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328224525126.png" alt="image-20210328224525126"></p>
 <p>其中w_ord是用来平衡损失的权重系数.</p>
 <h2 id="4-3-Training-and-Inference">4.3 Training and Inference</h2>
 <ul>
@@ -478,26 +478,26 @@ velocity-y, heatmap</li>
 <li>然后计算一个关系矩阵(affinity matrix)，其中每个矩阵元素对应于雷达引脚的表示和一个包围框之间的距离。在实际过程中,一个检测框可能和多个雷达针关联,但是每个雷达针只能和最近的检测框关联。因此，我们设计每个雷达针与关系矩阵中距离最小的检测框相关联。</li>
 <li>最后,距离大于阈值的不可能的关联被过滤掉，这通常包括来自干扰静态物体的雷达针。</li>
 <li>整个推理过程见图4<br>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328230729490.png" alt="image-20210328230729490"></li>
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328230729490.png" alt="image-20210328230729490"></li>
 </ul>
 </li>
 </ul>
 <h2 id="4-4-Evaluation">4.4 Evaluation</h2>
 <p>在测试数据集中，将预测的关联与人为标注的关联进行比较。我们使用精度、回忆和F1分数作为评估性能的指标。</p>
 <p>在一些非常复杂的场景中，即使是人类的注释员，正确地将所有雷达针和检测框联系起来是非常具有挑战性的。因此，在评估过程中，我们将这些看似可信但不确定的关联标记为“不确定”。示例如图5所示。对于那些“不确定”的关联，它们既不被视为积极的联想，也不被视为消极的联想，这将被排除在正确和错误的正面预测之外。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210328231638271.png" alt="image-20210328231638271"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210328231638271.png" alt="image-20210328231638271"></p>
 <h1>Experiments and Discussion</h1>
 <h2 id="5-1-Dataset">5.1 Dataset</h2>
 <p>​	AssociationNet在一个内部数据集上进行了训练和评估，该数据集包括由测试车队收集的12个驾驶序列，包括在各种驾驶场景下14.8小时的驾驶，包括高速公路、城市和城市道路。雷达和摄像机最初以10Hz同步，然后进一步降采样到2Hz，以减少相邻帧之间的时间相关性。12个序列中的11个用于训练，另一个用于测试。因此，训练数据集中有同步雷达和摄像机帧数104,314个，测试数据集中有2,714个。对于训练数据，关联标签由传统的基于规则的算法生成，并附加过滤以提高精度。对于测试数据，我们用人工标注来手动整理标签，以获得高质量的ground-truth。</p>
 <h2 id="5-2-Effect-of-Loss-Sampling">5.2 Effect of Loss Sampling</h2>
 <p>​	采样比定义为每帧的正对数与负对数之比。结果如表3所示。我们可以看到，采用损耗采样机制的最佳采样比为1:1，在F1评分方面性能提高了1.1%。</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210428051136901.png" alt="image-20210428051136901" style="zoom: 67%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210428051136901.png" alt="image-20210428051136901" style="zoom: 67%;" />
 <h2 id="5-3-Effect-of-Ordinal-Loss">5.3. Effect of Ordinal Loss</h2>
 <p>​	顺序损失的影响如表4所示。顺序损失在一定程度上提高了AP和AR。在权重最优的情况下，F1成绩提高了1.8%。</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210428051308633.png" alt="image-20210428051308633" style="zoom:67%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210428051308633.png" alt="image-20210428051308633" style="zoom:67%;" />
 <h2 id="5-4-Comparison-with-Rule-Based-Algorithm">5.4 Comparison with Rule-Based Algorithm</h2>
 <p>​	我们比较了AssociationNet与传统基于规则的算法的性能，如表5所示。值得注意的是，虽然使用传统的基于规则的算法来生成关联标签来监督AssociationNet的训练，但AssociationNet的性能明显优于基于规则的替代方法。这说明了基于学习的算法在处理中固有的鲁棒性</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210428050558215.png" alt="image-20210428050558215" style="zoom: 67%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210428050558215.png" alt="image-20210428050558215" style="zoom: 67%;" />
         </div>
 
         
@@ -636,7 +636,7 @@ velocity-y, heatmap</li>
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

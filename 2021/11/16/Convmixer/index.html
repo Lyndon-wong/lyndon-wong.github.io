@@ -286,7 +286,7 @@
 <p>当然，我们的这些结果只是类似于一个“快照”（snapshot），但是我们相信它提供了一个“基于patch但是卷积”的网络的基线，这样的更加强大的网络可能在未来出现。</p>
 <h1>一个简单的模型：ConvMixer</h1>
 <p><strong>模型结构</strong>：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211106190201558.png" alt="image-20211106190201558"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211106190201558.png" alt="image-20211106190201558"></p>
 <p>模型结构很简单（几乎都不需要解释把= =），前面主要是利用一个kernel size = stride的卷积核进行了patch分割，激活然后BN。后面ConvMixer Layer采用了可分离卷积，其中depthwise采用了残差连接结构。最后Global Average Pooling跟一个FC形成head，其实作者也认为这个head如果改改设计应该还能提升。</p>
 <p><strong>设计动机</strong>：</p>
 <p>​	设计思路延续了MLP-Mixer的思想，其中depthwise和pointwise分别来进行空间（spatial）和通道（channel）维度的混合（mixing）。MLP的一个关键的设计思想是利用self-attention来混合远距离空间上的位置（distant spatial location），也就是说它可以拥有任意大小的感受野。所以，我们采用非同寻常的大卷积核来达到类似的效果。</p>
@@ -304,7 +304,7 @@
 </li>
 <li>结果</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211106192402089.png" alt="image-20211106192402089"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211106192402089.png" alt="image-20211106192402089"></p>
 <h1>源码阅读</h1>
 <p>由于代码很简单直接看一下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Residual</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, fn</span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.fn = fn</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.fn(x) + x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ConvMixer</span>(<span class="params">dim, depth, kernel_size=<span class="number">9</span>, patch_size=<span class="number">7</span>, n_classes=<span class="number">1000</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> nn.Sequential(</span><br><span class="line">        nn.Conv2d(<span class="number">3</span>, dim, kernel_size=patch_size, stride=patch_size),</span><br><span class="line">        nn.GELU(),</span><br><span class="line">        nn.BatchNorm2d(dim),</span><br><span class="line">        *[nn.Sequential(</span><br><span class="line">                Residual(nn.Sequential(</span><br><span class="line">                    nn.Conv2d(dim, dim, kernel_size, groups=dim, padding=<span class="string">&quot;same&quot;</span>),</span><br><span class="line">                    nn.GELU(),</span><br><span class="line">                    nn.BatchNorm2d(dim)</span><br><span class="line">                )),</span><br><span class="line">                nn.Conv2d(dim, dim, kernel_size=<span class="number">1</span>),</span><br><span class="line">                nn.GELU(),</span><br><span class="line">                nn.BatchNorm2d(dim)</span><br><span class="line">        ) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(depth)],</span><br><span class="line">        nn.AdaptiveAvgPool2d((<span class="number">1</span>,<span class="number">1</span>)),</span><br><span class="line">        nn.Flatten(),</span><br><span class="line">        nn.Linear(dim, n_classes)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
@@ -456,7 +456,7 @@
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

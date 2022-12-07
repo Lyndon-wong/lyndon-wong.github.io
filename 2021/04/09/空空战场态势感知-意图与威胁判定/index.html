@@ -357,7 +357,7 @@ mjx-container[display="true"] + br {
 <p>​	<strong>俯仰角</strong></p>
 <p>​	<strong>速度</strong></p>
 <p>​	<strong>高度</strong></p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414094654581.png" alt="空中目标数值属性" style="zoom:67%;">
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414094654581.png" alt="空中目标数值属性" style="zoom:67%;">
 <h2 id="非数值属性">非数值属性</h2>
 <p>​	在实证应用方面，根据雷达站空战数据的实际特点，构建了空战目标作战强度数据库。</p>
 <p>​	空中目标的信息数据包括数值特征数据和非数值特征数据两部分。数值特征数据包括空中目标相对于我方的方位角、距离、航向角、速度和高度。非数值特征数据包括空对空雷达状态、空对地雷达状态、电子干扰状态、雷达横截面水平等。</p>
@@ -394,33 +394,33 @@ mjx-container[display="true"] + br {
 <li>2：中型飞机，1&lt;RCS&lt;10</li>
 <li>3：大型飞机，RCS&gt;10</li>
 </ul>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414094818487.png" alt="空战目标非数值属性" style="zoom:67%;">
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414094818487.png" alt="空战目标非数值属性" style="zoom:67%;">
 <h1>2. 目标意图关系表</h1>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414000946354.png" alt="目标意图对应关系" style="zoom:67%;">
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414000946354.png" alt="目标意图对应关系" style="zoom:67%;">
 <h1>3. 基于目标机动态势威胁建模</h1>
 <p>​	现有威胁评估模型主要针对 3 代常规作战飞机， 态势威胁建模主要从角度优势、距离优势、速度优势 3 个方面对空中态势进行评估。这里的模型还对隐身飞机的情况进行了修正。</p>
 <h2 id="探测有效性因子">探测有效性因子</h2>
 <p>​	在态势威胁计算中， 若只考虑双方的相对态势，则实际上隐含了一个假设， 即双方可以完全感知对方。但在隐身条件下， 此假设己经不再适用。隐身作战条件下， 载机具备较强的信息隐蔽能力， 受低可探测性和己方先进电子战系统的支援， 有可能导致空域目标无法准确感知， 从而无法形成有效的战术策略， 因而从某种意义上降低了威胁的“有效性”。文中提出探测有效性因子衡量空域目标探测威胁的有效程度:</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414001810292.png" alt="image-20210414001810292" style="zoom:67%;"> 
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414001810292.png" alt="image-20210414001810292" style="zoom:67%;"> 
 <p>式中: Pa 为当前态势下目标对我方的探测概率; k 为修正因子， 用以修正探测概率对威胁有效程度的影响。</p>
 <h2 id="攻击有效性因子">攻击有效性因子</h2>
 <p>​	受雷达探测能力等因素的影响， 隐身条件下的导弹发射距离也受到限制。空战对抗中， 敌导弹攻击是主要威胁， 可用我机与敌导弹攻击范围的相对位置来衡量攻击威胁。定义攻击有效性因子表示敌导弹攻击范围对态势的影响:</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414002051345.png" alt="image-20210414002051345" style="zoom:67%;">
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414002051345.png" alt="image-20210414002051345" style="zoom:67%;">
 <p>​	式中: ＲMmax为导弹最大发射距离; ＲKmax 为导弹不可逃逸攻击距离; φ∈［ － π， π］ 为目标进入角。</p>
 <h2 id="角度优势模型">角度优势模型</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414002757505.png" alt="image-20210414002757505"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414002757505.png" alt="image-20210414002757505"></p>
 <p>ϕ , φ 分别是我机速度和敌机速度与目标线的夹角， 0&lt; | | ϕ , | | φ &lt;180。</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414094545116.png" alt="image-20210414094545116" style="zoom:50%;">
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414094545116.png" alt="image-20210414094545116" style="zoom:50%;">
 <h2 id="距离优势模型">距离优势模型</h2>
 <p>​	影响距离威胁指数的主要因素包括目标空空导弹的最大攻击距离 Rm-max 、最小攻击距离 Rm-min 、最大不可逃避区距离 Rnm-max 、最小不可逃避区距离 Rnm-min 和机载雷达探测距离Rr 。文献[9]的仿真结果表明：导弹对目标的杀伤概率在中间发射距离时较大，而在最近和最远发射区附近的杀伤概率较小且变化较快。在攻击区中间某一段距离发射时，杀伤概率大于某一设定门限值的区域称之为导弹的“不可逃避区”。</p>
 <p>​	当距离目标机载雷达探测范围一定距离,R_a,pq (第 q 类目标对第 p 类目标构成威胁的情况)时,需开始关注目标，即目标由无威胁变为有威胁。构造距离威胁指数如下</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414002937265.png" alt="image-20210414002937265" style="zoom:67%;">
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414002937265.png" alt="image-20210414002937265" style="zoom:67%;">
 <p>​	上式中C1 、 C2 、 C3 、 C4 和C5 都是大于 0 且小于 1 的常数，其中 C1 + C2 + C3 =1。</p>
 <h2 id="速度优势模型">速度优势模型</h2>
 <p>​	当敌我速度分别为v_e 和ν_w 时， 速度威胁指数可表示为：</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414003051488.png" alt="image-20210414003051488" style="zoom: 67%;">
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414003051488.png" alt="image-20210414003051488" style="zoom: 67%;">
 <h2 id="态势威胁计算模型">态势威胁计算模型</h2>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20210414002144377.png" alt="image-20210414002144377"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20210414002144377.png" alt="image-20210414002144377"></p>
 <p>​	式中: ρ 为探测有效性因子; λ 为攻击有效性因子;Td为距离优势; Ta 为角度优势; Th 为速度优势</p>
 <h1>4.空中目标运动模型</h1>
 <p>参考李晓榕: Survey of Maneuvering Target Tracking. Part I: Dynamic Models</p>
@@ -568,7 +568,7 @@ mjx-container[display="true"] + br {
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

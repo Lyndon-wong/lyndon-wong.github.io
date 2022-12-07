@@ -270,7 +270,7 @@
 <li><strong>环境感知</strong>——我旁边有些什么？:LiDAR, camera，radar</li>
 </ul>
 <p>定位和感知的结果被送到AV的路径规划算法中来决定下一步的动作。这些动作进一步送到电机控制器上来控制车辆运动。图1显示了这个工作流程：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201106002443544.png" alt="image-20201106002443544"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201106002443544.png" alt="image-20201106002443544"></p>
 <center>图1 自动驾驶车辆结构。该论文关注于感知</center>
 <h2 id="P2：问题引入">P2：问题引入</h2>
 <p>当前环境感知的研究主要包括传感器信号处理和各种融合算法</p>
@@ -405,7 +405,7 @@ classifier)融合激光雷达和相机数据，进行道路检测</p>
 </ul>
 </blockquote>
 <p>使用三种传感器并采用合适的传感器融合算法有助于确定各种传感器的失效情况。同时提高了整体的误差容限和精度。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107142333380.png" alt="image-20201107142333380"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201107142333380.png" alt="image-20201107142333380"></p>
 <center>传感器的位置和探测范围</center>
 <h2 id="相机">相机</h2>
 <h3 id="P1：相机的工作原理">P1：相机的工作原理</h3>
@@ -420,7 +420,7 @@ classifier)融合激光雷达和相机数据，进行道路检测</p>
 <p>物体位置[x,y,z] → （透镜）→ 像平面[x’, y’]</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107143844155.png" alt="image-20201107143844155"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201107143844155.png" alt="image-20201107143844155"></p>
 <center>相机工作流程</center>
 <h3 id="P2：相机的校准，两种感光元件">P2：相机的校准，两种感光元件</h3>
 <ul>
@@ -463,7 +463,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107145328636.png" alt="image-20201107145328636"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201107145328636.png" alt="image-20201107145328636"></p>
 <center>FMCW雷达工作流程</center>
 <h3 id="P2：FMCW雷达工作流程">P2：FMCW雷达工作流程</h3>
 <p>有关雷达工作的主要流程,主要理解下列元件的作用即可，这部分略</p>
@@ -498,7 +498,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 <p><strong>人体危害</strong>：LiDAR输出的是最弱的1类激光，对人体无害</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201107173442868.png" alt="image-20201107173442868"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201107173442868.png" alt="image-20201107173442868"></p>
 <center>激光雷达的工作流程</center>
 <h3 id="P2：激光雷达的工作流程">P2：激光雷达的工作流程</h3>
 <ul>
@@ -616,7 +616,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109135624774.png" alt="image-20201109135624774"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201109135624774.png" alt="image-20201109135624774"></p>
 <center>相机-激光雷达融合流程图</center>
 <h3 id="全卷积神经网络结构FCNx">全卷积神经网络结构FCNx</h3>
 <p>结构包括两个主要部分：编码器和解码器</p>
@@ -638,7 +638,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109144221655.png" alt="image-20201109144221655"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201109144221655.png" alt="image-20201109144221655"></p>
 <center>网络结构</center>
 <p>网络结构介绍：</p>
 <ul>
@@ -663,7 +663,7 @@ Continuous Wave，FMCW)[29]。FMCW雷达发射连续波或线性调频信号，�
 <p>在本节中，我们利用雷达和激光雷达数据来检测障碍物和测量他们的状态。我们进行了后数据融合或者说是目标级的融合。然后，利用非线性卡尔曼滤波方法，利用这些噪声传感器来估计和跟踪障碍物状态，其精度比单个传感器都要高。</p>
 <h3 id="雷达拍频信号（beat-signal）处理">雷达拍频信号（beat signal）处理</h3>
 <p>雷达传感器可以探测到障碍物和他们的状态，通过图9的过程：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109182826661.png" alt="image-20201109182826661"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201109182826661.png" alt="image-20201109182826661"></p>
 <ul>
 <li>
 <p><strong>第一步：带噪声信号 → (雷达内部ADC) → 数字信号</strong></p>
@@ -715,7 +715,7 @@ $$</p>
 <p>这个3D图也叫做**(Range Doppler Map, RDM)**。RDM给出了我们目标的距离和速度的概览</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109181512103.png" alt="image-20201109181512103"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201109181512103.png" alt="image-20201109181512103"></p>
 <ul>
 <li>
 <p><strong>第四步：过滤RDM的噪声和杂波</strong></p>
@@ -753,7 +753,7 @@ $$</p>
 <li>PCD分割在点级别上进行，十分耗费计算资源，所以我们需要进行处理</li>
 <li>类似于雷达数据，我们将障碍物和它们附近的点（欧式距离）集群，并且给每个群一个新的位置坐标（x,y,z），这个坐标是群内所有点的坐标的平均值。最后，我们定义群大小的bounding box的尺寸，并且利用这个box来将障碍物进一步可视化。</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201109201856819.png" alt="image-20201109201856819"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201109201856819.png" alt="image-20201109201856819"></p>
 <p>为了将PCD分割为道路和障碍物，我们需要找到道路平面，我们利用随机取样共识<strong>Random Sample Consensus</strong>(RANSAC)[39]。在每一步，RANSAC都会从我们的点云中选取一个样本，然后用一个平面穿过它。我们认为道路点是inliers和障碍点是outliers。它测量inliers(属于道路平面的点)并返回该平面，即具有最高inliers数量或最低离群值(障碍)数量的道路平面。</p>
 </li>
 </ul>
@@ -942,7 +942,7 @@ $$</p>
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

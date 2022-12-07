@@ -243,26 +243,26 @@
 <p>利用这个大段时间补足我认为本科需要学习但是培养体系没有的课程。遗憾是时间还是太短只补了几门，408没学完，挺可惜。</p>
 <h2 id="多旋翼无人机设计与控制">多旋翼无人机设计与控制</h2>
 <p>简单学习了有关多旋翼无人机设计与控制的知识，课程来自<a class="link"   target="_blank" rel="noopener" href="http://rfly.buaa.edu.cn/resources.html" >北航可靠飞行控制研究组<i class="fas fa-external-link-alt"></i></a>。课程讲的非常好，可惜的是后续章节我没完全学完。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025174004905.png" alt="image-20201025174004905"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201025174004905.png" alt="image-20201025174004905"></p>
 <h2 id="计算机组成原理">计算机组成原理</h2>
 <p>课程来自<a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XE411E7ac/?spm_id_from=333.788.videocard.0" >计算机组成原理-哈工大精品课程-刘宏伟<i class="fas fa-external-link-alt"></i></a>，跟着b站学习了一遍，同时学着利用onenote记了笔记，然后找了两套试卷简单测试了一下自己学习的效果。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025174757488.png" alt="image-20201025174757488"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201025174757488.png" alt="image-20201025174757488"></p>
 <h2 id="C语言">C语言</h2>
 <p>感觉自己c之前自学的很不扎实就又系统地学了一遍。课程来自<a class="link"   target="_blank" rel="noopener" href="https://fishc.com.cn/forum-329-1.html" >小甲鱼C语言课程<i class="fas fa-external-link-alt"></i></a>，课程讲的很基础，感觉学起来还是挺好的。让我好好打了一下c语言的基础。每讲听完后跟着做课后习题，挺充实。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025175040204.png" alt="image-20201025175040204"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201025175040204.png" alt="image-20201025175040204"></p>
 <h2 id="OneNote-Xmind">OneNote &amp; Xmind</h2>
 <p>OneNote和Xmind作用不必多说，乘着在家大段的时间利用这两个工具结合了一下自己的学习，熟悉了一下快捷键后发现很好用。（可惜当时接触markdown没去细看，不然用markdown更爽）</p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/becodin/" >OneNote快捷键<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="http://cn.onenotegem.com/" >OneNote Gem<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.xmind.cn/xmind2020/" >Xmind<i class="fas fa-external-link-alt"></i></a></p>
 <p>Xmind 我现在用的不多了，因为基于OneNote的标题体系记录的笔记我感觉已经可以代替思维导图了，例如下图</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025180153153.png" alt="image-20201025180153153"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201025180153153.png" alt="image-20201025180153153"></p>
 <h1>毕业设计</h1>
 <p>毕业设计是有关多无人机协同目标跟踪的，比较偏算法。我用matlab编写了一个仿真程序，然后比较了各种融合算法在仿真中的效果。受到疫情影响无法进行实际平台实验，所以后来又增加了有关基于student-t分布的融合算法的内容。</p>
 <h2 id="分布式多无人机系统目标跟踪技术">分布式多无人机系统目标跟踪技术</h2>
 <h3 id="仿真程序">仿真程序</h3>
 <p>结构其实很简单，主要是先前对模块化和接口这些我了解比较少，所以改了两三版使得它更加模块化了。我列了一个简单的程序结构图</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025181536109.png" alt="image-20201025181536109"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201025181536109.png" alt="image-20201025181536109"></p>
 <h3 id="基于高斯分布的融合">基于高斯分布的融合</h3>
 <p>这个也是非常基础的内容了，对比了几种滤波方法+分布式信息融合方法在该仿真程序上的效果</p>
 <ul>
@@ -274,7 +274,7 @@
 <h3 id="基于student-t分布的融合">基于student-t分布的融合</h3>
 <p>哈工程的黄玉龙博士（后来被破格录用副教授了）在16年提出了一种<strong>鲁棒性容积学生t滤波器</strong>（其实就是把CKF的分布换成了学生t分布），这种滤波器在传感器具有野值下相比于传统的卡尔曼滤波器具有更好的滤波效果（主要原因是学生t分布能比高斯分布更好地刻画具有野值噪声的<strong>重尾特性</strong>）</p>
 <p>所以我毕设的后期就是将重尾噪声考虑了进来，利用该滤波器和简单凸融合算法又得到一种分布式信息融合算法CST-CC，然后把它和CKF-CC进行了对比。效果在追踪直线运动目标时其实显得也不是很突出。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201025190829502.png" alt="image-20201025190829502"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201025190829502.png" alt="image-20201025190829502"></p>
 <h2 id="毕设的总结">毕设的总结</h2>
 <p>感觉这个毕设还是比较简单的，实际上我也没花太多时间，代码量也不是很大。主要的意义在于了解了一些有关滤波的背景知识，也有了一个比较好的问题切入点。后续把毕设的主要内容投稿到了成都航电所搞的高端航电论坛上被接收了，虽然是中文水会，第一次被接收还是有点小触动的。</p>
 <h1>课程项目</h1>
@@ -288,7 +288,7 @@
 </ul>
 <h1>玩耍</h1>
 <p>四月份之后我的心仿佛也随着春天温度的升高和疫情形式的逐渐好转好起来了一点，所以和朋友们愉快地玩耍起了<strong>王者荣耀</strong>、<strong>炉石传说</strong>。王者打到星耀王者去了，炉石的话好像只是钻石，不过后来酒馆战旗玩起了整活鱼人和养蜥流真是十分的有意思。</p>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/Screenshot_20200615-115143.jpg" alt="Screenshot_20200615-115143" style="zoom: 67%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/Screenshot_20200615-115143.jpg" alt="Screenshot_20200615-115143" style="zoom: 67%;" />
 <center>养蜥流</center>
 <img src = "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-imgbed/15ad269b-458b-49c4-b353-049f3824bbc6.jpg"/>
 <center>整活鱼人</center>
@@ -418,7 +418,7 @@
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

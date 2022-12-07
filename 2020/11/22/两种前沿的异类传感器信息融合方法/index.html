@@ -270,11 +270,11 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201122152258935.png" alt="image-20201122152258935"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201122152258935.png" alt="image-20201122152258935"></p>
 <center>可见光与红外的对比</center>
 <h2 id="IVFuseNet">IVFuseNet</h2>
 <p>Li Y(华东理工大学-赵海涛课题组)提出了一种基于CNN的融合架构，称为IVFuseNet(下图)，能<strong>自适应融合</strong>红外和可见光图像的互补信息，进行<strong>深度预测</strong>，它由<strong>共同特征融合子网络</strong>、<strong>全特征融合子网络</strong>和<strong>高分辨率重建子网络</strong>3个子网络组成。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201116171952710.png" alt="image-20201116171952710"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201116171952710.png" alt="image-20201116171952710"></p>
 <ul>
 <li><strong>共同特征融合子网络</strong>：</li>
 </ul>
@@ -301,16 +301,16 @@
 </blockquote>
 <h3 id="共同特征融合子网络">共同特征融合子网络</h3>
 <h4 id="网络结构">网络结构</h4>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024345405.png" alt="image-20201117024345405"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117024345405.png" alt="image-20201117024345405"></p>
 <ul>
 <li><strong>双流程结构</strong></li>
 <li><strong>AlexNet为每个流程的基础</strong>：对于每个流，我们使用AlexNet[33]作为基础，因为AlexNet的参数数量相对较小。共特征融合子网络的具体内容如表1所示。此外，我们还可以选择其他网络作为基准，如VggNet[34]。该子网以256×512分辨率的红外图像及其对应的可见光图像作为子网的输入。</li>
 <li><strong>部分耦合过滤器</strong>：与传统的双流CNN不同，我们在每个卷积层中设计部分耦合滤波器来学习红外和可见光图像之间的可转移特征。耦合比率如表2所示</li>
 <li><strong>反向传播BP</strong>：独立特征需要迭代修正一次，共享特征需要修正两次</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024537691.png" alt="image-20201117024537691"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117024537691.png" alt="image-20201117024537691"></p>
 <h4 id="共同特征提取">共同特征提取</h4>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024747169.png" alt="image-20201117024747169" style="zoom: 33%;" />
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117024747169.png" alt="image-20201117024747169" style="zoom: 33%;" />
 <h4 id="耦合比设置">耦合比设置</h4>
 <ul>
 <li>定义：R(耦合比) = k（耦合过滤器） / n （所有过滤器）</li>
@@ -323,7 +323,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117024558702.png" alt="image-20201117024558702"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117024558702.png" alt="image-20201117024558702"></p>
 <h3 id="全特征融合子网络">全特征融合子网络</h3>
 <h4 id="融合步骤">融合步骤</h4>
 <p>设f_ir∈b×w×h×c和f_vi∈b×w×h×c是从共同特征融合子网络提取的特征</p>
@@ -332,21 +332,21 @@
 <li>第二:将融合特征与核k∈2c×c×1×1进行卷积，其中2c为输入通道数，c为输出通道数，核大小为1×1。受[43]的启发，由于融合特征f_fusion同时考虑了红外和可见光图像的特征，因此该卷积运算的输出与这两种特征都有关。因此，这个程序学习了两种特征之间的相关性。在得到f_ir或f_vi的相同维数的初始系数矩阵M后，我们计算它们的点积，表示它们对不同场景深度预测的不同贡献。</li>
 <li>第三，我们设计了一个sigmoid层，将M中的每个元素转换成0到1之间的概率形式。经过这三个步骤，最终得到系数矩阵G。其过程如下:</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117031612216.png" alt="image-20201117031612216"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117031612216.png" alt="image-20201117031612216"></p>
 <p>在不同的条件下，系数矩阵是不同的.例如,G_ir可能在暗光情况下比G_vi大而,G_vi可能在白天下比G_ir大.G_ir和G_vi分别表示红外图像和可见光图像特征的贡献，具体如下:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032109864.png" alt="image-20201117032109864"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117032109864.png" alt="image-20201117032109864"></p>
 <p>其中’圈点’代表点积.全融合特征可以这样得到:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032217955.png" alt="image-20201117032217955"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117032217955.png" alt="image-20201117032217955"></p>
 <p>全特征融合子网络决定了红外特征和可见光特征对深度预测的依赖程度。</p>
 <h3 id="高分辨率重建子网络">高分辨率重建子网络</h3>
 <h4 id="网络结构-2">网络结构</h4>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117032348017.png" alt="image-20201117032348017"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117032348017.png" alt="image-20201117032348017"></p>
 <p>蓝色：卷积层；绿色：BN层；黄色：激活函数</p>
 <h4 id="残差密集卷积网络-Residual-Dense-Network-RDN">残差密集卷积网络(Residual Dense Network,RDN)</h4>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201124201419869.png" alt="image-20201124201419869"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201124201419869.png" alt="image-20201124201419869"></p>
 <p>大多数基于CNN的深度神经网络模型并没有充分利用原始低分辨率（LR）图像的分层特征，因此性能相对较低。</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/14l638auaq.jpeg" alt="14l638auaq"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/20190104204703311.png" alt="RDN"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/14l638auaq.jpeg" alt="14l638auaq"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/20190104204703311.png" alt="RDN"></p>
 <p><strong>残差密集网络优点：</strong></p>
 <p>（1）充分的利用了所有卷积层的层次信息，通过密集连接卷积层提取丰富的卷积特征。<br>
 （2）允许从前一个RDB的状态直接连接到当前RDB的所有层，从而形成连续的内存（CM）机制。<br>
@@ -362,15 +362,15 @@
 <li>识别准确率</li>
 </ul>
 <h4 id="红外与可见光融合的结果">红外与可见光融合的结果</h4>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040236519.png" alt="image-20201117040236519"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040319129.png" alt="image-20201117040319129"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040333233.png" alt="image-20201117040333233"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117040236519.png" alt="image-20201117040236519"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117040319129.png" alt="image-20201117040319129"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117040333233.png" alt="image-20201117040333233"></p>
 <h4 id="密集卷积块的结果">密集卷积块的结果</h4>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040356160.png" alt="image-20201117040356160"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040448970.png" alt="image-20201117040448970"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117040356160.png" alt="image-20201117040356160"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117040448970.png" alt="image-20201117040448970"></p>
 <h4 id="和相关方法的对比">和相关方法的对比</h4>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040520466.png" alt="image-20201117040605941"></p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201117040624907.png" alt="image-20201117040624907"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117040520466.png" alt="image-20201117040605941"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201117040624907.png" alt="image-20201117040624907"></p>
 <h3 id="主要贡献">主要贡献</h3>
 <ul>
 <li>我们提出了一种基于CNN的结构，称为IVFuseNet，它可以自适应融合红外和可见光图像的互补性，以解决不同光照条件下的深度预测问题。我们提出的融合方法主要包括两个方面。
@@ -458,7 +458,7 @@
 <blockquote>
 <p>在神经网络的更深层，输入数据被压缩为更密的形式，这种形式理想上包含所有相关的输入信息。即然我们无法确定两种传感器类型的信息的抽象层次，我们将网络设计为自主学习在哪种层次进行融合最有利于减少全局损失的形式。</p>
 </blockquote>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027030428076.png" alt="image-20201027030428076"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027030428076.png" alt="image-20201027030428076"></p>
 <ul>
 <li><strong>网络介绍</strong>
 <ul>
@@ -487,12 +487,12 @@
 </ul>
 <h2 id="效果评价">效果评价</h2>
 <h3 id="数据集">数据集</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032257258.png" alt="image-20201027032257258"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027032257258.png" alt="image-20201027032257258"></p>
 <h3 id="评价">评价</h3>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032430797.png" alt="image-20201027032430797"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027032430797.png" alt="image-20201027032430797"></p>
 <h3 id="一个例子">一个例子</h3>
 <p>下图的对比能很好低表现CRF-Net的优势：</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027032539422.png" alt="image-20201027032539422"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027032539422.png" alt="image-20201027032539422"></p>
 <h2 id="主要贡献-2">主要贡献</h2>
 <ul>
 <li>提出了CRF-Net结构来融合雷达和相机数据</li>
@@ -543,7 +543,7 @@
 <li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/LIYUAN123ZHOUHUI/article/details/61920796" >https://blog.csdn.net/LIYUAN123ZHOUHUI/article/details/61920796<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 <h3 id="VGG">VGG</h3>
-<p>VGG16相比AlexNet的一个改进是<strong>采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核（11x11，7x7，5x5）</strong>。对于给定的感受野（与输出有关的输入图片的局部大小），采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）。下图是一个用3层3x3代替5x5的例子<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20201027082637014.png" alt="image-20201027082637014" style="zoom:50%;" /></p>
+<p>VGG16相比AlexNet的一个改进是<strong>采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核（11x11，7x7，5x5）</strong>。对于给定的感受野（与输出有关的输入图片的局部大小），采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）。下图是一个用3层3x3代替5x5的例子<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20201027082637014.png" alt="image-20201027082637014" style="zoom:50%;" /></p>
 <h3 id="RetinaNet-Focal-Loss-：">RetinaNet(Focal Loss)：</h3>
 <p>RetinaNet由以下处理步骤组成提取、特征金字塔网络(FPN)和用于分类和回归的检测头。</p>
 <ul>
@@ -564,7 +564,7 @@
 <li>检测框架<br>
 RetinaNet本质上是 Resnet + FPN + 两个FCN子网络。<br>
 以下为RetinaNet目标框架框架图。有了之前blog里面提到的FPN与FCN的知识后，我们很容易理解此框架的设计含义。<br>
-<img src="https://gitee.com/lyndon-wong/blogimg/raw/master/5971313-152cb2d4c07fce20.JPG" alt="RetinaNet"></li>
+<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/5971313-152cb2d4c07fce20.JPG" alt="RetinaNet"></li>
 </ul>
 <p>参考内容：</p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/8e501a159b28" >RetinaNet: Focal loss在目标检测网络中的应用<i class="fas fa-external-link-alt"></i></a></p>
@@ -708,7 +708,7 @@ RetinaNet本质上是 Resnet + FPN + 两个FCN子网络。<br>
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

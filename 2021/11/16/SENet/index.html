@@ -240,7 +240,7 @@
 <p>本篇论文提出了SENet,获得了最后一届ImageNet比赛的冠军.值得注意的是,它并没有采用特别复杂的结构,提出了一种通道自注意力机制,筛选更有意义的通道特征.本篇只是一个总结,参考了知乎,csdn上的一些论文解读.</p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32702350" >解读Squeeze-and-Excitation Networks（SENet）<i class="fas fa-external-link-alt"></i></a></p>
 <h1>网络</h1>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211115234232386.png" alt="image-20211115234232386"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211115234232386.png" alt="image-20211115234232386"></p>
 <ul>
 <li>Ftr:常规特征提取网络</li>
 <li>Fsq: Global Average Pooling(GAP),对每一层特征进行均值池化.</li>
@@ -256,7 +256,7 @@
 <li>为什么需要两层的线性层?</li>
 </ul>
 <p>知乎上讲的特别好!这里我直接借用过来.以下是三种方式的对比:</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/v2-986750f1132fa985d4ca1847f1953fcf_1440w.jpg" alt="img"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/v2-986750f1132fa985d4ca1847f1953fcf_1440w.jpg" alt="img"></p>
 <p>图2最上方的结构: <strong>没有匹配整个数据集</strong>直接GAP后进行加权,存在的问题是没有匹配整个数据集,而是只根据一个batch的信息进行相关性计算.</p>
 <p>图2中间是经典的卷积结构: <strong>空间,通道混乱</strong>有人会说卷积训练出的权值就含有了scale的成分在里面，也利用了通道间的相关性，为啥还要多个SE Block？那是因为这种卷积有空间的成分在里面，为了排除空间上的干扰就得先用GAP压缩成一个点后再作卷积，压缩后因为没有了Height、Width的成分，这种卷积就是全连接了。</p>
 <p>图2最下面的结构: <strong>张冠李戴</strong>SE模块和传统的卷积间采用并联而不是串联的方式，这时SE利用的是Ftr输入X的相关性来计算scale，X和U的相关性是不同的，把根据X的相关性计算出的scale应用到U上明显不合适。</p>
@@ -264,14 +264,14 @@
 <ul>
 <li>论文中给出的两个例子</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211116163900376.png" alt="image-20211116163900376"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211116163900376.png" alt="image-20211116163900376"></p>
 <p>分别SE模块是和Inception和residual module结合的例子</p>
 <ul>
 <li>SE模块的位置</li>
 </ul>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211116164509146.png" alt="image-20211116164509146"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211116164509146.png" alt="image-20211116164509146"></p>
 <p>作者还在消融实验中测试了这四种不同位置的SE模块的效果,发现只有POST版的性能有所下降,这表明SE模块具有很强的鲁棒性,而且最好是被放在靠前的位置.</p>
-<p><img src="https://gitee.com/lyndon-wong/blogimg/raw/master/image-20211116164644415.png" alt="image-20211116164644415"></p>
+<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211116164644415.png" alt="image-20211116164644415"></p>
 
         </div>
 
@@ -411,7 +411,7 @@
             
               <span>2019</span>&nbsp;-&nbsp;
             
-            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Lyndon Wong</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
