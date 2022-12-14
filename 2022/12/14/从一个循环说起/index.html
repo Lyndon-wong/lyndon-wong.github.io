@@ -9,7 +9,7 @@
     
     <title>
         
-            Dynamic Head: Unifying Object Detection Heads with Attentions |
+            写一个好的循环体来处理数据 |
         
         Wang&#39;s Space
     </title>
@@ -167,7 +167,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Dynamic Head: Unifying Object Detection Heads with Attentions</span>
+            <span class="title-hover-animation">写一个好的循环体来处理数据</span>
         </div>
 
         
@@ -183,7 +183,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-12-30 00:39:28
+        <i class="fas fa-edit"></i>&nbsp;2022-12-14 12:30:00
     </span>
     
         <span class="article-categories article-meta-item">
@@ -191,7 +191,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Object-Detection/">Object Detection</a>&nbsp;
+                        <a href="/categories/Coding/">Coding</a>&nbsp;
                     </li>
                 
             </ul>
@@ -203,7 +203,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/transformer-deep-learning-attention/">transformer - deep learning - attention</a>&nbsp;
+                        <a href="/tags/life/">life</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/coding/">coding</a>&nbsp;
                     </li>
                 
             </ul>
@@ -213,12 +217,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>559 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -234,157 +238,24 @@
         
 
         <div class="article-content markdown-body">
-            <h1>介绍</h1>
-<p>本篇论文提出了一种基于注意力机制的动态head，配合最近大火的强大的swin transformer作为backbone，在coco上首次实现了AP突破60。</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.08322" >论文地址<i class="fas fa-external-link-alt"></i></a></p>
-<h1>摘要</h1>
+            <h1>起因</h1>
+<p>在我们日常处理数据的时候，最常见的一种便是遍历某个目录（或某个多级目录），对该目录下面的每个文件进行一定的处理。比方说，通过raw数据处理后得到精修的数据、检测数据集中的图片中的目标并且将检测结果按需保存。这似乎是一个很基础的任务，但是其实我们可以将其完成地更好。</p>
+<h1>目录格式</h1>
+<p>为了简单起见，我们假设现在我们要处理数据的目录格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dataset&#x2F;</span><br><span class="line">	-folder1&#x2F;</span><br><span class="line">		-img1.jpg</span><br><span class="line">		-img2.jpg</span><br><span class="line">		...</span><br><span class="line">	-folder2&#x2F;</span><br><span class="line">		-img1.jpg</span><br><span class="line">		-img2.jpg</span><br><span class="line">		...</span><br><span class="line">	-folder3&#x2F;</span><br><span class="line">		-img1.jpg</span><br><span class="line">		-img2.jpg</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<p>我们需要读取每张图片，并且将其转换为png格式保存。转换为png格式的函数为jpg2png，接下来笔者推荐了一种循环体。</p>
+<h1>一个成熟的循环体</h1>
+<p>一个好的遍历循环最好包括以下三部分：</p>
 <ul>
-<li>问题：之前的一些关于head的工作，致力于提升性能表现而没有提出一个比较统一的视野</li>
-<li>通过将自注意力机制和谐地融入到 ： 特征维度用于尺度感知；空间位置用于位置感知； 通道维度用于任务感知 的理念中，该方法显著地提升了目标检测头的表征能力，并且没有额外计算量负担</li>
-<li>实验验证了该动态头的有效性和高效性，在COCO数据集上，ResNeXt-1010-DCN backbone达到54AP，使用最新的transformer backbone达到了60AP</li>
+<li>进度打屏显示</li>
+<li>异常处理</li>
+<li>错误信息记录</li>
 </ul>
-<h1>介绍</h1>
-<h2 id="背景">背景</h2>
-<ul>
-<li>
-<p>背景：目标检测任务：“目标是什么，在哪？”</p>
-</li>
-<li>
-<p>几乎所有检测方法的结构都是：backbone  + head</p>
-</li>
-<li>
-<p>head如何设计成为一个有挑战的问题，难点有三：</p>
-<ul>
-<li>scale-aware”：目标大小变化</li>
-<li>“spatial-aware”：目标位置、角度、形状变化</li>
-<li>“task-aware”：目标检测框，中心，角点</li>
-</ul>
-</li>
-<li>
-<p>目前的head还是只能解决这几个问题中的某一个，所以如何设计一个统一的检测头同时解决这些问题是有待研究的。</p>
-</li>
-</ul>
-<h2 id="方法">方法</h2>
-<p>如果我们考虑一个普通的backbone的输出，我们会得到一个<em>level×space×channel</em>的张量</p>
-<p>，所以我们发现设计一个统一的head实际上可以看作是一个注意力学习问题。一个初始的想法就是基于这个张量建立一个完全的自注意力机制。但是，这个优化问题会变得十分难以求解，并且计算量难以承担。</p>
-<p>然而，我们可以将注意力机制分解应用到各个维度上去，即：</p>
-<ul>
-<li>
-<p>尺度注意力模块 - level维度，用以学习对于对于某个目标的scale而言尺度合适的level</p>
-</li>
-<li>
-<p>空间注意力模块 - space（height×width）维度，用以学习表征在空间位置的差异</p>
-</li>
-<li>
-<p>任务注意力模块 - channel维度，用以将不同的特征通道分配到不同的认为回归中</p>
-</li>
-</ul>
-<p>我们发现，虽然这些注意力模块分别作用在feature的不同维度，但是他们之间的性能可以互补。在COCO数据集上这个方法可以几乎可以给各种目标检测方法提升1.2%~3.2%的AP。</p>
-<h1>相关工作</h1>
-<ul>
-<li>
-<p>尺度感知：</p>
-<ul>
-<li>
-<p>[6,24,25]：图像金字塔</p>
-</li>
-<li>
-<p>[15]：特征金字塔，问题：不同深度的特征可能存在明显的语义gap</p>
-</li>
-<li>
-<p>[18]：通过自底向上路径增强底层特征</p>
-</li>
-<li>
-<p>[20]：平衡特征金字塔</p>
-</li>
-<li>
-<p>[31]：基于3D卷积统一提取尺度和空间特征</p>
-</li>
-</ul>
-</li>
-<li>
-<p>空间感知：</p>
-<ul>
-<li>[41]：CNN学习空间变换是有局限性的</li>
-<li>[13,32]：通过增加模型size缓解这个问题</li>
-<li>[14]：通过数据增强缓解该问题</li>
-<li>[34]：使用扩展卷积从指数扩展的感受野聚合上下文信息。</li>
-<li>[7]：提出了一种可变形的卷积，通过附加的自学习偏移来采样空间位置。</li>
-<li>[37]：通过引入一个学习的特征幅值来重新表述偏移量，进一步提高了其能力。</li>
-</ul>
-</li>
-<li>
-<p>任务感知：</p>
-<ul>
-<li>[39,6]：最初提出的两阶段结构</li>
-<li>[23]：RPN</li>
-<li>[22]：单阶段</li>
-<li>[16]：任务特定分支</li>
-</ul>
-</li>
-</ul>
-<h1>我们的方法</h1>
-<h2 id="动机">动机</h2>
-<p>给定一个L层的特征，我们可以通过上采样或下采样的方法将不同level的特征变为中间level的特征尺寸，这样变形后的特征可以表示为一个4维特征张量：L×H×W×C，我们定义S = H×W,将该特征降低到3维：L×S×C，基于这个表征方法，我们探究各个维度的意义：</p>
-<h2 id="Dynamic-head">Dynamic head</h2>
-<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211229235150957.png" alt="image-20211229235150957"></p>
-<p>注意力作用的表示</p>
-<p>$$<br>
-W(\mathcal{F})=\pi(\mathcal{F}) \cdot \mathcal{F}<br>
-$$<br>
-对特征F分别在三个维度使用注意力变换</p>
-<p>$$<br>
-W(\mathcal{F})=\pi_{C}\left(\pi_{S}\left(\pi_{L}(\mathcal{F}) \cdot \mathcal{F}\right) \cdot \mathcal{F}\right) \cdot \mathcal{F}<br>
-$$</p>
-<ul>
-<li>尺度注意力：1×1卷积，强sigmoid激活函数</li>
-</ul>
-<p>$$<br>
-\pi_{L}(\mathcal{F}) \cdot \mathcal{F}=\sigma\left(f\left(\frac{1}{S C} \sum_{S, C} \mathcal{F}\right)\right) \cdot \mathcal{F}<br>
-$$</p>
-<ul>
-<li>空间注意力：首先使用可变性卷积稀疏地学习注意力，然后在相同的空间位置聚合不同层次的特征，K是空间系数采样点，delta_pk是学习到的位置偏移，delta_pk关注差异区域，delta_mk是学习pk位置的尺度变化</li>
-</ul>
-<p>$$<br>
-\pi_{S}(\mathcal{F}) \cdot \mathcal{F}=\frac{1}{L} \sum_{l=1}^{L} \sum_{k=1}^{K} w_{l, k} \cdot \mathcal{F}\left(l ; p_{k}+\Delta p_{k} ; c\right) \cdot \Delta m_{k}<br>
-$$</p>
-<ul>
-<li>任务注意力：动态切换feature的通道来满足不同的任务。alpha、beta学习激活阈值。theta()函数首先使用GAP降低维度，然后使用两层FC和一个norm层，最后使用一个偏移的sigmoid函数将输出映射到[-1,1].</li>
-</ul>
-<p>$$<br>
-\pi_{C}(\mathcal{F}) \cdot \mathcal{F}=\max \left(\alpha^{1}(\mathcal{F}) \cdot \mathcal{F}<em>{c}+\beta^{1}(\mathcal{F}), \alpha^{2}(\mathcal{F}) \cdot \mathcal{F}</em>{c}+\beta^{2}(\mathcal{F})\right)<br>
-$$</p>
-<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230000731601.png" alt="image-20211230000731601"></p>
-<p>多此使用dynamic head block进行增强。</p>
-<p>从图1可以看出，最初backbone输出的是充满噪声的，通过各个模块都显示了较好的注意力性能。</p>
-<h2 id="如何集成到其他目标检测方法中">如何集成到其他目标检测方法中</h2>
-<ul>
-<li>单阶段</li>
-<li>双阶段</li>
-</ul>
-<h2 id="和其他注意力机制的关系">和其他注意力机制的关系</h2>
-<ul>
-<li>
-<p>可变性卷积：可变性卷积通过稀疏采样极大地提升了传统卷积的变换学习能力，虽然它很少用在head中，但是可以把它看作是在S维度上的一个单独的建模</p>
-</li>
-<li>
-<p>非局部：非局部网络[30]是利用注意力模块来提高目标检测性能的先驱，但它采用了一种简单的点积公式，通过融合来自不同空间位置的其他像素的特征来增强像素的特征。这种行为可以被视为只对表示中的L×S子维度进行建模</p>
-</li>
-<li>
-<p>transformer：Transformer提供了一个简单的解决方案，通过应用多头全连接层，从不同的模式学习交叉注意力和融合特征。在我们的表示中，这种行为可以被视为只对S × C子维度建模。</p>
-</li>
-</ul>
-<h1>实验</h1>
-<h2 id="实验设置（略）">实验设置（略）</h2>
-<h2 id="消融实验">消融实验</h2>
-<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002241538.png" alt="image-20211230002241538"></p>
-<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002319092.png" alt="image-20211230002319092"></p>
-<p>高分辨率特征图（level5）变到低分辨率</p>
-<p>低分辨率特征图（level1）变到高分辨率</p>
-<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002753752-16407957715231.png" alt="image-20211230002753752"></p>
-<p>进入和输出的特征图的对比</p>
-<p><img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230002915035.png" alt="img-123"><br>
-<img src="https://wld-blog-imgs.oss-cn-shanghai.aliyuncs.com/blogimg-master/image-20211230003830845.png" alt="image-20211230003830845"></p>
+<p>用python代码格式写一下就是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">log_file <span class="comment">#错误信息路径</span></span><br><span class="line">dataset_path <span class="comment">#数据集路径</span></span><br><span class="line">save_path <span class="comment"># 处理完的数据集保存路径</span></span><br><span class="line"></span><br><span class="line">folder_list = os.listdir(dataset_path) <span class="comment">#子文件夹名称列表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(folder_list)):<span class="comment">#遍历子文件夹</span></span><br><span class="line">    folder_path = os.path.join(dataset_path,folder_list[i])<span class="comment">#子文件夹路径</span></span><br><span class="line">    img_list = os.listdir(folder_path)<span class="comment">#图片名称列表</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(img_list)):</span><br><span class="line">    	print(<span class="string">&#x27;folders: %d/%d, imgs:%d,%d&#x27;</span>%(i,<span class="built_in">len</span>(folder_list),j,<span class="built_in">len</span>(img_list))) <span class="comment">#打印实时进度 </span></span><br><span class="line">    	img_path  = os.path.join(folder_path,img_list[j])</span><br><span class="line">    	<span class="keyword">try</span>: <span class="comment">#进行处理</span></span><br><span class="line">            img = os.<span class="built_in">open</span>(img_path)</span><br><span class="line">            img_out = jpg2png(img)</span><br><span class="line">            img_out_path = os.path.join(save_path,folder_list[i],img_list[j].split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>],<span class="string">&#x27;png&#x27;</span>)</span><br><span class="line">            os.save(img_out,img_out_path)</span><br><span class="line">        <span class="keyword">except</span>: <span class="comment">#异常处理，将错误信息保存到log文件</span></span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;log.txt&quot;</span>, <span class="string">&quot;a&quot;</span>) <span class="keyword">as</span> logfile:</span><br><span class="line">            	print(<span class="string">&quot;Got an exception while handling &#123;!r&#125; in the loop:&quot;</span>.<span class="built_in">format</span>(x)</span><br><span class="line">            traceback.print_exc(file=logfile)</span><br><span class="line">                logfile.close()</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+<p>（1）进度打屏显示：为了让人实时了解程序运行情况，以及估计运行时间（python可用tqdm等库）</p>
+<p>（2）异常处理：防止程序运行到一半发生错误，导致又要重新修改后遍历，这对于长的循环体很有必要！</p>
+<p>（3）错误信息记录：方便我们后面逐个排查错误的文件的地址和原因</p>
 
         </div>
 
@@ -393,29 +264,14 @@ $$</p>
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/12/14/%E4%BB%8E%E4%B8%80%E4%B8%AA%E5%BE%AA%E7%8E%AF%E8%AF%B4%E8%B5%B7/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">写一个好的循环体来处理数据</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/11/18/SwinTransformer/"
+                           href="/2021/12/30/Dynamic%20Head%20Unifying%20Object%20Detection%20Heads%20with%20Attentions/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</span>
+                                <span class="post-nav-title-item">Dynamic Head: Unifying Object Detection Heads with Attentions</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -622,7 +478,7 @@ $$</p>
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">3.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">我们的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">5.1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-head"><span class="nav-number">5.2.</span> <span class="nav-text">Dynamic head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%9B%86%E6%88%90%E5%88%B0%E5%85%B6%E4%BB%96%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E4%B8%AD"><span class="nav-number">5.3.</span> <span class="nav-text">如何集成到其他目标检测方法中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%8C%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.4.</span> <span class="nav-text">和其他注意力机制的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE%EF%BC%88%E7%95%A5%EF%BC%89"><span class="nav-number">6.1.</span> <span class="nav-text">实验设置（略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">6.2.</span> <span class="nav-text">消融实验</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">目录格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">一个成熟的循环体</span></a></li></ol>
     </div>
 </div>
         </aside>
